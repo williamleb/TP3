@@ -20,7 +20,7 @@ namespace TP3
 
     int nbLignesJeu = 20;
 
-    PieceTetris[,] tableauPieces = null;
+    PieceTeris[,] tableauPieces = null;
 
     int[] blocActifY = new int[4];
 

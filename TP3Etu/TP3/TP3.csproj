@@ -54,6 +54,7 @@
     <Compile Include="JeuTetris.Designer.cs">
       <DependentUpon>JeuTetris.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pièces.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="JeuTetris.resx">
