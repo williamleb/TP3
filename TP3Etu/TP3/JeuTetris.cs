@@ -4,18 +4,36 @@ using System.Windows.Forms;
 
 namespace TP3
 {
-  public partial class Form1 : Form
+  public partial class JeuTetris : Form
   {
-    public Form1( )
+    public JeuTetris( )
     {
       InitializeComponent( );
     }
 
-    #region Code fourni
-    
+    // <WLebel>
+    #region Variables patagées
     // Représentation visuelles du jeu en mémoire.
     PictureBox[,] toutesImagesVisuelles = null;
-    
+
+    int nbColonnesJeu = 10;
+
+    int nbLignesJeu = 20;
+
+    PieceTetris[,] tableauPieces = null;
+
+    int[] blocActifY = new int[4];
+
+    int[] blocActifX = new int[4];
+
+    int colonneCourante = 0;
+
+    int ligneCourante = 0;
+    #endregion
+    // </WLebel>
+
+    #region Code fourni
+
     /// <summary>
     /// Gestionnaire de l'événement se produisant lors du premier affichage 
     /// du formulaire principal.
@@ -63,7 +81,7 @@ namespace TP3
 
 
 
-
+    
 
     #region Code à développer
     /// <summary>

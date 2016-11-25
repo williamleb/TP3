@@ -1,6 +1,6 @@
 ﻿namespace TP3
 {
-  partial class Form1
+  partial class JeuTetris
   {
     /// <summary>
     /// Variable nécessaire au concepteur.
@@ -53,7 +53,7 @@
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 31F));
       this.tableauJeu.Location = new System.Drawing.Point(173, 42);
       this.tableauJeu.Margin = new System.Windows.Forms.Padding(0);
       this.tableauJeu.Name = "tableauJeu";
@@ -91,15 +91,15 @@
       this.tableauJeu.Size = new System.Drawing.Size(222, 441);
       this.tableauJeu.TabIndex = 1;
       // 
-      // Form1
+      // JeuTetris
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(578, 589);
       this.Controls.Add(this.tableauJeu);
       this.KeyPreview = true;
-      this.Name = "Form1";
-      this.Text = "Form1";
+      this.Name = "JeuTetris";
+      this.Text = "Tetris";
       this.Load += new System.EventHandler(this.frmLoad);
       this.ResumeLayout(false);
 
