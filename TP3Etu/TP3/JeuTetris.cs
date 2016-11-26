@@ -131,6 +131,136 @@ namespace TP3
     }
     // </WLebel>
 
+    // <WLebel>
+    /// <summary>
+    /// Méthode qui affiche la pièce dans le jeu.
+    /// </summary>
+    void AfficherPiece()
+    {
+      for (int i = 0; i < blocActifY.Length; i++)
+      {
+        toutesImagesVisuelles[blocActifY[i] + ligneCourante, blocActifX[i] + colonneCourante].BackColor = Color.Beige;
+      }
+    }
+    // </WLebel>
+
+    // <WLebel>
+    #region Générateurs des différentes pièces.
+
+    /// <summary>
+    /// Génère la pièce « Carré ».
+    /// </summary>
+    void GenererCarre()
+    {
+      blocActifY[0] = 0;
+      blocActifY[1] = 0;
+      blocActifY[2] = 1;
+      blocActifY[3] = 1;
+
+      blocActifX[0] = 0;
+      blocActifX[1] = 1;
+      blocActifX[2] = 0;
+      blocActifX[3] = 1;
+    }
+
+    /// <summary>
+    /// Génère la pièce « Barre ».
+    /// </summary>
+    void GenererBarre()
+    {
+      blocActifY[0] = 0;
+      blocActifY[1] = 1;
+      blocActifY[2] = 2;
+      blocActifY[3] = 3;
+
+      blocActifX[0] = 0;
+      blocActifX[1] = 0;
+      blocActifX[2] = 0;
+      blocActifX[3] = 0;
+    }
+
+    /// <summary>
+    /// Génère la pièce en forme de T.
+    /// </summary>
+    void GenererT()
+    {
+      blocActifY[0] = 0;
+      blocActifY[1] = 1;
+      blocActifY[2] = 1;
+      blocActifY[3] = 1;
+
+      blocActifX[0] = 1;
+      blocActifX[1] = 0;
+      blocActifX[2] = 1;
+      blocActifX[3] = 2;
+    }
+
+    /// <summary>
+    /// Génère la pièce en forme de J.
+    /// </summary>
+    void GenererJ()
+    {
+      blocActifY[0] = 0;
+      blocActifY[1] = 1;
+      blocActifY[2] = 2;
+      blocActifY[3] = 2;
+
+      blocActifX[0] = 1;
+      blocActifX[1] = 1;
+      blocActifX[2] = 0;
+      blocActifX[3] = 1;
+    }
+
+    /// <summary>
+    /// Génère la pièce en forme de L.
+    /// </summary>
+    void GenererL()
+    {
+      blocActifY[0] = 0;
+      blocActifY[1] = 1;
+      blocActifY[2] = 2;
+      blocActifY[3] = 2;
+
+      blocActifX[0] = 0;
+      blocActifX[1] = 0;
+      blocActifX[2] = 0;
+      blocActifX[3] = 1;
+    }
+
+    /// <summary>
+    /// Génère la pièce en forme de S.
+    /// </summary>
+    void GenererS()
+    {
+      blocActifY[0] = 0;
+      blocActifY[1] = 1;
+      blocActifY[2] = 1;
+      blocActifY[3] = 2;
+
+      blocActifX[0] = 0;
+      blocActifX[1] = 0;
+      blocActifX[2] = 1;
+      blocActifX[3] = 1;
+    }
+
+    /// <summary>
+    /// Génère la pièce en forme de Z.
+    /// </summary>
+    void GenererZ()
+    {
+      blocActifY[0] = 0;
+      blocActifY[1] = 1;
+      blocActifY[2] = 1;
+      blocActifY[3] = 2;
+
+      blocActifX[0] = 1;
+      blocActifX[1] = 0;
+      blocActifX[2] = 1;
+      blocActifX[3] = 0;
+    }
+    #endregion
+    // </WLebel>
+
     #region Tests unitaires
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
@@ -152,11 +282,27 @@ namespace TP3
       
       // Clean-up
     }
-    #endregion
 
     #endregion
 
+    #endregion
 
+    /// <WLebel>
+    /// <summary>
+    /// Méthode appelée lorsque le joueur appuie sur le menu « Jouer ».
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    /// </WLebel>
+    private void OnClickMenuJouer(object sender, EventArgs e)
+    {
+      // C'est juste pour tester les différentes générations. (Ils sont encore juste blancs, mais ça va changer;)
+      colonneCourante = colonneDeDepart;
+      GenererCarre();
+      AfficherPiece();
+      //
+
+    }
   }
 
 

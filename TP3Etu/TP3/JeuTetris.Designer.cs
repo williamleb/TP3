@@ -33,12 +33,12 @@
       this.grpBoxStatistiquesJeu = new System.Windows.Forms.GroupBox();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.menuPartie = new System.Windows.Forms.ToolStripMenuItem();
-      this.menuStatistiques = new System.Windows.Forms.ToolStripMenuItem();
-      this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
       this.menuJouer = new System.Windows.Forms.ToolStripMenuItem();
       this.menuReinitialiser = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
       this.menuQuitter = new System.Windows.Forms.ToolStripMenuItem();
+      this.menuStatistiques = new System.Windows.Forms.ToolStripMenuItem();
+      this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
       this.tblLayoutJeu.SuspendLayout();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
@@ -65,7 +65,7 @@
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
       this.tableauJeu.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableauJeu.Location = new System.Drawing.Point(240, 0);
       this.tableauJeu.Margin = new System.Windows.Forms.Padding(0);
@@ -152,23 +152,12 @@
       this.menuPartie.Size = new System.Drawing.Size(49, 20);
       this.menuPartie.Text = "Partie";
       // 
-      // menuStatistiques
-      // 
-      this.menuStatistiques.Name = "menuStatistiques";
-      this.menuStatistiques.Size = new System.Drawing.Size(79, 20);
-      this.menuStatistiques.Text = "Statistiques";
-      // 
-      // menuConfiguration
-      // 
-      this.menuConfiguration.Name = "menuConfiguration";
-      this.menuConfiguration.Size = new System.Drawing.Size(93, 20);
-      this.menuConfiguration.Text = "Configuration";
-      // 
       // menuJouer
       // 
       this.menuJouer.Name = "menuJouer";
       this.menuJouer.Size = new System.Drawing.Size(152, 22);
       this.menuJouer.Text = "Jouer";
+      this.menuJouer.Click += new System.EventHandler(this.OnClickMenuJouer);
       // 
       // menuReinitialiser
       // 
@@ -186,6 +175,18 @@
       this.menuQuitter.Name = "menuQuitter";
       this.menuQuitter.Size = new System.Drawing.Size(152, 22);
       this.menuQuitter.Text = "Quitter";
+      // 
+      // menuStatistiques
+      // 
+      this.menuStatistiques.Name = "menuStatistiques";
+      this.menuStatistiques.Size = new System.Drawing.Size(79, 20);
+      this.menuStatistiques.Text = "Statistiques";
+      // 
+      // menuConfiguration
+      // 
+      this.menuConfiguration.Name = "menuConfiguration";
+      this.menuConfiguration.Size = new System.Drawing.Size(93, 20);
+      this.menuConfiguration.Text = "Configuration";
       // 
       // JeuTetris
       // 
