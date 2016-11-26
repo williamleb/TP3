@@ -6,9 +6,9 @@ namespace TP3
 {
   public partial class JeuTetris : Form
   {
-    public JeuTetris( )
+    public JeuTetris()
     {
-      InitializeComponent( );
+      InitializeComponent();
     }
 
     // <WLebel>
@@ -16,36 +16,36 @@ namespace TP3
     // Représentation visuelles du jeu en mémoire.
     PictureBox[,] toutesImagesVisuelles = null;
 
-    int nbColonnesJeu = 10;
-
+    // Nombre de lignes que contient le jeu.
     int nbLignesJeu = 20;
 
+    // Nombre de colonnes que contient le jeu.
+    int nbColonnesJeu = 10;
+
+    // Tableau qui représente les pièces dans le tableau du jeu.
     PieceTeris[,] tableauPieces = null;
 
-    int[] blocActifY = new int[4];
+    // Ligne qui correspond à la position relative des blocs dans le tableau du jeu.
+    int ligneCourante = 0;
 
-    int[] blocActifX = new int[4];
-
+    // Colonne qui correspond à la position relative des blocs dans le tableau du jeu.
     int colonneCourante = 0;
 
-    int ligneCourante = 0;
+    // Colonne où les nouveaux blocs apparaissent sur la surface du jeu.
+    int colonneDeDepart = 5;
+
+    // Tableau qui représente les positions vertivales relativent des blocs d'une pièce 
+    // par rapport aux variables ligneCourante et colonneCourante.
+    int[] blocActifY = new int[4];
+
+    // Tableau qui représente les positions horizontales relativent des blocs d'une pièce 
+    // par rapport aux variables ligneCourante et colonneCourante.
+    int[] blocActifX = new int[4];
+
     #endregion
     // </WLebel>
 
     #region Code fourni
-
-    /// <summary>
-    /// Gestionnaire de l'événement se produisant lors du premier affichage 
-    /// du formulaire principal.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void frmLoad( object sender, EventArgs e )
-    {
-      // Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
-      ExecuterTestsUnitaires();
-      InitialiserSurfaceDeJeu(20,10);
-    }
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
     {
@@ -81,9 +81,57 @@ namespace TP3
 
 
 
-    
+
 
     #region Code à développer
+
+    // <summary>
+    /// Gestionnaire de l'événement se produisant lors du premier affichage 
+    /// du formulaire principal.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void frmLoad(object sender, EventArgs e)
+    {
+      // Ne pas oublier de mettre en place les valeurs nécessaires à une partie.
+      ExecuterTestsUnitaires();
+
+      // <WLebel>
+      InitialiserValeursJeu(20, 10);
+      // </WLebel>
+    }
+    
+    // <WLebel>
+    /// <summary>
+    /// Méthode qui initialise le nombre de lignes et de colonnes du jeu, la surface de jeu,
+    /// le tableau des pièces du jeu et la position de départ des blocs selon un nouveau
+    /// nombre de lignes et de colonnes données.
+    /// </summary>
+    /// <param name="nouveauNbLignes">Nouveau nombre de lignes qui composeront le jeu.</param>
+    /// <param name="nouveauNbColonnes">Nouveau nombre de colonnes qui composeront le jeu.</param>
+    void InitialiserValeursJeu(int nouveauNbLignes, int nouveauNbColonnes)
+    {
+      nbColonnesJeu = nouveauNbColonnes;
+      nbLignesJeu = nouveauNbLignes;
+
+      InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
+
+      tableauPieces = new PieceTeris[nbLignesJeu, nbColonnesJeu];
+      // Initialise le tableau de pièces à vide.
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Rien;
+        }
+      }
+
+      // Sélectionne la colonne du milieu
+      colonneDeDepart = nbColonnesJeu / 2;
+    }
+    // </WLebel>
+
+    #region Tests unitaires
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
     /// </summary>
@@ -104,8 +152,10 @@ namespace TP3
       
       // Clean-up
     }
+    #endregion
 
     #endregion
+
 
   }
 

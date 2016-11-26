@@ -12,13 +12,17 @@ namespace TP3
   //que le numéro de ces pièces
   enum PieceTeris
   {
+    // <WLebel>
+    Rien,
+    Gelee,
+    // </WLebel>
     // Les couleurs peuvent être modifiées
     block, //couleur jaune
     barreVerticale, //couleur cyan
     barreHorizontale, //couleur cyan
     pieceEnT, //couleur mauve
-    pieceEnLDroite, //couleur orange
-    pieceEnLGauche, //couleur bleu foncé
+    pieceEnJ, //couleur orange
+    pieceEnL, //couleur bleu foncé
     pieceEnS, //couleur rouge
     pieceEnZ, //couleur rose
   }
