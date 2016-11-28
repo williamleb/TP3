@@ -85,19 +85,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\img_empty.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\img_player1.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\img_player2.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\img_player1_winner.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\img_player2_winner.bmp" />
+    <Content Include="Resources\Icon_Tetris.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -44,6 +44,10 @@ namespace TP3
 
     // Type de la pièce qui est jouée.
     PieceTeris pieceEnCours = PieceTeris.Rien;
+
+    // Variable qui sert à choisir une pièce de manière aléatoire.
+    Random rnd = new Random();
+
     #endregion
     // </WLebel>
 
@@ -492,14 +496,7 @@ namespace TP3
     /// </WLebel>
     private void OnClickMenuJouer(object sender, EventArgs e)
     {
-      // Toutes ces instructions sont pour des tests. Si tu veux essayer d'autres pièces, t'as qu'à changer la méthode de génération de pièce.
-      GenererCarre(); // Ça sera généré aléatoirement (et aussi ça sera pas juste fait une fois au début du jeu), mais c'est un test. (c'est dans ma partie)
-      colonneDeDepart = nbColonnesJeu / 2;
-      colonneCourante = colonneDeDepart;
-      ligneCourante = 0;
-      ActualiserTableauPieces(pieceEnCours);
-      AfficherJeu();
-      timerJeu.Enabled = true;
+      CommencerJeu();
     }
 
     /// <summary>
@@ -522,6 +519,87 @@ namespace TP3
         // Changer les pièces en pièces gelées (c'est dans ma partie)
       }
     }
+
+    // <WLebel>
+    /// <summary>
+    /// Méthode qui permet de commencer le jeu en initialisant les valeurs.
+    /// </summary>
+    void CommencerJeu()
+    {
+      // Si partie en cours, demander si on veut vraiment finir la partie en cours
+      ArreterExecutionJeu();
+      GenererPieceAleatoire();
+      // Désactivation du groupbox "Options"
+      timerJeu.Enabled = true;
+      colonneDeDepart = nbColonnesJeu / 2;
+      colonneCourante = colonneDeDepart;
+      ligneCourante = 0;
+      ActualiserTableauPieces(pieceEnCours);
+      AfficherJeu();
+    }
+    // </WLebel>
+
+    // <WLebel>
+    /// <summary>
+    /// Méthode qui permet d'arrêter l'exécution du jeu et d'afficher le jeu à son état vide.
+    /// </summary>
+    void ArreterExecutionJeu()
+    {
+      // Remet les valeurs à leur état initial.
+      //////// Activation du groupbox "Options"
+      timerJeu.Enabled = false;
+      ResetPiece();
+
+      // Remet le tableau jeu à son état initial et réaffiche au joueur son état vide.
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Rien;
+        }
+      }
+      AfficherJeu();
+    }
+    // </WLebel>
+
+    // <WLebel>
+    /// <summary>
+    /// Méthode qui choisit une pièce aléatoirement et la génère.
+    /// </summary>
+    void GenererPieceAleatoire()
+    {
+      int pieceAleatoire = rnd.Next(0, 7);
+
+      switch (pieceAleatoire)
+      {
+        case 0:
+          GenererCarre();
+          break;
+        case 1:
+          GenererBarre();
+          break;
+        case 2:
+          GenererT();
+          break;
+        case 3:
+          GenererJ();
+          break;
+        case 4:
+          GenererL();
+          break;
+        case 5:
+          GenererS();
+          break;
+        case 6:
+          GenererZ();
+          break;
+        default:
+          ResetPiece();
+          break;
+      }
+    }
+    // </WLebel>
+
   }
 
 
