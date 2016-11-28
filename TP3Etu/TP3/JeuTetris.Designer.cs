@@ -71,7 +71,7 @@
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
       this.tableauJeu.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableauJeu.Location = new System.Drawing.Point(240, 0);
       this.tableauJeu.Margin = new System.Windows.Forms.Padding(0);
@@ -186,25 +186,25 @@
       // menuJouer
       // 
       this.menuJouer.Name = "menuJouer";
-      this.menuJouer.Size = new System.Drawing.Size(152, 22);
+      this.menuJouer.Size = new System.Drawing.Size(134, 22);
       this.menuJouer.Text = "Jouer";
       this.menuJouer.Click += new System.EventHandler(this.OnClickMenuJouer);
       // 
       // menuReinitialiser
       // 
       this.menuReinitialiser.Name = "menuReinitialiser";
-      this.menuReinitialiser.Size = new System.Drawing.Size(152, 22);
+      this.menuReinitialiser.Size = new System.Drawing.Size(134, 22);
       this.menuReinitialiser.Text = "Réinitialiser";
       // 
       // toolStripMenuItem1
       // 
       this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-      this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+      this.toolStripMenuItem1.Size = new System.Drawing.Size(131, 6);
       // 
       // menuQuitter
       // 
       this.menuQuitter.Name = "menuQuitter";
-      this.menuQuitter.Size = new System.Drawing.Size(152, 22);
+      this.menuQuitter.Size = new System.Drawing.Size(134, 22);
       this.menuQuitter.Text = "Quitter";
       this.menuQuitter.Click += new System.EventHandler(this.menuQuitter_Click);
       // 
@@ -219,6 +219,7 @@
       this.menuConfiguration.Name = "menuConfiguration";
       this.menuConfiguration.Size = new System.Drawing.Size(93, 20);
       this.menuConfiguration.Text = "Configuration";
+      this.menuConfiguration.Click += new System.EventHandler(this.OnClickMenuConfiguration);
       // 
       // timerJeu
       // 
