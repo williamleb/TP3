@@ -35,7 +35,7 @@
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.grpBoxStatistiquesJeu = new System.Windows.Forms.GroupBox();
       this.grpBoxOptionsJeu = new System.Windows.Forms.GroupBox();
-      this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+      this.menuStripJeu = new System.Windows.Forms.MenuStrip();
       this.menuPartie = new System.Windows.Forms.ToolStripMenuItem();
       this.menuJouer = new System.Windows.Forms.ToolStripMenuItem();
       this.menuReinitialiser = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +46,7 @@
       this.timerJeu = new System.Windows.Forms.Timer(this.components);
       this.tblLayoutJeu.SuspendLayout();
       this.tableLayoutPanel1.SuspendLayout();
-      this.menuStrip1.SuspendLayout();
+      this.menuStripJeu.SuspendLayout();
       this.SuspendLayout();
       // 
       // tableauJeu
@@ -71,7 +71,7 @@
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
       this.tableauJeu.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableauJeu.Location = new System.Drawing.Point(240, 0);
       this.tableauJeu.Margin = new System.Windows.Forms.Padding(0);
@@ -160,17 +160,17 @@
       this.grpBoxOptionsJeu.TabStop = false;
       this.grpBoxOptionsJeu.Text = "Options";
       // 
-      // menuStrip1
+      // menuStripJeu
       // 
-      this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+      this.menuStripJeu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuPartie,
             this.menuStatistiques,
             this.menuConfiguration});
-      this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-      this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(578, 24);
-      this.menuStrip1.TabIndex = 3;
-      this.menuStrip1.Text = "menuStrip1";
+      this.menuStripJeu.Location = new System.Drawing.Point(0, 0);
+      this.menuStripJeu.Name = "menuStripJeu";
+      this.menuStripJeu.Size = new System.Drawing.Size(578, 24);
+      this.menuStripJeu.TabIndex = 3;
+      this.menuStripJeu.Text = "menuStrip1";
       // 
       // menuPartie
       // 
@@ -186,25 +186,26 @@
       // menuJouer
       // 
       this.menuJouer.Name = "menuJouer";
-      this.menuJouer.Size = new System.Drawing.Size(134, 22);
+      this.menuJouer.Size = new System.Drawing.Size(152, 22);
       this.menuJouer.Text = "Jouer";
       this.menuJouer.Click += new System.EventHandler(this.OnClickMenuJouer);
       // 
       // menuReinitialiser
       // 
       this.menuReinitialiser.Name = "menuReinitialiser";
-      this.menuReinitialiser.Size = new System.Drawing.Size(134, 22);
+      this.menuReinitialiser.Size = new System.Drawing.Size(152, 22);
       this.menuReinitialiser.Text = "Réinitialiser";
+      this.menuReinitialiser.Click += new System.EventHandler(this.OnClickMenuReinitialiser);
       // 
       // toolStripMenuItem1
       // 
       this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-      this.toolStripMenuItem1.Size = new System.Drawing.Size(131, 6);
+      this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
       // 
       // menuQuitter
       // 
       this.menuQuitter.Name = "menuQuitter";
-      this.menuQuitter.Size = new System.Drawing.Size(134, 22);
+      this.menuQuitter.Size = new System.Drawing.Size(152, 22);
       this.menuQuitter.Text = "Quitter";
       // 
       // menuStatistiques
@@ -229,17 +230,17 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(578, 589);
       this.Controls.Add(this.tblLayoutJeu);
-      this.Controls.Add(this.menuStrip1);
+      this.Controls.Add(this.menuStripJeu);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.KeyPreview = true;
-      this.MainMenuStrip = this.menuStrip1;
+      this.MainMenuStrip = this.menuStripJeu;
       this.Name = "JeuTetris";
       this.Text = "Tetris";
       this.Load += new System.EventHandler(this.frmLoad);
       this.tblLayoutJeu.ResumeLayout(false);
       this.tableLayoutPanel1.ResumeLayout(false);
-      this.menuStrip1.ResumeLayout(false);
-      this.menuStrip1.PerformLayout();
+      this.menuStripJeu.ResumeLayout(false);
+      this.menuStripJeu.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -249,7 +250,7 @@
 
     private System.Windows.Forms.TableLayoutPanel tableauJeu;
     private System.Windows.Forms.TableLayoutPanel tblLayoutJeu;
-    private System.Windows.Forms.MenuStrip menuStrip1;
+    private System.Windows.Forms.MenuStrip menuStripJeu;
     private System.Windows.Forms.ToolStripMenuItem menuPartie;
     private System.Windows.Forms.ToolStripMenuItem menuJouer;
     private System.Windows.Forms.ToolStripMenuItem menuReinitialiser;

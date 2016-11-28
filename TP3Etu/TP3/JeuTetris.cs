@@ -489,13 +489,12 @@ namespace TP3
 
     #endregion
 
-    /// <WLebel>
+    // <WLebel>
     /// <summary>
     /// Méthode appelée lorsque le joueur appuie sur le menu « Jouer ».
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    /// </WLebel>
     private void OnClickMenuJouer(object sender, EventArgs e)
     {
       // Si le jeu est en cours, on demande au joueur s'il veut vraiment terminer
@@ -504,7 +503,7 @@ namespace TP3
       {
         timerJeu.Enabled = false;
 
-        if (MessageBox.Show("Êtes-vous certain de vouloir ___ la partie en cours?", "Attention",
+        if (MessageBox.Show("Êtes-vous certain de vouloir abandonner la partie en cours?", "Attention",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
         {
           ArreterExecutionJeu();
@@ -518,6 +517,7 @@ namespace TP3
         CommencerJeu();
       }
     }
+    // </WLebel>
 
     /// <summary>
     /// Méthode qui est appelé à une certaine intervalle lorsque le jeu est commencé
@@ -557,7 +557,7 @@ namespace TP3
     void CommencerJeu()
     {
       GenererPieceAleatoire();
-      // Désactivation du groupbox "Options"
+      ////// Désactivation du groupbox "Options"
       timerJeu.Enabled = true;
       colonneDeDepart = nbColonnesJeu / 2;
       colonneCourante = colonneDeDepart;
@@ -628,6 +628,38 @@ namespace TP3
         default:
           ResetPiece();
           break;
+      }
+    }
+    // </WLebel>
+
+    //<WLebel>
+    /// <summary>
+    /// Méthode qui est appelée lorsque le joueur clique sur le menu « Réinitialiser ». 
+    /// La méthode réinitialise le jeu et ses paramètres.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void OnClickMenuReinitialiser(object sender, EventArgs e)
+    {
+      if (jeuEstEnCours)
+      {
+        timerJeu.Enabled = false;
+
+        if (MessageBox.Show("Êtes-vous certain de vouloir abandonner la partie en cours?", "Attention",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+        {
+          ArreterExecutionJeu();
+          InitialiserValeursJeu(20, 10);
+        }
+        else
+        {
+          timerJeu.Enabled = true;
+        }
+      }
+      else
+      {
+        ArreterExecutionJeu();
+        InitialiserValeursJeu(20, 10);
       }
     }
     // </WLebel>
