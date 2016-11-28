@@ -53,6 +53,10 @@ namespace TP3
     #endregion
     // </WLebel>
 
+    //Mika Gauthier
+    //Déplacement du joueur au début
+    Mouvement keyUsed = Mouvement.Immobile;
+    //Mika Gauthier
     #region Code fourni
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -665,13 +669,144 @@ namespace TP3
 
     }
     // </WLebel>
+
+    private void menuQuitter_Click(object sender, EventArgs e)
+    {
+      Application.Exit();
+    }
+    // </WLebel>  
+    //Mika Gauthier
+    void DeplacerBloc(PieceTeris[,] tableauPieces)
+    {
+      if (keyUsed == Mouvement.DeplacerGauche)
+      {
+        if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerGauche))
+        {
+          ActualiserTableauPieces(PieceTeris.Rien);
+          colonneCourante--;
+          ActualiserTableauPieces(pieceEnCours);
+          AfficherJeu();
+        }
+
+      }
+      if (keyUsed == Mouvement.DeplacerDroite)
+      {
+        if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerDroite))
+        {
+          ActualiserTableauPieces(PieceTeris.Rien);
+          colonneCourante++;
+          ActualiserTableauPieces(pieceEnCours);
+          AfficherJeu();
+        }
+      }
+      if (keyUsed == Mouvement.DeplacerBas)
+      {
+        if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerBas))
+        {
+          ActualiserTableauPieces(PieceTeris.Rien);
+          ligneCourante++;
+          ActualiserTableauPieces(pieceEnCours);
+          AfficherJeu();
+        }
+      }
+      if (keyUsed == Mouvement.DeplacerHaut)
+      {
+        if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerHaut))
+        {
+          ActualiserTableauPieces(PieceTeris.Rien);
+          ligneCourante--;
+          ActualiserTableauPieces(pieceEnCours);
+          AfficherJeu();
+        }
+      }
+      if (keyUsed == Mouvement.RotationHoraire)
+      {
+        if (DeterminerSiBlocPeutBouger(Mouvement.RotationHoraire))
+        {
+          ActualiserTableauPieces(PieceTeris.Rien);
+          int[] tableauTemporaire = new int[blocActifY.Length];
+          for (int i = 0; i < blocActifY.Length; i++)
+          {
+            tableauTemporaire[i] = blocActifY[i];
+            blocActifY[i] = blocActifX[i];
+          }
+          for (int j = 0; j < blocActifX.Length; j++)
+          {
+            blocActifX[j] = -tableauTemporaire[j];
+          }
+          ActualiserTableauPieces(pieceEnCours);
+          AfficherJeu();
+        }
+      }
+      if (keyUsed == Mouvement.RotationAntihoraire)
+      {
+        if (DeterminerSiBlocPeutBouger(Mouvement.RotationAntihoraire))
+        {
+          ActualiserTableauPieces(PieceTeris.Rien);
+          int[] tableauTemporaire = new int[blocActifY.Length];
+          for (int i = 0; i < blocActifY.Length; i++)
+          {
+            tableauTemporaire[i] = blocActifY[i];
+            blocActifY[i] = -blocActifX[i];
+          }
+          for (int j = 0; j < blocActifX.Length; j++)
+          {
+            blocActifX[j] = tableauTemporaire[j];
+          }
+          ActualiserTableauPieces(pieceEnCours);
+          AfficherJeu();
+        }
+      }
+    }
+
+    private void JeuTetris_KeyPress(object sender, KeyPressEventArgs e)
+    {
+      /// <summary>
+      /// Fonction qui détermine si le joueur a appuyé sur une touche ou non
+      /// </summary>
+
+      //Déplacement vers la gauche
+      if (e.KeyChar == 'a')
+      {
+        keyUsed = Mouvement.DeplacerGauche;
+        DeplacerBloc(tableauPieces);
+      }
+
+      //Déplacement vers la droite
+      if (e.KeyChar == 'd')
+      {
+        keyUsed = Mouvement.DeplacerDroite;
+        DeplacerBloc(tableauPieces);
+      }
+
+      //déplacement vers le bas
+      if (e.KeyChar == 's')
+      {
+        keyUsed = Mouvement.DeplacerBas;
+        DeplacerBloc(tableauPieces);
+      }
+
+      //Déplacement vers le haut
+      if (e.KeyChar == 'w')
+      {
+        keyUsed = Mouvement.DeplacerHaut;
+        DeplacerBloc(tableauPieces);
+      }
+
+      //Rotation dans le sens antihoraire
+      if (e.KeyChar == 'e')
+      {
+        keyUsed = Mouvement.RotationAntihoraire;
+        DeplacerBloc(tableauPieces);
+      }
+
+      //Rotation dans le sens horaire
+      if (e.KeyChar == 'q')
+      {
+        keyUsed = Mouvement.RotationHoraire;
+        DeplacerBloc(tableauPieces);
+      }
+    }
+    //Mika Gauhtier
   }
-
-
-
-
-
-
-
-
-}
+}   

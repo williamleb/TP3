@@ -206,6 +206,7 @@
       this.menuQuitter.Name = "menuQuitter";
       this.menuQuitter.Size = new System.Drawing.Size(134, 22);
       this.menuQuitter.Text = "Quitter";
+      this.menuQuitter.Click += new System.EventHandler(this.menuQuitter_Click);
       // 
       // menuStatistiques
       // 
@@ -237,6 +238,7 @@
       this.Name = "JeuTetris";
       this.Text = "Tetris";
       this.Load += new System.EventHandler(this.frmLoad);
+      this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.JeuTetris_KeyPress);
       this.tblLayoutJeu.ResumeLayout(false);
       this.tableLayoutPanel1.ResumeLayout(false);
       this.menuStripJeu.ResumeLayout(false);
