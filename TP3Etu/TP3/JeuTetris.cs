@@ -501,16 +501,11 @@ namespace TP3
       // sa partie en cours.
       if (jeuEstEnCours)
       {
-        timerJeu.Enabled = false;
-
-        if (MessageBox.Show("Êtes-vous certain de vouloir abandonner la partie en cours?", "Attention",
-                            MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+        if (DemanderAbandonnerPartie() == true)
         {
           ArreterExecutionJeu();
           CommencerJeu();
         }
-
-        timerJeu.Enabled = true;
       }
       else
       {
@@ -632,38 +627,28 @@ namespace TP3
     }
     // </WLebel>
 
-    //<WLebel>
+    // <WLebel>
     /// <summary>
-    /// Méthode qui est appelée lorsque le joueur clique sur le menu « Réinitialiser ». 
-    /// La méthode réinitialise le jeu et ses paramètres.
+    /// Pause le jeu et affiche une boîte de message au joueur demandant s'il veut abandonner la partie en cours.
     /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void OnClickMenuReinitialiser(object sender, EventArgs e)
+    /// <returns>Un booléen qui indique si le joueur veut abandonner (vrai) ou non (faux).</returns>
+    bool DemanderAbandonnerPartie()
     {
-      if (jeuEstEnCours)
-      {
-        timerJeu.Enabled = false;
+      bool veutAbandonner = false;
 
-        if (MessageBox.Show("Êtes-vous certain de vouloir abandonner la partie en cours?", "Attention",
-                            MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
-        {
-          ArreterExecutionJeu();
-          InitialiserValeursJeu(20, 10);
-        }
-        else
-        {
-          timerJeu.Enabled = true;
-        }
-      }
-      else
+      timerJeu.Enabled = false;
+
+      if (MessageBox.Show("Êtes-vous certain de vouloir abandonner la partie en cours?", "Attention",
+                          MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
       {
-        ArreterExecutionJeu();
-        InitialiserValeursJeu(20, 10);
+        veutAbandonner = true;
       }
+
+      timerJeu.Enabled = true;
+
+      return veutAbandonner;
     }
     // </WLebel>
-
   }
 
 
