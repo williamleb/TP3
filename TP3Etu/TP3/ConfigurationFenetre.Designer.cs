@@ -34,11 +34,11 @@
       this.label3 = new System.Windows.Forms.Label();
       this.checkBoxMusique = new System.Windows.Forms.CheckBox();
       this.lblTouches = new System.Windows.Forms.Label();
-      this.btnValider = new System.Windows.Forms.Button();
-      this.btnAnnuler = new System.Windows.Forms.Button();
       this.txtBoxNbColonnes = new System.Windows.Forms.TextBox();
       this.textBox2 = new System.Windows.Forms.TextBox();
       this.layoutBtns = new System.Windows.Forms.TableLayoutPanel();
+      this.btnValider = new System.Windows.Forms.Button();
+      this.btnAnnuler = new System.Windows.Forms.Button();
       this.layoutConfig.SuspendLayout();
       this.layoutBtns.SuspendLayout();
       this.SuspendLayout();
@@ -116,28 +116,6 @@
       this.lblTouches.TabIndex = 4;
       this.lblTouches.Text = "Touches";
       // 
-      // btnValider
-      // 
-      this.btnValider.DialogResult = System.Windows.Forms.DialogResult.OK;
-      this.btnValider.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.btnValider.Location = new System.Drawing.Point(3, 3);
-      this.btnValider.Name = "btnValider";
-      this.btnValider.Size = new System.Drawing.Size(150, 26);
-      this.btnValider.TabIndex = 5;
-      this.btnValider.Text = "Valider";
-      this.btnValider.UseVisualStyleBackColor = true;
-      // 
-      // btnAnnuler
-      // 
-      this.btnAnnuler.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-      this.btnAnnuler.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.btnAnnuler.Location = new System.Drawing.Point(159, 3);
-      this.btnAnnuler.Name = "btnAnnuler";
-      this.btnAnnuler.Size = new System.Drawing.Size(150, 26);
-      this.btnAnnuler.TabIndex = 6;
-      this.btnAnnuler.Text = "Annuler";
-      this.btnAnnuler.UseVisualStyleBackColor = true;
-      // 
       // txtBoxNbColonnes
       // 
       this.txtBoxNbColonnes.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -175,6 +153,28 @@
       this.layoutBtns.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
       this.layoutBtns.Size = new System.Drawing.Size(312, 32);
       this.layoutBtns.TabIndex = 9;
+      // 
+      // btnValider
+      // 
+      this.btnValider.DialogResult = System.Windows.Forms.DialogResult.OK;
+      this.btnValider.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.btnValider.Location = new System.Drawing.Point(3, 3);
+      this.btnValider.Name = "btnValider";
+      this.btnValider.Size = new System.Drawing.Size(150, 26);
+      this.btnValider.TabIndex = 5;
+      this.btnValider.Text = "Valider";
+      this.btnValider.UseVisualStyleBackColor = true;
+      // 
+      // btnAnnuler
+      // 
+      this.btnAnnuler.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+      this.btnAnnuler.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.btnAnnuler.Location = new System.Drawing.Point(159, 3);
+      this.btnAnnuler.Name = "btnAnnuler";
+      this.btnAnnuler.Size = new System.Drawing.Size(150, 26);
+      this.btnAnnuler.TabIndex = 6;
+      this.btnAnnuler.Text = "Annuler";
+      this.btnAnnuler.UseVisualStyleBackColor = true;
       // 
       // ConfigurationFenetre
       // 
