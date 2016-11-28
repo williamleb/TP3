@@ -32,6 +32,7 @@
       this.lblNbLignes = new System.Windows.Forms.Label();
       this.lblNbColonnes = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
+      this.checkBoxMusique = new System.Windows.Forms.CheckBox();
       this.tableLayoutPanel1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -44,6 +45,7 @@
       this.tableLayoutPanel1.Controls.Add(this.lblNbLignes, 0, 0);
       this.tableLayoutPanel1.Controls.Add(this.lblNbColonnes, 0, 1);
       this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
+      this.tableLayoutPanel1.Controls.Add(this.checkBoxMusique, 1, 2);
       this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
       this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -83,6 +85,17 @@
       this.label3.TabIndex = 2;
       this.label3.Text = "Musique";
       // 
+      // checkBoxMusique
+      // 
+      this.checkBoxMusique.AutoSize = true;
+      this.checkBoxMusique.Location = new System.Drawing.Point(93, 71);
+      this.checkBoxMusique.Name = "checkBoxMusique";
+      this.checkBoxMusique.Size = new System.Drawing.Size(62, 17);
+      this.checkBoxMusique.TabIndex = 3;
+      this.checkBoxMusique.Text = "Activée";
+      this.checkBoxMusique.UseVisualStyleBackColor = true;
+      this.checkBoxMusique.CheckedChanged += new System.EventHandler(this.OnCheckCheckBoxMusique);
+      // 
       // ConfigurationFenetre
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -107,5 +120,6 @@
     private System.Windows.Forms.Label lblNbLignes;
     private System.Windows.Forms.Label lblNbColonnes;
     private System.Windows.Forms.Label label3;
+    private System.Windows.Forms.CheckBox checkBoxMusique;
   }
 }

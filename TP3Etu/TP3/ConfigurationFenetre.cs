@@ -28,7 +28,23 @@ namespace TP3
 
     private void OnLoadConfigurationFenetre(object sender, EventArgs e)
     {
+      
+      if (doitJouerMusique)
+      {
+        checkBoxMusique.Checked = true;
+      }
+    }
 
+    private void OnCheckCheckBoxMusique(object sender, EventArgs e)
+    {
+      if (checkBoxMusique.Checked == true)
+      {
+        doitJouerMusique = true;
+      }
+      else
+      {
+        doitJouerMusique = false;
+      }
     }
 
     //Commandes
