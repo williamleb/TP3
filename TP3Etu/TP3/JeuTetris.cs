@@ -54,7 +54,7 @@ namespace TP3
     // </WLebel>
 
     //Mika Gauthier
-    //Déplacement du joueur au début
+    //État du joueur au début
     Mouvement keyUsed = Mouvement.Immobile;
     //Mika Gauthier
     #region Code fourni
@@ -654,13 +654,21 @@ namespace TP3
       Application.Exit();
     }
     // </WLebel>  
+
     //Mika Gauthier
+    /// <summary>
+    /// Cette fonction déplace le bloc courant selon les volontées du joueur
+    /// </summary>
+    /// <param name="tableauPieces">tableau 2D de PieceTeris contenant toutes les pièce qui sont en jeu</param>
     void DeplacerBloc(PieceTeris[,] tableauPieces)
     {
+      //Déplace le bloc vers la gauche si le joueur appuie sur la lettre a
       if (keyUsed == Mouvement.DeplacerGauche)
       {
+        //Vérification si le déplacement est possible
         if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerGauche))
         {
+          //Actualisation + affichage du tableau 
           ActualiserTableauPieces(PieceTeris.Rien);
           colonneCourante--;
           ActualiserTableauPieces(pieceEnCours);
@@ -668,40 +676,52 @@ namespace TP3
         }
 
       }
+      //Déplace le bloc vers la droite si le joueur appuie sur la lettre d
       if (keyUsed == Mouvement.DeplacerDroite)
       {
+        //Vérification si le déplacement est possible
         if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerDroite))
         {
+          //Actualisation + affichage du tableau 
           ActualiserTableauPieces(PieceTeris.Rien);
           colonneCourante++;
           ActualiserTableauPieces(pieceEnCours);
           AfficherJeu();
         }
       }
+      //Déplace le bloc vers le bas si le joueur appuie sur la lettre s
       if (keyUsed == Mouvement.DeplacerBas)
       {
+        //Vérification si le déplacement est possible
         if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerBas))
         {
+          //Actualisation + affichage du tableau 
           ActualiserTableauPieces(PieceTeris.Rien);
           ligneCourante++;
           ActualiserTableauPieces(pieceEnCours);
           AfficherJeu();
         }
       }
+      //Déplace le bloc vers le haut si le joueur appuie sur la lettre w
       if (keyUsed == Mouvement.DeplacerHaut)
       {
+        //Vérification si le déplacement est possible
         if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerHaut))
         {
+          //Actualisation + affichage du tableau 
           ActualiserTableauPieces(PieceTeris.Rien);
           ligneCourante--;
           ActualiserTableauPieces(pieceEnCours);
           AfficherJeu();
         }
       }
+      //Rotation du bloc dans le sens horaire si le joueur appuie sur la lettre e
       if (keyUsed == Mouvement.RotationHoraire)
       {
+        //Vérification si le déplacement est possible
         if (DeterminerSiBlocPeutBouger(Mouvement.RotationHoraire))
         {
+          //Actualisation + affichage du tableau 
           ActualiserTableauPieces(PieceTeris.Rien);
           int[] tableauTemporaire = new int[blocActifY.Length];
           for (int i = 0; i < blocActifY.Length; i++)
@@ -717,10 +737,13 @@ namespace TP3
           AfficherJeu();
         }
       }
+      //Rotation du bloc dans le sens Antihoraire si le joueur appuie sur la lettre q
       if (keyUsed == Mouvement.RotationAntihoraire)
       {
+        //Vérification si le déplacement est possible
         if (DeterminerSiBlocPeutBouger(Mouvement.RotationAntihoraire))
         {
+          //Actualisation + affichage du tableau 
           ActualiserTableauPieces(PieceTeris.Rien);
           int[] tableauTemporaire = new int[blocActifY.Length];
           for (int i = 0; i < blocActifY.Length; i++)
@@ -738,48 +761,52 @@ namespace TP3
       }
     }
 
+    /// <summary>
+    /// Cette fonction détermine si le joueur appuie sur l'une des touches du jeu,
+    /// il permet aussi le déplacement de la pièce si l'une des touches (a,s,d,w,e,q)
+    /// est choisie
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void JeuTetris_KeyPress(object sender, KeyPressEventArgs e)
     {
-      /// <summary>
-      /// Fonction qui détermine si le joueur a appuyé sur une touche ou non
-      /// </summary>
-
-      //Déplacement vers la gauche
+      //Déplacement du joueur selon la touche choisie(a,s,d,w,e,q)
+      //Déplacement vers la gauche(a)
       if (e.KeyChar == 'a')
       {
         keyUsed = Mouvement.DeplacerGauche;
         DeplacerBloc(tableauPieces);
       }
 
-      //Déplacement vers la droite
+      //Déplacement vers la droite(d)
       if (e.KeyChar == 'd')
       {
         keyUsed = Mouvement.DeplacerDroite;
         DeplacerBloc(tableauPieces);
       }
 
-      //déplacement vers le bas
+      //déplacement vers le bas(s)
       if (e.KeyChar == 's')
       {
         keyUsed = Mouvement.DeplacerBas;
         DeplacerBloc(tableauPieces);
       }
 
-      //Déplacement vers le haut
+      //Déplacement vers le haut(w)
       if (e.KeyChar == 'w')
       {
         keyUsed = Mouvement.DeplacerHaut;
         DeplacerBloc(tableauPieces);
       }
 
-      //Rotation dans le sens antihoraire
+      //Rotation dans le sens antihoraire(q)
       if (e.KeyChar == 'e')
       {
         keyUsed = Mouvement.RotationAntihoraire;
         DeplacerBloc(tableauPieces);
       }
 
-      //Rotation dans le sens horaire
+      //Rotation dans le sens horaire(e)
       if (e.KeyChar == 'q')
       {
         keyUsed = Mouvement.RotationHoraire;
