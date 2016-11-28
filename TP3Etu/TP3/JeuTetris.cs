@@ -87,10 +87,6 @@ namespace TP3
     }
     #endregion
 
-
-
-
-
     #region Code à développer
 
     // <summary>
