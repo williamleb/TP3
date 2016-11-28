@@ -48,6 +48,8 @@ namespace TP3
     // Variable qui sert à choisir une pièce de manière aléatoire.
     Random rnd = new Random();
 
+    // Sert à savoir si le jeu est en cours d'exécution.
+    bool jeuEstEnCours = false;
     #endregion
     // </WLebel>
 
@@ -496,17 +498,38 @@ namespace TP3
     /// </WLebel>
     private void OnClickMenuJouer(object sender, EventArgs e)
     {
-      CommencerJeu();
+      // Si le jeu est en cours, on demande au joueur s'il veut vraiment terminer
+      // sa partie en cours.
+      if (jeuEstEnCours)
+      {
+        timerJeu.Enabled = false;
+
+        if (MessageBox.Show("Êtes-vous certain de vouloir ___ la partie en cours?", "Attention",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+        {
+          ArreterExecutionJeu();
+          CommencerJeu();
+        }
+
+        timerJeu.Enabled = true;
+      }
+      else
+      {
+        CommencerJeu();
+      }
     }
 
     /// <summary>
-    /// Méthode qui [à ompléter]
+    /// Méthode qui est appelé à une certaine intervalle lorsque le jeu est commencé
+    /// et qui permet de vérifier si la partie est terminéeet et, si ce n'est pas le cas, de
+    /// descendre ou de geler la pièce en cours selon son état.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void OnTickTimerJeu(object sender, EventArgs e)
     {
       // Avant ça doit tester si c'est la fin de la partie (c'est dans ta partie)
+      // <WLebel>
       /*else*/if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerBas))
       {
         ActualiserTableauPieces(PieceTeris.Rien);
@@ -516,8 +539,15 @@ namespace TP3
       }
       else
       {
-        // Changer les pièces en pièces gelées (c'est dans ma partie)
+        ActualiserTableauPieces(PieceTeris.Gelee);
+        AfficherJeu();
+        GenererPieceAleatoire();
+        colonneCourante = colonneDeDepart;
+        ligneCourante = 0;
+        ActualiserTableauPieces(pieceEnCours);
+        AfficherJeu();
       }
+      // </WLebel>
     }
 
     // <WLebel>
@@ -526,8 +556,6 @@ namespace TP3
     /// </summary>
     void CommencerJeu()
     {
-      // Si partie en cours, demander si on veut vraiment finir la partie en cours
-      ArreterExecutionJeu();
       GenererPieceAleatoire();
       // Désactivation du groupbox "Options"
       timerJeu.Enabled = true;
@@ -536,6 +564,8 @@ namespace TP3
       ligneCourante = 0;
       ActualiserTableauPieces(pieceEnCours);
       AfficherJeu();
+
+      jeuEstEnCours = true;
     }
     // </WLebel>
 
@@ -559,6 +589,8 @@ namespace TP3
         }
       }
       AfficherJeu();
+
+      jeuEstEnCours = false;
     }
     // </WLebel>
 
