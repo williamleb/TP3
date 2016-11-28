@@ -34,13 +34,19 @@
       this.label3 = new System.Windows.Forms.Label();
       this.checkBoxMusique = new System.Windows.Forms.CheckBox();
       this.lblTouches = new System.Windows.Forms.Label();
-      this.txtBoxNbColonnes = new System.Windows.Forms.TextBox();
-      this.textBox2 = new System.Windows.Forms.TextBox();
       this.layoutBtns = new System.Windows.Forms.TableLayoutPanel();
       this.btnValider = new System.Windows.Forms.Button();
       this.btnAnnuler = new System.Windows.Forms.Button();
+      this.trackBarNbLignes = new System.Windows.Forms.TrackBar();
+      this.trackBarNbColonnes = new System.Windows.Forms.TrackBar();
+      this.numNbLignes = new System.Windows.Forms.NumericUpDown();
+      this.numNbColonnes = new System.Windows.Forms.NumericUpDown();
       this.layoutConfig.SuspendLayout();
       this.layoutBtns.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.trackBarNbLignes)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.trackBarNbColonnes)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.numNbLignes)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.numNbColonnes)).BeginInit();
       this.SuspendLayout();
       // 
       // layoutConfig
@@ -54,9 +60,11 @@
       this.layoutConfig.Controls.Add(this.label3, 0, 2);
       this.layoutConfig.Controls.Add(this.checkBoxMusique, 1, 2);
       this.layoutConfig.Controls.Add(this.lblTouches, 0, 3);
-      this.layoutConfig.Controls.Add(this.txtBoxNbColonnes, 1, 1);
-      this.layoutConfig.Controls.Add(this.textBox2, 1, 0);
       this.layoutConfig.Controls.Add(this.layoutBtns, 0, 4);
+      this.layoutConfig.Controls.Add(this.trackBarNbLignes, 2, 0);
+      this.layoutConfig.Controls.Add(this.trackBarNbColonnes, 2, 1);
+      this.layoutConfig.Controls.Add(this.numNbLignes, 1, 0);
+      this.layoutConfig.Controls.Add(this.numNbColonnes, 1, 1);
       this.layoutConfig.Dock = System.Windows.Forms.DockStyle.Fill;
       this.layoutConfig.Location = new System.Drawing.Point(0, 0);
       this.layoutConfig.Name = "layoutConfig";
@@ -116,28 +124,6 @@
       this.lblTouches.TabIndex = 4;
       this.lblTouches.Text = "Touches";
       // 
-      // txtBoxNbColonnes
-      // 
-      this.txtBoxNbColonnes.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.txtBoxNbColonnes.Enabled = false;
-      this.txtBoxNbColonnes.Location = new System.Drawing.Point(102, 37);
-      this.txtBoxNbColonnes.Name = "txtBoxNbColonnes";
-      this.txtBoxNbColonnes.Size = new System.Drawing.Size(63, 20);
-      this.txtBoxNbColonnes.TabIndex = 7;
-      this.txtBoxNbColonnes.Text = "10";
-      this.txtBoxNbColonnes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      // 
-      // textBox2
-      // 
-      this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.textBox2.Enabled = false;
-      this.textBox2.Location = new System.Drawing.Point(102, 3);
-      this.textBox2.Name = "textBox2";
-      this.textBox2.Size = new System.Drawing.Size(63, 20);
-      this.textBox2.TabIndex = 8;
-      this.textBox2.Text = "20";
-      this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      // 
       // layoutBtns
       // 
       this.layoutBtns.ColumnCount = 2;
@@ -176,12 +162,85 @@
       this.btnAnnuler.Text = "Annuler";
       this.btnAnnuler.UseVisualStyleBackColor = true;
       // 
+      // trackBarNbLignes
+      // 
+      this.trackBarNbLignes.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.trackBarNbLignes.Location = new System.Drawing.Point(171, 3);
+      this.trackBarNbLignes.Maximum = 30;
+      this.trackBarNbLignes.Minimum = 5;
+      this.trackBarNbLignes.Name = "trackBarNbLignes";
+      this.trackBarNbLignes.Size = new System.Drawing.Size(144, 28);
+      this.trackBarNbLignes.TabIndex = 10;
+      this.trackBarNbLignes.Value = 20;
+      this.trackBarNbLignes.Scroll += new System.EventHandler(this.OnScrollTrackBarNbLignes);
+      // 
+      // trackBarNbColonnes
+      // 
+      this.trackBarNbColonnes.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.trackBarNbColonnes.Location = new System.Drawing.Point(171, 37);
+      this.trackBarNbColonnes.Maximum = 20;
+      this.trackBarNbColonnes.Minimum = 8;
+      this.trackBarNbColonnes.Name = "trackBarNbColonnes";
+      this.trackBarNbColonnes.Size = new System.Drawing.Size(144, 28);
+      this.trackBarNbColonnes.TabIndex = 11;
+      this.trackBarNbColonnes.Value = 10;
+      this.trackBarNbColonnes.Scroll += new System.EventHandler(this.OnScrollTrackBarNbColonnes);
+      // 
+      // numNbLignes
+      // 
+      this.numNbLignes.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.numNbLignes.Location = new System.Drawing.Point(102, 3);
+      this.numNbLignes.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+      this.numNbLignes.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+      this.numNbLignes.Name = "numNbLignes";
+      this.numNbLignes.Size = new System.Drawing.Size(63, 20);
+      this.numNbLignes.TabIndex = 12;
+      this.numNbLignes.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+      this.numNbLignes.ValueChanged += new System.EventHandler(this.OnChangeNumNbLignes);
+      // 
+      // numNbColonnes
+      // 
+      this.numNbColonnes.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.numNbColonnes.Location = new System.Drawing.Point(102, 37);
+      this.numNbColonnes.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+      this.numNbColonnes.Minimum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+      this.numNbColonnes.Name = "numNbColonnes";
+      this.numNbColonnes.Size = new System.Drawing.Size(63, 20);
+      this.numNbColonnes.TabIndex = 13;
+      this.numNbColonnes.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+      this.numNbColonnes.ValueChanged += new System.EventHandler(this.OnChangeNumNbColonnes);
+      // 
       // ConfigurationFenetre
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(318, 174);
       this.Controls.Add(this.layoutConfig);
+      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
       this.MaximizeBox = false;
       this.MinimizeBox = false;
       this.Name = "ConfigurationFenetre";
@@ -191,6 +250,10 @@
       this.layoutConfig.ResumeLayout(false);
       this.layoutConfig.PerformLayout();
       this.layoutBtns.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.trackBarNbLignes)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.trackBarNbColonnes)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.numNbLignes)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.numNbColonnes)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -205,8 +268,10 @@
     private System.Windows.Forms.Label lblTouches;
     private System.Windows.Forms.Button btnValider;
     private System.Windows.Forms.Button btnAnnuler;
-    private System.Windows.Forms.TextBox txtBoxNbColonnes;
-    private System.Windows.Forms.TextBox textBox2;
     private System.Windows.Forms.TableLayoutPanel layoutBtns;
+    private System.Windows.Forms.TrackBar trackBarNbLignes;
+    private System.Windows.Forms.TrackBar trackBarNbColonnes;
+    private System.Windows.Forms.NumericUpDown numNbLignes;
+    private System.Windows.Forms.NumericUpDown numNbColonnes;
   }
 }

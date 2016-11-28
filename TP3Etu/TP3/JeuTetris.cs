@@ -494,32 +494,6 @@ namespace TP3
     #endregion
     // </WLebel>
 
-    #region Tests unitaires
-    /// <summary>
-    /// Faites ici les appels requis pour vos tests unitaires.
-    /// </summary>
-    void ExecuterTestsUnitaires()
-    {      
-      ExecuterTestABC();
-      // A compléter...
-    }
-
-    // A renommer et commenter!
-    void ExecuterTestABC()
-    {
-      // Mise en place des données du test
-      
-      // Exécuter de la méthode à tester
-      
-      // Validation des résultats
-      
-      // Clean-up
-    }
-
-    #endregion
-
-    #endregion
-
     // <WLebel>
     /// <summary>
     /// Méthode appelée lorsque le joueur appuie sur le menu « Jouer ».
@@ -910,5 +884,30 @@ namespace TP3
         jeuEstEnCours = false;
       }
     }
+
+    #region Tests unitaires
+    /// <summary>
+    /// Faites ici les appels requis pour vos tests unitaires.
+    /// </summary>
+    void ExecuterTestsUnitaires()
+    {
+      ExecuterTestABC();
+      // A compléter...
+    }
+
+    // A renommer et commenter!
+    void ExecuterTestABC()
+    {
+      // Mise en place des données du test
+
+      // Exécuter de la méthode à tester
+
+      // Validation des résultats
+
+      // Clean-up
+    }
+
+    #endregion
+    #endregion
   }
 }   
