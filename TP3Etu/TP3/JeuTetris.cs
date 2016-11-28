@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using WMPLib;
 
 namespace TP3
 {
@@ -50,13 +51,20 @@ namespace TP3
 
     // Sert à savoir si le jeu est en cours d'exécution.
     bool jeuEstEnCours = false;
-    #endregion
-    // </WLebel>
+
+    // Sert à savoir si on doit jouer une musique durant la partie.
+    bool doitJouerMusique = false;
+
+    // Variable qui sert à jouer la musique.
+    WindowsMediaPlayer musique = new WindowsMediaPlayer();
 
     //Mika Gauthier
     //État du joueur au début
     Mouvement keyUsed = Mouvement.Immobile;
     //Mika Gauthier
+    #endregion
+    // </WLebel>
+
     #region Code fourni
 
     private void InitialiserSurfaceDeJeu(int nbLignes, int nbCols)
@@ -105,8 +113,12 @@ namespace TP3
       ExecuterTestsUnitaires();
 
       // <WLebel>
-      InitialiserValeursJeu(20, 10);
+      InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+
+      musique.settings.autoStart = false;
+      musique.URL = @"Resources/MusiqueTetris.mp3";
       // </WLebel>
+
     }
     
     // <WLebel>
@@ -577,6 +589,12 @@ namespace TP3
     /// </summary>
     void CommencerJeu()
     {
+      // Commence la musique si elle est activée.
+      if (doitJouerMusique)
+      {
+        musique.controls.play();
+      }
+
       GenererPieceAleatoire();
       ////// Désactivation du groupbox "Options"
       timerJeu.Enabled = true;
@@ -600,6 +618,9 @@ namespace TP3
       //////// Activation du groupbox "Options"
       timerJeu.Enabled = false;
       ResetPiece();
+
+      // Arrête la musique
+      musique.controls.stop();
 
       // Remet le tableau jeu à son état initial et réaffiche au joueur son état vide.
       for (int i = 0; i < tableauPieces.GetLength(0); i++)
@@ -678,6 +699,7 @@ namespace TP3
       return veutAbandonner;
     }
 
+    // </WLebel>
     private void OnClickMenuConfiguration(object sender, EventArgs e)
     {
       // Si le jeu est en cours, on demande au joueur s'il veut abandonner sa partie.
@@ -689,12 +711,21 @@ namespace TP3
         }
       }
 
+      // Demande des nouvelles configurations au joueur.
       ConfigurationFenetre fenetreDeConfiguration = new ConfigurationFenetre();
       fenetreDeConfiguration.nombreDeLignesDansLeJeu = nbLignesJeu;
       fenetreDeConfiguration.nombreDeColonnesDansLeJeu = nbColonnesJeu;
-      // fenetreDeConfiguration.doitJouerMusique = ;
+      fenetreDeConfiguration.doitJouerMusique = doitJouerMusique;
       // Trucs pour commandes
       fenetreDeConfiguration.ShowDialog();
+
+      // Prise des choix du joueur.
+      nbLignesJeu = fenetreDeConfiguration.nombreDeLignesDansLeJeu;
+      nbColonnesJeu = fenetreDeConfiguration.nombreDeColonnesDansLeJeu;
+      doitJouerMusique = fenetreDeConfiguration.doitJouerMusique;
+      //truc pour commandes
+
+      InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
 
     }
     // </WLebel>
@@ -703,7 +734,7 @@ namespace TP3
     {
       Application.Exit();
     }
-    // </WLebel>  
+ 
 
     //Mika Gauthier
     /// <summary>
