@@ -688,15 +688,17 @@ namespace TP3
       fenetreDeConfiguration.nombreDeColonnesDansLeJeu = nbColonnesJeu;
       fenetreDeConfiguration.doitJouerMusique = doitJouerMusique;
       // Trucs pour commandes
-      fenetreDeConfiguration.ShowDialog();
 
-      // Prise des choix du joueur.
-      nbLignesJeu = fenetreDeConfiguration.nombreDeLignesDansLeJeu;
-      nbColonnesJeu = fenetreDeConfiguration.nombreDeColonnesDansLeJeu;
-      doitJouerMusique = fenetreDeConfiguration.doitJouerMusique;
-      //truc pour commandes
+      // Prise des choix du joueur si le joueur a cliqué sur « Ok ».
+      if (fenetreDeConfiguration.ShowDialog() == DialogResult.OK)
+      {
+        nbLignesJeu = fenetreDeConfiguration.nombreDeLignesDansLeJeu;
+        nbColonnesJeu = fenetreDeConfiguration.nombreDeColonnesDansLeJeu;
+        doitJouerMusique = fenetreDeConfiguration.doitJouerMusique;
+        //truc pour commandes
 
-      InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+        InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+      }
 
     }
     // </WLebel>
