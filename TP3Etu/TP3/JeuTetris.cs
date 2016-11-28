@@ -336,9 +336,28 @@ namespace TP3
     }
 
     /// <summary>
-    /// Génère la pièce « Barre ».
+    /// Génère la pièce « Barre horizontale ».
     /// </summary>
-    void GenererBarre()
+    void GenererBarreH()
+    {
+      pieceEnCours = PieceTeris.barreHorizontale;
+
+      blocActifY[0] = 0;
+      blocActifY[1] = 0;
+      blocActifY[2] = 0;
+      blocActifY[3] = 0;
+
+      blocActifX[0] = 0;
+      blocActifX[1] = 1;
+      blocActifX[2] = 2;
+      blocActifX[3] = 3;
+    }
+
+
+    /// <summary>
+    /// Génère la pièce « Barre Verticale».
+    /// </summary>
+    void GenererBarreV()
     {
       pieceEnCours = PieceTeris.barreVerticale;
 
@@ -516,7 +535,7 @@ namespace TP3
 
     /// <summary>
     /// Méthode qui est appelé à une certaine intervalle lorsque le jeu est commencé
-    /// et qui permet de vérifier si la partie est terminéeet et, si ce n'est pas le cas, de
+    /// et qui permet de vérifier si la partie est terminée et, si ce n'est pas le cas, de
     /// descendre ou de geler la pièce en cours selon son état.
     /// </summary>
     /// <param name="sender"></param>
@@ -525,7 +544,14 @@ namespace TP3
     {
       // Avant ça doit tester si c'est la fin de la partie (c'est dans ta partie)
       // <WLebel>
-      /*else*/if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerBas))
+      //Mika Gauthier
+      VérificationFinPartie();
+      if (jeuEstEnCours == false)
+      {
+        ArreterExecutionJeu();
+      }
+      //Mika Gauthier
+      else if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerBas))
       {
         ActualiserTableauPieces(PieceTeris.Rien);
         ligneCourante++;
@@ -603,21 +629,24 @@ namespace TP3
           GenererCarre();
           break;
         case 1:
-          GenererBarre();
+          GenererBarreH();
           break;
         case 2:
-          GenererT();
+          GenererBarreV();
           break;
         case 3:
-          GenererJ();
+          GenererT();
           break;
         case 4:
-          GenererL();
+          GenererJ();
           break;
         case 5:
-          GenererS();
+          GenererL();
           break;
         case 6:
+          GenererS();
+          break;
+        case 7:
           GenererZ();
           break;
         default:
@@ -835,5 +864,18 @@ namespace TP3
       }
     }
     //Mika Gauhtier
+
+    //Mika Gauthier
+    /// <summary>
+    /// Cette fonction vérifie si de nouvelles pièces peuvent être générées
+    /// au début du jeu sans problème
+    /// </summary>
+    void VérificationFinPartie()
+    {
+      if (tableauPieces[0,colonneDeDepart] == PieceTeris.Gelee)
+      {
+        jeuEstEnCours = false;
+      }
+    }
   }
 }   
