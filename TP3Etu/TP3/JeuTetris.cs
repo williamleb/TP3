@@ -644,6 +644,26 @@ namespace TP3
 
       return veutAbandonner;
     }
+
+    private void OnClickMenuConfiguration(object sender, EventArgs e)
+    {
+      // Si le jeu est en cours, on demande au joueur s'il veut abandonner sa partie.
+      if (jeuEstEnCours)
+      {
+        if (DemanderAbandonnerPartie() == true)
+        {
+          ArreterExecutionJeu();
+        }
+      }
+
+      ConfigurationFenetre fenetreDeConfiguration = new ConfigurationFenetre();
+      fenetreDeConfiguration.nombreDeLignesDansLeJeu = nbLignesJeu;
+      fenetreDeConfiguration.nombreDeColonnesDansLeJeu = nbColonnesJeu;
+      // fenetreDeConfiguration.doitJouerMusique = ;
+      // Trucs pour commandes
+      fenetreDeConfiguration.ShowDialog();
+
+    }
     // </WLebel>
   }
 
