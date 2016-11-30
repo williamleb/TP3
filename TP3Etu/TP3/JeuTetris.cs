@@ -61,6 +61,16 @@ namespace TP3
     //Mika Gauthier
     //État du joueur au début
     Mouvement keyUsed = Mouvement.Immobile;
+
+    //Nombre de pièces utilisées + type
+    int nbPieceBloc = 0; //couleur jaune
+    int nbPieceBarreVerticale = 0; //couleur cyan
+    int nbPieceBarreHorizontale = 0; //couleur cyan
+    int nbPieceEnT = 0; //couleur mauve
+    int nbPieceEnJ = 0; //couleur orange
+    int nbPieceEnL = 0; //couleur bleu foncé
+    int nbPieceEnS = 0; //couleur rouge
+    int nbPieceEnZ = 0; //couleur rose
     //Mika Gauthier
     #endregion
     // </WLebel>
@@ -494,32 +504,6 @@ namespace TP3
     #endregion
     // </WLebel>
 
-    #region Tests unitaires
-    /// <summary>
-    /// Faites ici les appels requis pour vos tests unitaires.
-    /// </summary>
-    void ExecuterTestsUnitaires()
-    {      
-      ExecuterTestABC();
-      // A compléter...
-    }
-
-    // A renommer et commenter!
-    void ExecuterTestABC()
-    {
-      // Mise en place des données du test
-      
-      // Exécuter de la méthode à tester
-      
-      // Validation des résultats
-      
-      // Clean-up
-    }
-
-    #endregion
-
-    #endregion
-
     // <WLebel>
     /// <summary>
     /// Méthode appelée lorsque le joueur appuie sur le menu « Jouer ».
@@ -561,9 +545,6 @@ namespace TP3
       if (jeuEstEnCours == false)
       {
         ArreterExecutionJeu();
-        frmFinDePartie finDePartie = new frmFinDePartie();
-        finDePartie.SpecifierInfo("Finir le système de point");
-        finDePartie.ShowDialog();
       }
       //Mika Gauthier
       else if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerBas))
@@ -720,15 +701,17 @@ namespace TP3
       fenetreDeConfiguration.nombreDeColonnesDansLeJeu = nbColonnesJeu;
       fenetreDeConfiguration.doitJouerMusique = doitJouerMusique;
       // Trucs pour commandes
-      fenetreDeConfiguration.ShowDialog();
 
-      // Prise des choix du joueur.
-      nbLignesJeu = fenetreDeConfiguration.nombreDeLignesDansLeJeu;
-      nbColonnesJeu = fenetreDeConfiguration.nombreDeColonnesDansLeJeu;
-      doitJouerMusique = fenetreDeConfiguration.doitJouerMusique;
-      //truc pour commandes
+      // Prise des choix du joueur si le joueur a cliqué sur « Ok ».
+      if (fenetreDeConfiguration.ShowDialog() == DialogResult.OK)
+      {
+        nbLignesJeu = fenetreDeConfiguration.nombreDeLignesDansLeJeu;
+        nbColonnesJeu = fenetreDeConfiguration.nombreDeColonnesDansLeJeu;
+        doitJouerMusique = fenetreDeConfiguration.doitJouerMusique;
+        //truc pour commandes
 
-      InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+        InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+      }
 
     }
     // </WLebel>
@@ -912,5 +895,29 @@ namespace TP3
       }
     }
     //Mika Gauthier
+    #region Tests unitaires
+    /// <summary>
+    /// Faites ici les appels requis pour vos tests unitaires.
+    /// </summary>
+    void ExecuterTestsUnitaires()
+    {
+      ExecuterTestABC();
+      // A compléter...
+    }
+
+    // A renommer et commenter!
+    void ExecuterTestABC()
+    {
+      // Mise en place des données du test
+
+      // Exécuter de la méthode à tester
+
+      // Validation des résultats
+
+      // Clean-up
+    }
+
+    #endregion
+    #endregion
   }
 }   
