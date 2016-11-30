@@ -561,6 +561,9 @@ namespace TP3
       if (jeuEstEnCours == false)
       {
         ArreterExecutionJeu();
+        frmFinDePartie finDePartie = new frmFinDePartie();
+        finDePartie.SpecifierInfo("Finir le système de point");
+        finDePartie.ShowDialog();
       }
       //Mika Gauthier
       else if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerBas))
@@ -908,5 +911,6 @@ namespace TP3
         jeuEstEnCours = false;
       }
     }
+    //Mika Gauthier
   }
 }   

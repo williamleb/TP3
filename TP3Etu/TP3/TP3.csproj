@@ -54,6 +54,12 @@
     <Compile Include="ConfigurationFenetre.Designer.cs">
       <DependentUpon>ConfigurationFenetre.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFinDePartie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFinDePartie.Designer.cs">
+      <DependentUpon>frmFinDePartie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mouvement.cs" />
     <Compile Include="JeuTetris.cs">
       <SubType>Form</SubType>
@@ -66,6 +72,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ConfigurationFenetre.resx">
       <DependentUpon>ConfigurationFenetre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFinDePartie.resx">
+      <DependentUpon>frmFinDePartie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="JeuTetris.resx">
       <DependentUpon>JeuTetris.cs</DependentUpon>
