@@ -529,7 +529,7 @@ namespace TP3
         CommencerJeu();
       }
     }
-    // </WLebel>
+    // </WLebel> et Mika Gauthier
 
     /// <summary>
     /// Méthode qui est appelé à une certaine intervalle lorsque le jeu est commencé
@@ -548,11 +548,7 @@ namespace TP3
       if (jeuEstEnCours == false)
       {
         ArreterExecutionJeu();
-        frmFinDePartie finDePartie = new frmFinDePartie();
-        finDePartie.ShowDialog();
-
       }
-      //Mika Gauthier
       else if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerBas))
       {
         ActualiserTableauPieces(PieceTeris.Rien);
@@ -564,13 +560,19 @@ namespace TP3
       {
         ActualiserTableauPieces(PieceTeris.Gelee);
         AfficherJeu();
-        GenererPieceAleatoire();
-        colonneCourante = colonneDeDepart;
-        ligneCourante = 0;
-        ActualiserTableauPieces(pieceEnCours);
-        AfficherJeu();
+        VérificationFinPartie();
+        if (jeuEstEnCours == true)
+        {
+          GenererPieceAleatoire();
+          colonneCourante = colonneDeDepart;
+          ligneCourante = 0;
+          ActualiserTableauPieces(pieceEnCours);
+          AfficherJeu();
+        }
+        else
+          ArreterExecutionJeu();
       }
-      // </WLebel>
+      // </WLebel> et Mika gauthier
     }
 
     // <WLebel>
@@ -621,6 +623,9 @@ namespace TP3
         }
       }
       AfficherJeu();
+      //Apporter les modification au formulaire des statistiques de fin de partie
+      frmFinDePartie finDePartie = new frmFinDePartie();
+      finDePartie.ShowDialog();
 
       jeuEstEnCours = false;
     }
@@ -903,7 +908,7 @@ namespace TP3
     /// </summary>
     void VérificationFinPartie()
     {
-      if (tableauPieces[0,colonneDeDepart] == PieceTeris.Gelee)
+      if (tableauPieces[0,colonneDeDepart] == PieceTeris.Gelee || tableauPieces[0, colonneDeDepart+1] == PieceTeris.Gelee)
       {
         jeuEstEnCours = false;
       }
