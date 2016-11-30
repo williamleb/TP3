@@ -12,7 +12,7 @@ namespace TP3
       InitializeComponent();
     }
 
-    // <WLebel>
+    // <WLebel> (et mika gauthier, voir plus bas dans la région Variable partagées)
     #region Variables patagées
     // Représentation visuelles du jeu en mémoire.
     PictureBox[,] toutesImagesVisuelles = null;
@@ -62,7 +62,7 @@ namespace TP3
     //État du joueur au début
     Mouvement keyUsed = Mouvement.Immobile;
 
-    //Nombre de pièces utilisées + type
+    //Nombre de pièces utilisées + type de la pièce
     int nbPieceBloc = 0; //couleur jaune
     int nbPieceBarreVerticale = 0; //couleur cyan
     int nbPieceBarreHorizontale = 0; //couleur cyan
@@ -71,6 +71,16 @@ namespace TP3
     int nbPieceEnL = 0; //couleur bleu foncé
     int nbPieceEnS = 0; //couleur rouge
     int nbPieceEnZ = 0; //couleur rose
+
+    // Tableau qui représente les positions vertivales relativent des blocs d'une pièce 
+    // par rapport aux variables ligneCourante et colonneCourante. Sert à la sécurité
+    // du programme
+    int[] VerificationBlocActifY = new int[4];
+
+    // Tableau qui représente les positions horizontales relativent des blocs d'une pièce 
+    // par rapport aux variables ligneCourante et colonneCourante. Sert à la sécurité
+    // du programme
+    int[] VerificationBlocActifX = new int[4];
     //Mika Gauthier
     #endregion
     // </WLebel>
@@ -336,7 +346,7 @@ namespace TP3
 
     #endregion
 
-    // <WLebel>
+    // <WLebel> et Mika Gauthier
     #region Générateurs des différentes pièces.
 
     /// <summary>
@@ -355,9 +365,19 @@ namespace TP3
       blocActifX[1] = 1;
       blocActifX[2] = 0;
       blocActifX[3] = 1;
+
+      //Mesure de sécurité (en cas de bogue)
+      for (int i = 0; i < blocActifY.Length;i++)
+      {
+        VerificationBlocActifY[i] = blocActifY[i];
+      }
+      for (int j = 0; j < blocActifX.Length; j++)
+      {
+        VerificationBlocActifX[j] = blocActifX[j];
+      }
     }
 
-    //Mika Gauthier
+
     /// <summary>
     /// Génère la pièce « Barre horizontale ».
     /// </summary>
@@ -374,6 +394,16 @@ namespace TP3
       blocActifX[1] = 1;
       blocActifX[2] = 2;
       blocActifX[3] = 3;
+
+      //Mesure de sécurité (en cas de bogue)
+      for (int i = 0; i < blocActifY.Length; i++)
+      {
+        VerificationBlocActifY[i] = blocActifY[i];
+      }
+      for (int j = 0; j < blocActifX.Length; j++)
+      {
+        VerificationBlocActifX[j] = blocActifX[j];
+      }
     }
 
 
@@ -393,8 +423,17 @@ namespace TP3
       blocActifX[1] = 0;
       blocActifX[2] = 0;
       blocActifX[3] = 0;
+
+      //Mesure de sécurité (en cas de bogue)
+      for (int i = 0; i < blocActifY.Length; i++)
+      {
+        VerificationBlocActifY[i] = blocActifY[i];
+      }
+      for (int j = 0; j < blocActifX.Length; j++)
+      {
+        VerificationBlocActifX[j] = blocActifX[j];
+      }
     }
-    //Mika Gauthier
 
     /// <summary>
     /// Génère la pièce en forme de T.
@@ -412,6 +451,16 @@ namespace TP3
       blocActifX[1] = 0;
       blocActifX[2] = 1;
       blocActifX[3] = 2;
+
+      //Mesure de sécurité (en cas de bogue)
+      for (int i = 0; i < blocActifY.Length; i++)
+      {
+        VerificationBlocActifY[i] = blocActifY[i];
+      }
+      for (int j = 0; j < blocActifX.Length; j++)
+      {
+        VerificationBlocActifX[j] = blocActifX[j];
+      }
     }
 
     /// <summary>
@@ -430,6 +479,16 @@ namespace TP3
       blocActifX[1] = 1;
       blocActifX[2] = 0;
       blocActifX[3] = 1;
+
+      //Mesure de sécurité (en cas de bogue)
+      for (int i = 0; i < blocActifY.Length; i++)
+      {
+        VerificationBlocActifY[i] = blocActifY[i];
+      }
+      for (int j = 0; j < blocActifX.Length; j++)
+      {
+        VerificationBlocActifX[j] = blocActifX[j];
+      }
     }
 
     /// <summary>
@@ -448,6 +507,16 @@ namespace TP3
       blocActifX[1] = 0;
       blocActifX[2] = 0;
       blocActifX[3] = 1;
+
+      //Mesure de sécurité (en cas de bogue)
+      for (int i = 0; i < blocActifY.Length; i++)
+      {
+        VerificationBlocActifY[i] = blocActifY[i];
+      }
+      for (int j = 0; j < blocActifX.Length; j++)
+      {
+        VerificationBlocActifX[j] = blocActifX[j];
+      }
     }
 
     /// <summary>
@@ -466,6 +535,16 @@ namespace TP3
       blocActifX[1] = 0;
       blocActifX[2] = 1;
       blocActifX[3] = 1;
+
+      //Mesure de sécurité (en cas de bogue)
+      for (int i = 0; i < blocActifY.Length; i++)
+      {
+        VerificationBlocActifY[i] = blocActifY[i];
+      }
+      for (int j = 0; j < blocActifX.Length; j++)
+      {
+        VerificationBlocActifX[j] = blocActifX[j];
+      }
     }
 
     /// <summary>
@@ -484,6 +563,16 @@ namespace TP3
       blocActifX[1] = 0;
       blocActifX[2] = 1;
       blocActifX[3] = 0;
+
+      //Mesure de sécurité (en cas de bogue)
+      for (int i = 0; i < blocActifY.Length; i++)
+      {
+        VerificationBlocActifY[i] = blocActifY[i];
+      }
+      for (int j = 0; j < blocActifX.Length; j++)
+      {
+        VerificationBlocActifX[j] = blocActifX[j];
+      }
     }
 
     /// <summary>
@@ -502,9 +591,19 @@ namespace TP3
       blocActifX[1] = 0;
       blocActifX[2] = 0;
       blocActifX[3] = 0;
+
+      //Mesure de sécurité (en cas de bogue)
+      for (int i = 0; i < blocActifY.Length;i++)
+      {
+        VerificationBlocActifY[i] = blocActifY[i];
+      }
+      for (int j = 0; j < blocActifX.Length; j++)
+      {
+        VerificationBlocActifX[j] = blocActifX[j];
+      }
     }
     #endregion
-    // </WLebel>
+    // </WLebel> et Mika Gauthier
 
     // <WLebel>
     /// <summary>
@@ -544,7 +643,6 @@ namespace TP3
       // <WLebel>
       //Mika Gauthier
       //Vérification si la partie est terminée
-      VérificationFinPartie();
       if (jeuEstEnCours == false)
       {
         ArreterExecutionJeu();
@@ -625,6 +723,12 @@ namespace TP3
       AfficherJeu();
       //Apporter les modification au formulaire des statistiques de fin de partie
       frmFinDePartie finDePartie = new frmFinDePartie();
+      finDePartie.NbPieceGenere(
+      nbPieceBloc, nbPieceBarreVerticale,
+      nbPieceBarreHorizontale, nbPieceEnT, 
+      nbPieceEnJ, nbPieceEnL, 
+      nbPieceEnS, nbPieceEnZ
+      );
       finDePartie.ShowDialog();
 
       jeuEstEnCours = false;
@@ -908,12 +1012,17 @@ namespace TP3
     /// </summary>
     void VérificationFinPartie()
     {
-      if (tableauPieces[0,colonneDeDepart] == PieceTeris.Gelee || tableauPieces[0, colonneDeDepart+1] == PieceTeris.Gelee)
+    for (int i = 0; i<blocActifY.Length;i++)
+    {
+      if (tableauPieces[VerificationBlocActifY[i],VerificationBlocActifX[i] + colonneDeDepart] == PieceTeris.Gelee)
       {
-        jeuEstEnCours = false;
+         // jeuEstEnCours = false;
       }
     }
+
+    }
     //Mika Gauthier
+
     #region Tests unitaires
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
