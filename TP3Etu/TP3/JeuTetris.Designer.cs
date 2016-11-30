@@ -186,25 +186,26 @@
       // menuJouer
       // 
       this.menuJouer.Name = "menuJouer";
-      this.menuJouer.Size = new System.Drawing.Size(134, 22);
+      this.menuJouer.Size = new System.Drawing.Size(152, 22);
       this.menuJouer.Text = "Jouer";
       this.menuJouer.Click += new System.EventHandler(this.OnClickMenuJouer);
       // 
       // menuReinitialiser
       // 
       this.menuReinitialiser.Name = "menuReinitialiser";
-      this.menuReinitialiser.Size = new System.Drawing.Size(134, 22);
+      this.menuReinitialiser.Size = new System.Drawing.Size(152, 22);
       this.menuReinitialiser.Text = "Réinitialiser";
+      this.menuReinitialiser.Click += new System.EventHandler(this.menuReinitialiser_Click);
       // 
       // toolStripMenuItem1
       // 
       this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-      this.toolStripMenuItem1.Size = new System.Drawing.Size(131, 6);
+      this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
       // 
       // menuQuitter
       // 
       this.menuQuitter.Name = "menuQuitter";
-      this.menuQuitter.Size = new System.Drawing.Size(134, 22);
+      this.menuQuitter.Size = new System.Drawing.Size(152, 22);
       this.menuQuitter.Text = "Quitter";
       this.menuQuitter.Click += new System.EventHandler(this.menuQuitter_Click);
       // 

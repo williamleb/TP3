@@ -1069,14 +1069,14 @@ namespace TP3
     void ActualiserPointage()
     {
 
-      // 1 ligne retirée = 100pts
+      // 1 ligne retirée = 250pts
       // 2 lignes retirées = 500pts
       // 3 lignes retirées = 1000pts
       // 4 lignes retirées = 2000pts
       switch (RetirerLignesCompletees())
       {
         case 1:
-          pointage += 100;
+          pointage += 250;
           break;
         case 2:
           pointage += 500;
@@ -1172,7 +1172,24 @@ namespace TP3
           tableauPieces[0, j] = PieceTeris.Rien;
         }
       }
+    }    
+    
+    //Mika Gauthier
+    /// <summary>
+    /// Fonction appelée par le joueur pour redémarer le jeu
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void menuReinitialiser_Click(object sender, EventArgs e)
+    {
+      if (DemanderAbandonnerPartie() == true)
+      {
+        ArreterExecutionJeu();
+        AfficherJeu();
+      }
     }
+    //Mika Gauhtier
+
     #endregion
     // </WLebel>
 
@@ -1199,6 +1216,9 @@ namespace TP3
     }
 
     #endregion
+
     #endregion
+
+
   }
 }   
