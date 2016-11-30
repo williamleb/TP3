@@ -729,12 +729,13 @@ namespace TP3
       AfficherJeu();
       //Apporter les modification au formulaire des statistiques de fin de partie
       frmFinDePartie finDePartie = new frmFinDePartie();
-      finDePartie.NbPieceGenere(
+      finDePartie.AfficherNbPieceGenere(
       nbPieceBloc, nbPieceBarreVerticale,
       nbPieceBarreHorizontale, nbPieceEnT, 
       nbPieceEnJ, nbPieceEnL, 
       nbPieceEnS, nbPieceEnZ
       );
+      finDePartie.AfficherPointage(pointage);
       finDePartie.ShowDialog();
 
       jeuEstEnCours = false;
@@ -1022,7 +1023,7 @@ namespace TP3
     {
       if (tableauPieces[VerificationBlocActifY[i],VerificationBlocActifX[i] + colonneDeDepart] == PieceTeris.Gelee)
       {
-         // jeuEstEnCours = false;
+         jeuEstEnCours = false;
       }
     }
 
