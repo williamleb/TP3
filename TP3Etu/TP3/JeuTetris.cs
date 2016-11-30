@@ -357,6 +357,7 @@ namespace TP3
       blocActifX[3] = 1;
     }
 
+    //Mika Gauthier
     /// <summary>
     /// Génère la pièce « Barre horizontale ».
     /// </summary>
@@ -393,6 +394,7 @@ namespace TP3
       blocActifX[2] = 0;
       blocActifX[3] = 0;
     }
+    //Mika Gauthier
 
     /// <summary>
     /// Génère la pièce en forme de T.
@@ -541,10 +543,14 @@ namespace TP3
       // Avant ça doit tester si c'est la fin de la partie (c'est dans ta partie)
       // <WLebel>
       //Mika Gauthier
+      //Vérification si la partie est terminée
       VérificationFinPartie();
       if (jeuEstEnCours == false)
       {
         ArreterExecutionJeu();
+        frmFinDePartie finDePartie = new frmFinDePartie();
+        finDePartie.ShowDialog();
+
       }
       //Mika Gauthier
       else if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerBas))
@@ -620,46 +626,54 @@ namespace TP3
     }
     // </WLebel>
 
-    // <WLebel>
+    // <WLebel> et Mika Gauthier
     /// <summary>
     /// Méthode qui choisit une pièce aléatoirement et la génère.
     /// </summary>
     void GenererPieceAleatoire()
     {
-      int pieceAleatoire = rnd.Next(0, 7);
+      int pieceAleatoire = rnd.Next(0, 8);
 
       switch (pieceAleatoire)
       {
         case 0:
           GenererCarre();
+          nbPieceBloc++;
           break;
         case 1:
           GenererBarreH();
+          nbPieceBarreHorizontale++;
           break;
         case 2:
           GenererBarreV();
+          nbPieceBarreVerticale++;
           break;
         case 3:
           GenererT();
+          nbPieceEnT++;
           break;
         case 4:
           GenererJ();
+          nbPieceEnJ++;
           break;
         case 5:
           GenererL();
+          nbPieceEnL++;
           break;
         case 6:
           GenererS();
+          nbPieceEnS++;
           break;
         case 7:
           GenererZ();
+          nbPieceEnZ++;
           break;
         default:
           ResetPiece();
           break;
       }
     }
-    // </WLebel>
+    // </WLebel> et Mika Gauthier
 
     // <WLebel>
     /// <summary>
