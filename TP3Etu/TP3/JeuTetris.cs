@@ -62,6 +62,9 @@ namespace TP3
     //État du joueur au début
     Mouvement keyUsed = Mouvement.Immobile;
 
+    // Variable qui représente le pointage du joueur pour la partie en cours.
+    int pointage = 0;
+
     //Nombre de pièces utilisées + type
     int nbPieceBloc = 0; //couleur jaune
     int nbPieceBarreVerticale = 0; //couleur cyan
@@ -540,8 +543,6 @@ namespace TP3
     /// <param name="e"></param>
     private void OnTickTimerJeu(object sender, EventArgs e)
     {
-      // Avant ça doit tester si c'est la fin de la partie (c'est dans ta partie)
-      // <WLebel>
       //Mika Gauthier
       //Vérification si la partie est terminée
       VérificationFinPartie();
@@ -549,6 +550,7 @@ namespace TP3
       {
         ArreterExecutionJeu();
       }
+      // <WLebel>
       else if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerBas))
       {
         ActualiserTableauPieces(PieceTeris.Rien);
@@ -559,6 +561,7 @@ namespace TP3
       else
       {
         ActualiserTableauPieces(PieceTeris.Gelee);
+        ActualiserPointage();
         AfficherJeu();
         VérificationFinPartie();
         if (jeuEstEnCours == true)
@@ -570,7 +573,9 @@ namespace TP3
           AfficherJeu();
         }
         else
+        {
           ArreterExecutionJeu();
+        }
       }
       // </WLebel> et Mika gauthier
     }
@@ -914,6 +919,123 @@ namespace TP3
       }
     }
     //Mika Gauthier
+
+    // <WLebel>
+    #region Métodes qui permettent de gérer les lignes complétées
+    /// <summary>
+    /// Méthode qui vérifie si des lignes dans le jeu sont complétés et les retire si c'est le cas.
+    /// Actualise le pointage en conséquent.
+    /// </summary>
+    void ActualiserPointage()
+    {
+
+      // 1 ligne retirée = 100pts
+      // 2 lignes retirées = 500pts
+      // 3 lignes retirées = 1000pts
+      // 4 lignes retirées = 2000pts
+      switch (RetirerLignesCompletees())
+      {
+        case 1:
+          pointage += 100;
+          break;
+        case 2:
+          pointage += 500;
+          break;
+        case 3:
+          pointage += 1000;
+          break;
+        case 4:
+          pointage += 2000;
+          break;
+      }
+    }
+
+    /// <summary>
+    /// Méthode qui supprime toutes les lignes de jeu qui ont été entièrement complétées en 
+    /// décalant les autres lignes en conséquent et compte le nombre de lignes qui ont été supprimées.
+    /// </summary>
+    /// <returns>Correspond au nombre de lignes complétées qui ont été retirées.</returns>
+    int RetirerLignesCompletees()
+    {
+      int nbLignesCompletees = 0;
+
+      // Pour toutes les lignes du jeu.
+      for (int i = 0; i < nbLignesJeu; i++)
+      {
+        // Si la ligne est complète.
+        if (VerifierSiEstUneLigneComplete(i))
+        {
+          // On la supprime et on décale les autres lignes.
+          DecalerLignes(i);
+          // On incrémente le nombre de lignes complétées.
+          nbLignesCompletees++;
+        }
+      }
+
+      return nbLignesCompletees;
+    }
+
+    /// <summary>
+    /// Méthode qui vérifie si la ligne située à l'index passé en paramètre est une ligne complète.
+    /// </summary>
+    /// <param name="ligne">L'index de la ligne dans le tableau «tableauPieces» à laquelle sera vérifier
+    /// si la ligne est complète.</param>
+    /// <returns>Vrai si la ligne est complète, faux sinon.</returns>
+    bool VerifierSiEstUneLigneComplete(int ligne)
+    {
+      bool estUneLigneComplete = true;
+
+      // Si l'index de a ligne donné en paramètre est valide.
+      if (ligne > 0 && ligne < nbLignesJeu)
+      {
+        // Pour tous les pièces de la ligne.
+        for (int j = 0; j < nbColonnesJeu - 1; j++)
+        {
+          // Si la case est vide, c'est que ce n'est pas une ligne complète.
+          if (tableauPieces[ligne, j] == PieceTeris.Rien)
+          {
+            estUneLigneComplete = false;
+          }
+        }
+      }
+
+      return estUneLigneComplete;
+    }
+
+    /// <summary>
+    /// Méthode qui retire une ligne de jeu et qui décale les lignes qui sont plus hautes 
+    /// que la ligne retirée vers le bas, remplaçant la première ligne du jeu par une ligne vide.
+    /// </summary>
+    /// <param name="ligneDeDepart">Représente l’index de la ligne dans le tableau «tableauPieces» à partir de
+    /// laquelle commencer le décalage, c’est-à-dire la ligne à supprimer.</param>
+    void DecalerLignes(int ligneDeDepart)
+    {
+      // Si l'index de la ligne donné en paramètre est valide.
+      if (ligneDeDepart > 0 && ligneDeDepart < nbLignesJeu)
+      {
+
+        // Pour toutes les lignes à partir de la ligne donnée en paramètre (exepté la première ligne du jeu).
+        for (int i = ligneDeDepart; i > 1; i--)
+        {
+          // Pour toutes les cases de la ligne choisie
+          for (int j = 0; j < nbColonnesJeu - 1; j++)
+          {
+            // On prend la valeur de la case correspondante de la ligne du haut.
+            tableauPieces[i, j] = tableauPieces[i - 1, j];
+          }
+        }
+
+        // Pour toutes les cases de la première ligne du jeu.
+        for (int j = 0; j < nbColonnesJeu - 1; j++)
+        {
+          // On vide la case.
+          tableauPieces[0, j] = PieceTeris.Rien;
+        }
+      }
+    }
+    #endregion
+    // </WLebel>
+
     #region Tests unitaires
     /// <summary>
     /// Faites ici les appels requis pour vos tests unitaires.
