@@ -728,6 +728,7 @@ namespace TP3
       }
       AfficherJeu();
       //Apporter les modification au formulaire des statistiques de fin de partie
+      // Mika Gauthier
       frmFinDePartie finDePartie = new frmFinDePartie();
       finDePartie.AfficherNbPieceGenere(
       nbPieceBloc, nbPieceBarreVerticale,
@@ -737,7 +738,9 @@ namespace TP3
       );
       finDePartie.AfficherPointage(pointage);
       finDePartie.ShowDialog();
+      // Mika Gauthier
 
+      pointage = 0;
       jeuEstEnCours = false;
     }
     // </WLebel>
@@ -812,8 +815,16 @@ namespace TP3
 
       return veutAbandonner;
     }
-
     // </WLebel>
+
+    // <WLebel>
+    /// <summary>
+    /// Métode appelée lorsque le joueur clique sur le menu « Configuration ». 
+    /// La méthode affiche une fenêtre de configuration qui permet au joueur
+    /// de configurer le jeu.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void OnClickMenuConfiguration(object sender, EventArgs e)
     {
       // Si le jeu est en cours, on demande au joueur s'il veut abandonner sa partie.
@@ -824,6 +835,7 @@ namespace TP3
           ArreterExecutionJeu();
         }
       }
+      // </WLebel>
 
       // Demande des nouvelles configurations au joueur.
       ConfigurationFenetre fenetreDeConfiguration = new ConfigurationFenetre();
@@ -846,10 +858,28 @@ namespace TP3
     }
     // </WLebel>
 
+    // <WLebel>
+    /// <summary>
+    /// Méthode appelée lorsque le joueur clique sur le menu « Quitter ».
+    /// La métode quite le jeu.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void menuQuitter_Click(object sender, EventArgs e)
     {
-      Application.Exit();
+      if (jeuEstEnCours)
+      {
+        if (DemanderAbandonnerPartie() == true)
+        {
+          Application.Exit();
+        }
+      }
+      else
+      {
+        Application.Exit();
+      }
     }
+    // </WLebel>
  
 
     //Mika Gauthier
