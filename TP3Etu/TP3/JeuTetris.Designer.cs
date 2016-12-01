@@ -35,21 +35,12 @@
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.grpBoxStatistiquesJeu = new System.Windows.Forms.GroupBox();
       this.grpBoxParametresJeu = new System.Windows.Forms.GroupBox();
-      this.menuStripJeu = new System.Windows.Forms.MenuStrip();
-      this.menuPartie = new System.Windows.Forms.ToolStripMenuItem();
-      this.menuJouer = new System.Windows.Forms.ToolStripMenuItem();
-      this.menuReinitialiser = new System.Windows.Forms.ToolStripMenuItem();
-      this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-      this.menuQuitter = new System.Windows.Forms.ToolStripMenuItem();
-      this.menuStatistiques = new System.Windows.Forms.ToolStripMenuItem();
-      this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
-      this.timerJeu = new System.Windows.Forms.Timer(this.components);
       this.layoutParametresJeu = new System.Windows.Forms.TableLayoutPanel();
       this.btnValider = new System.Windows.Forms.Button();
       this.lblLignes = new System.Windows.Forms.Label();
       this.lblColonnes = new System.Windows.Forms.Label();
-      this.lblMusique = new System.Windows.Forms.Label();
       this.checkBoxMusique = new System.Windows.Forms.CheckBox();
+      this.lblMusique = new System.Windows.Forms.Label();
       this.numLignes = new System.Windows.Forms.NumericUpDown();
       this.numColonnes = new System.Windows.Forms.NumericUpDown();
       this.layoutControles = new System.Windows.Forms.TableLayoutPanel();
@@ -59,14 +50,23 @@
       this.label4 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
+      this.menuStripJeu = new System.Windows.Forms.MenuStrip();
+      this.menuPartie = new System.Windows.Forms.ToolStripMenuItem();
+      this.menuJouer = new System.Windows.Forms.ToolStripMenuItem();
+      this.menuReinitialiser = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+      this.menuQuitter = new System.Windows.Forms.ToolStripMenuItem();
+      this.menuStatistiques = new System.Windows.Forms.ToolStripMenuItem();
+      this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
+      this.timerJeu = new System.Windows.Forms.Timer(this.components);
       this.tblLayoutJeu.SuspendLayout();
       this.tableLayoutPanel1.SuspendLayout();
       this.grpBoxParametresJeu.SuspendLayout();
-      this.menuStripJeu.SuspendLayout();
       this.layoutParametresJeu.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.numLignes)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.numColonnes)).BeginInit();
       this.layoutControles.SuspendLayout();
+      this.menuStripJeu.SuspendLayout();
       this.SuspendLayout();
       // 
       // tableauJeu
@@ -91,7 +91,7 @@
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
+      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
       this.tableauJeu.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableauJeu.Location = new System.Drawing.Point(240, 0);
@@ -182,73 +182,6 @@
       this.grpBoxParametresJeu.TabStop = false;
       this.grpBoxParametresJeu.Text = "Paramètres";
       // 
-      // menuStripJeu
-      // 
-      this.menuStripJeu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuPartie,
-            this.menuStatistiques,
-            this.menuConfiguration});
-      this.menuStripJeu.Location = new System.Drawing.Point(0, 0);
-      this.menuStripJeu.Name = "menuStripJeu";
-      this.menuStripJeu.Size = new System.Drawing.Size(578, 24);
-      this.menuStripJeu.TabIndex = 3;
-      this.menuStripJeu.Text = "menuStrip1";
-      // 
-      // menuPartie
-      // 
-      this.menuPartie.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuJouer,
-            this.menuReinitialiser,
-            this.toolStripMenuItem1,
-            this.menuQuitter});
-      this.menuPartie.Name = "menuPartie";
-      this.menuPartie.Size = new System.Drawing.Size(49, 20);
-      this.menuPartie.Text = "Partie";
-      // 
-      // menuJouer
-      // 
-      this.menuJouer.Name = "menuJouer";
-      this.menuJouer.Size = new System.Drawing.Size(134, 22);
-      this.menuJouer.Text = "Jouer";
-      this.menuJouer.Click += new System.EventHandler(this.OnClickMenuJouer);
-      // 
-      // menuReinitialiser
-      // 
-      this.menuReinitialiser.Name = "menuReinitialiser";
-      this.menuReinitialiser.Size = new System.Drawing.Size(134, 22);
-      this.menuReinitialiser.Text = "Réinitialiser";
-      this.menuReinitialiser.Click += new System.EventHandler(this.menuReinitialiser_Click);
-      // 
-      // toolStripMenuItem1
-      // 
-      this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-      this.toolStripMenuItem1.Size = new System.Drawing.Size(131, 6);
-      // 
-      // menuQuitter
-      // 
-      this.menuQuitter.Name = "menuQuitter";
-      this.menuQuitter.Size = new System.Drawing.Size(134, 22);
-      this.menuQuitter.Text = "Quitter";
-      this.menuQuitter.Click += new System.EventHandler(this.menuQuitter_Click);
-      // 
-      // menuStatistiques
-      // 
-      this.menuStatistiques.Name = "menuStatistiques";
-      this.menuStatistiques.Size = new System.Drawing.Size(79, 20);
-      this.menuStatistiques.Text = "Statistiques";
-      // 
-      // menuConfiguration
-      // 
-      this.menuConfiguration.Name = "menuConfiguration";
-      this.menuConfiguration.Size = new System.Drawing.Size(93, 20);
-      this.menuConfiguration.Text = "Configuration";
-      this.menuConfiguration.Click += new System.EventHandler(this.OnClickMenuConfiguration);
-      // 
-      // timerJeu
-      // 
-      this.timerJeu.Interval = 500;
-      this.timerJeu.Tick += new System.EventHandler(this.OnTickTimerJeu);
-      // 
       // layoutParametresJeu
       // 
       this.layoutParametresJeu.ColumnCount = 3;
@@ -284,7 +217,7 @@
       this.btnValider.TabIndex = 0;
       this.btnValider.Text = "Valider";
       this.btnValider.UseVisualStyleBackColor = true;
-      this.btnValider.Click += new System.EventHandler(this.OnClickBtnValider);
+      this.btnValider.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnMouseClickBtnValider);
       // 
       // lblLignes
       // 
@@ -304,15 +237,6 @@
       this.lblColonnes.TabIndex = 2;
       this.lblColonnes.Text = "Colonnes";
       // 
-      // lblMusique
-      // 
-      this.lblMusique.AutoSize = true;
-      this.lblMusique.Location = new System.Drawing.Point(3, 56);
-      this.lblMusique.Name = "lblMusique";
-      this.lblMusique.Size = new System.Drawing.Size(47, 13);
-      this.lblMusique.TabIndex = 3;
-      this.lblMusique.Text = "Musique";
-      // 
       // checkBoxMusique
       // 
       this.checkBoxMusique.AutoSize = true;
@@ -324,6 +248,15 @@
       this.checkBoxMusique.Size = new System.Drawing.Size(15, 22);
       this.checkBoxMusique.TabIndex = 4;
       this.checkBoxMusique.UseVisualStyleBackColor = true;
+      // 
+      // lblMusique
+      // 
+      this.lblMusique.AutoSize = true;
+      this.lblMusique.Location = new System.Drawing.Point(3, 56);
+      this.lblMusique.Name = "lblMusique";
+      this.lblMusique.Size = new System.Drawing.Size(47, 13);
+      this.lblMusique.TabIndex = 3;
+      this.lblMusique.Text = "Musique";
       // 
       // numLignes
       // 
@@ -450,6 +383,73 @@
       this.label6.TabIndex = 5;
       this.label6.Text = "Tomber :  SPACE";
       // 
+      // menuStripJeu
+      // 
+      this.menuStripJeu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuPartie,
+            this.menuStatistiques,
+            this.menuConfiguration});
+      this.menuStripJeu.Location = new System.Drawing.Point(0, 0);
+      this.menuStripJeu.Name = "menuStripJeu";
+      this.menuStripJeu.Size = new System.Drawing.Size(578, 24);
+      this.menuStripJeu.TabIndex = 3;
+      this.menuStripJeu.Text = "menuStrip1";
+      // 
+      // menuPartie
+      // 
+      this.menuPartie.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuJouer,
+            this.menuReinitialiser,
+            this.toolStripMenuItem1,
+            this.menuQuitter});
+      this.menuPartie.Name = "menuPartie";
+      this.menuPartie.Size = new System.Drawing.Size(49, 20);
+      this.menuPartie.Text = "Partie";
+      // 
+      // menuJouer
+      // 
+      this.menuJouer.Name = "menuJouer";
+      this.menuJouer.Size = new System.Drawing.Size(134, 22);
+      this.menuJouer.Text = "Jouer";
+      this.menuJouer.Click += new System.EventHandler(this.OnClickMenuJouer);
+      // 
+      // menuReinitialiser
+      // 
+      this.menuReinitialiser.Name = "menuReinitialiser";
+      this.menuReinitialiser.Size = new System.Drawing.Size(134, 22);
+      this.menuReinitialiser.Text = "Réinitialiser";
+      this.menuReinitialiser.Click += new System.EventHandler(this.menuReinitialiser_Click);
+      // 
+      // toolStripMenuItem1
+      // 
+      this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+      this.toolStripMenuItem1.Size = new System.Drawing.Size(131, 6);
+      // 
+      // menuQuitter
+      // 
+      this.menuQuitter.Name = "menuQuitter";
+      this.menuQuitter.Size = new System.Drawing.Size(134, 22);
+      this.menuQuitter.Text = "Quitter";
+      this.menuQuitter.Click += new System.EventHandler(this.menuQuitter_Click);
+      // 
+      // menuStatistiques
+      // 
+      this.menuStatistiques.Name = "menuStatistiques";
+      this.menuStatistiques.Size = new System.Drawing.Size(79, 20);
+      this.menuStatistiques.Text = "Statistiques";
+      // 
+      // menuConfiguration
+      // 
+      this.menuConfiguration.Name = "menuConfiguration";
+      this.menuConfiguration.Size = new System.Drawing.Size(93, 20);
+      this.menuConfiguration.Text = "Configuration";
+      this.menuConfiguration.Click += new System.EventHandler(this.OnClickMenuConfiguration);
+      // 
+      // timerJeu
+      // 
+      this.timerJeu.Interval = 500;
+      this.timerJeu.Tick += new System.EventHandler(this.OnTickTimerJeu);
+      // 
       // JeuTetris
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -467,14 +467,14 @@
       this.tblLayoutJeu.ResumeLayout(false);
       this.tableLayoutPanel1.ResumeLayout(false);
       this.grpBoxParametresJeu.ResumeLayout(false);
-      this.menuStripJeu.ResumeLayout(false);
-      this.menuStripJeu.PerformLayout();
       this.layoutParametresJeu.ResumeLayout(false);
       this.layoutParametresJeu.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.numLignes)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.numColonnes)).EndInit();
       this.layoutControles.ResumeLayout(false);
       this.layoutControles.PerformLayout();
+      this.menuStripJeu.ResumeLayout(false);
+      this.menuStripJeu.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
 

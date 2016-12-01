@@ -1227,7 +1227,7 @@ namespace TP3
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void OnClickBtnValider(object sender, EventArgs e)
+    private void OnMouseClickBtnValider(object sender, MouseEventArgs e)
     {
       // Appliquer le choix de nombres de lignes et de colonnes.
       nbLignesJeu = Decimal.ToInt32(numLignes.Value);
@@ -1518,5 +1518,7 @@ namespace TP3
     #endregion
 
     #endregion
+
+
   }
 }   
