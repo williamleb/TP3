@@ -989,6 +989,21 @@ namespace TP3
           AfficherJeu();
         }
       }
+      // <WLebel>
+      if (keyUsed == Mouvement.Tomber)
+      {
+        // Tant que le déplacement vers le bas est possible.
+        while (DeterminerSiBlocPeutBouger(Mouvement.DeplacerBas))
+        {
+          // Actualise et affiche le tableau.
+          ActualiserTableauPieces(PieceTeris.Rien);
+          ligneCourante++;
+          ActualiserTableauPieces(pieceEnCours);
+          AfficherJeu();
+        }
+
+      }
+      // </WLebel>
     }
 
     /// <summary>
@@ -1042,6 +1057,15 @@ namespace TP3
         keyUsed = Mouvement.RotationHoraire;
         DeplacerBloc(tableauPieces);
       }
+      // <WLebel>
+      // Si le joueur appuie sur la barre espace, la pièce tombe.
+      if (e.KeyChar == 32)
+      {
+        keyUsed = Mouvement.Tomber;
+        DeplacerBloc(tableauPieces);
+      }
+      // </WLebel>
+      
     }
     //Mika Gauhtier
 
@@ -1194,6 +1218,33 @@ namespace TP3
     //Mika Gauhtier
 
     #endregion
+    // </WLebel>
+
+    // <WLebel>
+    /// <summary>
+    /// Méthode qui est appelée lorsque le joueur clique sur le bouton «Valider» et qui permet
+    /// d'appliquer les changements faits dans la section «Paramètres» du jeu au jeu.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void OnClickBtnValider(object sender, EventArgs e)
+    {
+      // Appliquer le choix de nombres de lignes et de colonnes.
+      nbLignesJeu = Decimal.ToInt32(numLignes.Value);
+      nbColonnesJeu = Decimal.ToInt32(numColonnes.Value);
+
+      // Appliquer le choix de jouer la musique ou non.
+      if (checkBoxMusique.Checked == true)
+      {
+        doitJouerMusique = true;
+      }
+      else
+      {
+        doitJouerMusique = false;
+      }
+
+      InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+    }
     // </WLebel>
 
     #region Tests unitaires
@@ -1463,10 +1514,9 @@ namespace TP3
       // Clean-up
     }
 
-    #endregion
 
     #endregion
 
-
+    #endregion
   }
 }   

@@ -9,7 +9,8 @@ namespace TP3
     DeplacerDroite,
     DeplacerBas,
     RotationHoraire,
-    RotationAntihoraire
+    RotationAntihoraire,
+    Tomber
   }
 }
 // </WLebel>
