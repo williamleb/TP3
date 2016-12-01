@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using WMPLib;
+using System.Diagnostics;
 
 namespace TP3
 {
@@ -53,7 +54,7 @@ namespace TP3
     bool jeuEstEnCours = false;
 
     // Sert à savoir si on doit jouer une musique durant la partie.
-    bool doitJouerMusique = false;
+    bool doitJouerMusique = true;
 
     // Variable qui sert à jouer la musique.
     WindowsMediaPlayer musique = new WindowsMediaPlayer();
@@ -141,6 +142,7 @@ namespace TP3
 
       musique.settings.autoStart = false;
       musique.URL = @"Resources/MusiqueTetris.mp3";
+      musique.settings.setMode("loop", true);
       // </WLebel>
 
     }
@@ -728,6 +730,7 @@ namespace TP3
       }
       AfficherJeu();
       //Apporter les modification au formulaire des statistiques de fin de partie
+      // Mika Gauthier
       frmFinDePartie finDePartie = new frmFinDePartie();
       finDePartie.AfficherNbPieceGenere(
       nbPieceBloc, nbPieceBarreVerticale,
@@ -737,7 +740,9 @@ namespace TP3
       );
       finDePartie.AfficherPointage(pointage);
       finDePartie.ShowDialog();
+      // Mika Gauthier
 
+      pointage = 0;
       jeuEstEnCours = false;
     }
     // </WLebel>
@@ -812,8 +817,16 @@ namespace TP3
 
       return veutAbandonner;
     }
-
     // </WLebel>
+
+    // <WLebel>
+    /// <summary>
+    /// Métode appelée lorsque le joueur clique sur le menu « Configuration ». 
+    /// La méthode affiche une fenêtre de configuration qui permet au joueur
+    /// de configurer le jeu.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void OnClickMenuConfiguration(object sender, EventArgs e)
     {
       // Si le jeu est en cours, on demande au joueur s'il veut abandonner sa partie.
@@ -824,6 +837,7 @@ namespace TP3
           ArreterExecutionJeu();
         }
       }
+      // </WLebel>
 
       // Demande des nouvelles configurations au joueur.
       ConfigurationFenetre fenetreDeConfiguration = new ConfigurationFenetre();
@@ -846,10 +860,29 @@ namespace TP3
     }
     // </WLebel>
 
+    // <WLebel>
+    /// <summary>
+    /// Méthode appelée lorsque le joueur clique sur le menu « Quitter ».
+    /// La métode quite le jeu.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void menuQuitter_Click(object sender, EventArgs e)
     {
-      Application.Exit();
+      if (jeuEstEnCours)
+      {
+        if (DemanderAbandonnerPartie() == true)
+        {
+          ArreterExecutionJeu();
+          Application.Exit();
+        }
+      }
+      else
+      {
+        Application.Exit();
+      }
     }
+    // </WLebel>
  
 
     //Mika Gauthier
@@ -1096,7 +1129,7 @@ namespace TP3
       bool estUneLigneComplete = true;
 
       // Si l'index de a ligne donné en paramètre est valide.
-      if (ligne > 0 && ligne < nbLignesJeu)
+      if (ligne >= 0 && ligne < nbLignesJeu)
       {
         // Pour tous les pièces de la ligne.
         for (int j = 0; j < nbColonnesJeu - 1; j++)
@@ -1121,14 +1154,14 @@ namespace TP3
     void DecalerLignes(int ligneDeDepart)
     {
       // Si l'index de la ligne donné en paramètre est valide.
-      if (ligneDeDepart > 0 && ligneDeDepart < nbLignesJeu)
+      if (ligneDeDepart >= 0 && ligneDeDepart < nbLignesJeu)
       {
 
         // Pour toutes les lignes à partir de la ligne donnée en paramètre (exepté la première ligne du jeu).
         for (int i = ligneDeDepart; i > 1; i--)
         {
           // Pour toutes les cases de la ligne choisie
-          for (int j = 0; j < nbColonnesJeu - 1; j++)
+          for (int j = 0; j < nbColonnesJeu; j++)
           {
             // On prend la valeur de la case correspondante de la ligne du haut.
             tableauPieces[i, j] = tableauPieces[i - 1, j];
@@ -1136,7 +1169,7 @@ namespace TP3
         }
 
         // Pour toutes les cases de la première ligne du jeu.
-        for (int j = 0; j < nbColonnesJeu - 1; j++)
+        for (int j = 0; j < nbColonnesJeu; j++)
         {
           // On vide la case.
           tableauPieces[0, j] = PieceTeris.Rien;
@@ -1169,9 +1202,254 @@ namespace TP3
     /// </summary>
     void ExecuterTestsUnitaires()
     {
+      TesterRetirerLignesCompletees();
       ExecuterTestABC();
       // A compléter...
     }
+
+    // <WLebel>
+    #region Test de la méthode RetirerLignesCompletees
+    /// <summary>
+    /// Méthode qui teste plusieurs cas de la méthode RetirerLignesCompletees.
+    /// </summary>
+    void TesterRetirerLignesCompletees()
+    {
+      TesterRetraitUneLigneSeule();
+      TesterDecalage();
+      TesterRetraitDeuxLignesConsecutives();
+      TesterRetraitDeuxLignesDistantes();
+      TesterRetraitTroisLignes();
+      TesterRetraitQuatreLignes();
+    }
+
+    /// <summary>
+    /// Teste le retrait d'une seule ligne.
+    /// </summary>
+    void TesterRetraitUneLigneSeule()
+    {
+      // Mise en place des données du test
+      InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+      for (int j = 0; j < nbColonnesJeu; j++)
+      {
+        tableauPieces[0, j] = PieceTeris.Gelee;
+      }
+
+      // Exécuter de la méthode à tester
+      int nbLignesCompletes = RetirerLignesCompletees();
+
+      // Validation des résultats
+      Debug.Assert(nbLignesCompletes == 1, "Le nombre de lignes complétées ne correspond pas.");
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          Debug.Assert(tableauPieces[i, j] == PieceTeris.Rien, "Une ligne n'a pas été retirée correctement.");
+        }
+      }
+
+      // Clean-up
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Rien;
+        }
+      }
+    }
+
+    /// <summary>
+    /// Teste le retrait d'une ligne avec décalage.
+    /// </summary>
+    void TesterDecalage()
+    {
+      // Mise en place des données du test
+      InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+      for (int j = 0; j < nbColonnesJeu; j++)
+      {
+        tableauPieces[nbLignesJeu - 1, j] = PieceTeris.Gelee;
+      }
+      tableauPieces[nbLignesJeu - 2, 0] = PieceTeris.Gelee;
+      tableauPieces[nbLignesJeu - 2, nbColonnesJeu - 1] = PieceTeris.Gelee;
+      tableauPieces[nbLignesJeu - 3, 0] = PieceTeris.Gelee;
+      tableauPieces[nbLignesJeu - 3, nbColonnesJeu - 1] = PieceTeris.Gelee;
+
+      // Exécuter de la méthode à tester
+      int nbLignesCompletes = RetirerLignesCompletees();
+
+      // Validation des résultats
+      Debug.Assert(nbLignesCompletes == 1, "Le nombre de lignes complétées ne correspond pas.");
+      Debug.Assert(tableauPieces[nbLignesJeu - 1, 0] == PieceTeris.Gelee, "Le décalage ne s'effectue pas correctement");
+      Debug.Assert(tableauPieces[nbLignesJeu - 1, nbColonnesJeu - 1] == PieceTeris.Gelee, "Le décalage ne s'effectue pas correctement");
+      Debug.Assert(tableauPieces[nbLignesJeu - 2, 0] == PieceTeris.Gelee, "Le décalage ne s'effectue pas correctement");
+      Debug.Assert(tableauPieces[nbLignesJeu - 2, nbColonnesJeu - 1] == PieceTeris.Gelee, "Le décalage ne s'effectue pas correctement");
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          if (!(i == nbLignesJeu - 1 || i == nbLignesJeu - 2) && (j == 0 || j == nbColonnesJeu - 1 ))
+          {
+            Debug.Assert(tableauPieces[i, j] == PieceTeris.Rien, "Une ligne n'a pas été retirée correctement.");
+          }
+        }
+      }
+      // Clean-up
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Rien;
+        }
+      }
+    }
+
+    /// <summary>
+    /// Teste le retrait de deux lignes consécutives.
+    /// </summary>
+    void TesterRetraitDeuxLignesConsecutives()
+    {
+      // Mise en place des données du test
+      InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+      for (int j = 0; j < nbColonnesJeu; j++)
+      {
+        tableauPieces[nbLignesJeu - 1, j] = PieceTeris.Gelee;
+        tableauPieces[nbLignesJeu - 2, j] = PieceTeris.Gelee;
+      }
+
+      // Exécuter de la méthode à tester
+      int nbLignesCompletes = RetirerLignesCompletees();
+
+      // Validation des résultats
+      Debug.Assert(nbLignesCompletes == 2, "Le nombre de lignes complétées ne correspond pas.");
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          Debug.Assert(tableauPieces[i, j] == PieceTeris.Rien, "Une ligne n'a pas été retirée correctement.");
+        }
+      }
+
+      // Clean-up
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Rien;
+        }
+      }
+    }
+
+    /// <summary>
+    /// Teste le retrait de deux lignes non consécutives.
+    /// </summary>
+    void TesterRetraitDeuxLignesDistantes()
+    {
+      // Mise en place des données du test
+      InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+      for (int j = 0; j < nbColonnesJeu; j++)
+      {
+        tableauPieces[nbLignesJeu - 1, j] = PieceTeris.Gelee;
+        tableauPieces[nbLignesJeu - 4, j] = PieceTeris.Gelee;
+      }
+
+      // Exécuter de la méthode à tester
+      int nbLignesCompletes = RetirerLignesCompletees();
+
+      // Validation des résultats
+      Debug.Assert(nbLignesCompletes == 2, "Le nombre de lignes complétées ne correspond pas.");
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          Debug.Assert(tableauPieces[i, j] == PieceTeris.Rien, "Une ligne n'a pas été retirée correctement.");
+        }
+      }
+
+      // Clean-up
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Rien;
+        }
+      }
+    }
+
+    /// <summary>
+    /// Teste le retrait de trois lignes.
+    /// </summary>
+    void TesterRetraitTroisLignes()
+    {
+      // Mise en place des données du test
+      InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+      for (int j = 0; j < nbColonnesJeu; j++)
+      {
+        tableauPieces[nbLignesJeu - 1, j] = PieceTeris.Gelee;
+        tableauPieces[nbLignesJeu - 2, j] = PieceTeris.Gelee;
+        tableauPieces[nbLignesJeu - 3, j] = PieceTeris.Gelee;
+      }
+
+      // Exécuter de la méthode à tester
+      int nbLignesCompletes = RetirerLignesCompletees();
+
+      // Validation des résultats
+      Debug.Assert(nbLignesCompletes == 3, "Le nombre de lignes complétées ne correspond pas.");
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          Debug.Assert(tableauPieces[i, j] == PieceTeris.Rien, "Une ligne n'a pas été retirée correctement.");
+        }
+      }
+
+      // Clean-up
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Rien;
+        }
+      }
+    }
+
+    /// <summary>
+    /// Teste le retrait de quatre lignes.
+    /// </summary>
+    void TesterRetraitQuatreLignes()
+    {
+      // Mise en place des données du test
+      InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+      for (int j = 0; j < nbColonnesJeu; j++)
+      {
+        tableauPieces[nbLignesJeu - 1, j] = PieceTeris.Gelee;
+        tableauPieces[nbLignesJeu - 2, j] = PieceTeris.Gelee;
+        tableauPieces[nbLignesJeu - 3, j] = PieceTeris.Gelee;
+        tableauPieces[nbLignesJeu - 4, j] = PieceTeris.Gelee;
+      }
+
+      // Exécuter de la méthode à tester
+      int nbLignesCompletes = RetirerLignesCompletees();
+
+      // Validation des résultats
+      Debug.Assert(nbLignesCompletes == 4, "Le nombre de lignes complétées ne correspond pas.");
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          Debug.Assert(tableauPieces[i, j] == PieceTeris.Rien, "Une ligne n'a pas été retirée correctement.");
+        }
+      }
+
+      // Clean-up
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Rien;
+        }
+      }
+    }
+    #endregion
+    // </WLebel>
 
     // A renommer et commenter!
     void ExecuterTestABC()
