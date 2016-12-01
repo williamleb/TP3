@@ -34,7 +34,22 @@
       this.tblLayoutJeu = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.grpBoxStatistiquesJeu = new System.Windows.Forms.GroupBox();
-      this.grpBoxOptionsJeu = new System.Windows.Forms.GroupBox();
+      this.grpBoxParametresJeu = new System.Windows.Forms.GroupBox();
+      this.layoutParametresJeu = new System.Windows.Forms.TableLayoutPanel();
+      this.btnValider = new System.Windows.Forms.Button();
+      this.lblLignes = new System.Windows.Forms.Label();
+      this.lblColonnes = new System.Windows.Forms.Label();
+      this.checkBoxMusique = new System.Windows.Forms.CheckBox();
+      this.lblMusique = new System.Windows.Forms.Label();
+      this.numLignes = new System.Windows.Forms.NumericUpDown();
+      this.numColonnes = new System.Windows.Forms.NumericUpDown();
+      this.layoutControles = new System.Windows.Forms.TableLayoutPanel();
+      this.lblGauche = new System.Windows.Forms.Label();
+      this.label2 = new System.Windows.Forms.Label();
+      this.label3 = new System.Windows.Forms.Label();
+      this.label4 = new System.Windows.Forms.Label();
+      this.label5 = new System.Windows.Forms.Label();
+      this.label6 = new System.Windows.Forms.Label();
       this.menuStripJeu = new System.Windows.Forms.MenuStrip();
       this.menuPartie = new System.Windows.Forms.ToolStripMenuItem();
       this.menuJouer = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +61,11 @@
       this.timerJeu = new System.Windows.Forms.Timer(this.components);
       this.tblLayoutJeu.SuspendLayout();
       this.tableLayoutPanel1.SuspendLayout();
+      this.grpBoxParametresJeu.SuspendLayout();
+      this.layoutParametresJeu.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.numLignes)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.numColonnes)).BeginInit();
+      this.layoutControles.SuspendLayout();
       this.menuStripJeu.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -71,6 +91,7 @@
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 99F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
       this.tableauJeu.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableauJeu.Location = new System.Drawing.Point(240, 0);
@@ -130,13 +151,13 @@
       this.tableLayoutPanel1.ColumnCount = 1;
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel1.Controls.Add(this.grpBoxStatistiquesJeu, 0, 0);
-      this.tableLayoutPanel1.Controls.Add(this.grpBoxOptionsJeu, 0, 1);
+      this.tableLayoutPanel1.Controls.Add(this.grpBoxParametresJeu, 0, 1);
       this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
       this.tableLayoutPanel1.Name = "tableLayoutPanel1";
       this.tableLayoutPanel1.RowCount = 2;
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
       this.tableLayoutPanel1.Size = new System.Drawing.Size(234, 559);
       this.tableLayoutPanel1.TabIndex = 2;
       // 
@@ -145,20 +166,222 @@
       this.grpBoxStatistiquesJeu.Dock = System.Windows.Forms.DockStyle.Fill;
       this.grpBoxStatistiquesJeu.Location = new System.Drawing.Point(3, 3);
       this.grpBoxStatistiquesJeu.Name = "grpBoxStatistiquesJeu";
-      this.grpBoxStatistiquesJeu.Size = new System.Drawing.Size(228, 329);
+      this.grpBoxStatistiquesJeu.Size = new System.Drawing.Size(228, 413);
       this.grpBoxStatistiquesJeu.TabIndex = 0;
       this.grpBoxStatistiquesJeu.TabStop = false;
       this.grpBoxStatistiquesJeu.Text = "Statistiques";
       // 
-      // grpBoxOptionsJeu
+      // grpBoxParametresJeu
       // 
-      this.grpBoxOptionsJeu.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.grpBoxOptionsJeu.Location = new System.Drawing.Point(3, 338);
-      this.grpBoxOptionsJeu.Name = "grpBoxOptionsJeu";
-      this.grpBoxOptionsJeu.Size = new System.Drawing.Size(228, 218);
-      this.grpBoxOptionsJeu.TabIndex = 1;
-      this.grpBoxOptionsJeu.TabStop = false;
-      this.grpBoxOptionsJeu.Text = "Options";
+      this.grpBoxParametresJeu.Controls.Add(this.layoutParametresJeu);
+      this.grpBoxParametresJeu.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.grpBoxParametresJeu.Location = new System.Drawing.Point(3, 422);
+      this.grpBoxParametresJeu.Name = "grpBoxParametresJeu";
+      this.grpBoxParametresJeu.Size = new System.Drawing.Size(228, 134);
+      this.grpBoxParametresJeu.TabIndex = 1;
+      this.grpBoxParametresJeu.TabStop = false;
+      this.grpBoxParametresJeu.Text = "Paramètres";
+      // 
+      // layoutParametresJeu
+      // 
+      this.layoutParametresJeu.ColumnCount = 3;
+      this.layoutParametresJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.12613F));
+      this.layoutParametresJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.42342F));
+      this.layoutParametresJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+      this.layoutParametresJeu.Controls.Add(this.btnValider, 0, 3);
+      this.layoutParametresJeu.Controls.Add(this.lblLignes, 0, 0);
+      this.layoutParametresJeu.Controls.Add(this.lblColonnes, 0, 1);
+      this.layoutParametresJeu.Controls.Add(this.checkBoxMusique, 1, 2);
+      this.layoutParametresJeu.Controls.Add(this.lblMusique, 0, 2);
+      this.layoutParametresJeu.Controls.Add(this.numLignes, 1, 0);
+      this.layoutParametresJeu.Controls.Add(this.numColonnes, 1, 1);
+      this.layoutParametresJeu.Controls.Add(this.layoutControles, 2, 0);
+      this.layoutParametresJeu.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.layoutParametresJeu.Location = new System.Drawing.Point(3, 16);
+      this.layoutParametresJeu.Name = "layoutParametresJeu";
+      this.layoutParametresJeu.RowCount = 4;
+      this.layoutParametresJeu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+      this.layoutParametresJeu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+      this.layoutParametresJeu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+      this.layoutParametresJeu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+      this.layoutParametresJeu.Size = new System.Drawing.Size(222, 115);
+      this.layoutParametresJeu.TabIndex = 0;
+      // 
+      // btnValider
+      // 
+      this.layoutParametresJeu.SetColumnSpan(this.btnValider, 2);
+      this.btnValider.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.btnValider.Location = new System.Drawing.Point(3, 87);
+      this.btnValider.Name = "btnValider";
+      this.btnValider.Size = new System.Drawing.Size(104, 25);
+      this.btnValider.TabIndex = 0;
+      this.btnValider.Text = "Valider";
+      this.btnValider.UseVisualStyleBackColor = true;
+      this.btnValider.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnMouseClickBtnValider);
+      // 
+      // lblLignes
+      // 
+      this.lblLignes.AutoSize = true;
+      this.lblLignes.Location = new System.Drawing.Point(3, 0);
+      this.lblLignes.Name = "lblLignes";
+      this.lblLignes.Size = new System.Drawing.Size(38, 13);
+      this.lblLignes.TabIndex = 1;
+      this.lblLignes.Text = "Lignes";
+      // 
+      // lblColonnes
+      // 
+      this.lblColonnes.AutoSize = true;
+      this.lblColonnes.Location = new System.Drawing.Point(3, 28);
+      this.lblColonnes.Name = "lblColonnes";
+      this.lblColonnes.Size = new System.Drawing.Size(51, 13);
+      this.lblColonnes.TabIndex = 2;
+      this.lblColonnes.Text = "Colonnes";
+      // 
+      // checkBoxMusique
+      // 
+      this.checkBoxMusique.AutoSize = true;
+      this.checkBoxMusique.Checked = true;
+      this.checkBoxMusique.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.checkBoxMusique.Dock = System.Windows.Forms.DockStyle.Left;
+      this.checkBoxMusique.Location = new System.Drawing.Point(61, 59);
+      this.checkBoxMusique.Name = "checkBoxMusique";
+      this.checkBoxMusique.Size = new System.Drawing.Size(15, 22);
+      this.checkBoxMusique.TabIndex = 4;
+      this.checkBoxMusique.UseVisualStyleBackColor = true;
+      // 
+      // lblMusique
+      // 
+      this.lblMusique.AutoSize = true;
+      this.lblMusique.Location = new System.Drawing.Point(3, 56);
+      this.lblMusique.Name = "lblMusique";
+      this.lblMusique.Size = new System.Drawing.Size(47, 13);
+      this.lblMusique.TabIndex = 3;
+      this.lblMusique.Text = "Musique";
+      // 
+      // numLignes
+      // 
+      this.numLignes.Dock = System.Windows.Forms.DockStyle.Left;
+      this.numLignes.Location = new System.Drawing.Point(61, 3);
+      this.numLignes.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+      this.numLignes.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+      this.numLignes.Name = "numLignes";
+      this.numLignes.Size = new System.Drawing.Size(46, 20);
+      this.numLignes.TabIndex = 5;
+      this.numLignes.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+      // 
+      // numColonnes
+      // 
+      this.numColonnes.Dock = System.Windows.Forms.DockStyle.Left;
+      this.numColonnes.Location = new System.Drawing.Point(61, 31);
+      this.numColonnes.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+      this.numColonnes.Minimum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+      this.numColonnes.Name = "numColonnes";
+      this.numColonnes.Size = new System.Drawing.Size(46, 20);
+      this.numColonnes.TabIndex = 6;
+      this.numColonnes.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+      // 
+      // layoutControles
+      // 
+      this.layoutControles.ColumnCount = 1;
+      this.layoutControles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.layoutControles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.layoutControles.Controls.Add(this.lblGauche, 0, 0);
+      this.layoutControles.Controls.Add(this.label2, 0, 1);
+      this.layoutControles.Controls.Add(this.label3, 0, 2);
+      this.layoutControles.Controls.Add(this.label4, 0, 3);
+      this.layoutControles.Controls.Add(this.label5, 0, 4);
+      this.layoutControles.Controls.Add(this.label6, 0, 5);
+      this.layoutControles.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.layoutControles.Location = new System.Drawing.Point(113, 3);
+      this.layoutControles.Name = "layoutControles";
+      this.layoutControles.RowCount = 6;
+      this.layoutParametresJeu.SetRowSpan(this.layoutControles, 4);
+      this.layoutControles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+      this.layoutControles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+      this.layoutControles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+      this.layoutControles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+      this.layoutControles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+      this.layoutControles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+      this.layoutControles.Size = new System.Drawing.Size(106, 109);
+      this.layoutControles.TabIndex = 7;
+      // 
+      // lblGauche
+      // 
+      this.lblGauche.AutoSize = true;
+      this.lblGauche.Location = new System.Drawing.Point(3, 0);
+      this.lblGauche.Name = "lblGauche";
+      this.lblGauche.Size = new System.Drawing.Size(61, 13);
+      this.lblGauche.TabIndex = 0;
+      this.lblGauche.Text = "Gauche : A";
+      // 
+      // label2
+      // 
+      this.label2.AutoSize = true;
+      this.label2.Location = new System.Drawing.Point(3, 18);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(41, 13);
+      this.label2.TabIndex = 1;
+      this.label2.Text = "Bas : S";
+      // 
+      // label3
+      // 
+      this.label3.AutoSize = true;
+      this.label3.Location = new System.Drawing.Point(3, 36);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(52, 13);
+      this.label3.TabIndex = 2;
+      this.label3.Text = "Droite : D";
+      // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Location = new System.Drawing.Point(3, 54);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(58, 13);
+      this.label4.TabIndex = 3;
+      this.label4.Text = "Horaire : Q";
+      // 
+      // label5
+      // 
+      this.label5.AutoSize = true;
+      this.label5.Location = new System.Drawing.Point(3, 72);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(73, 13);
+      this.label5.TabIndex = 4;
+      this.label5.Text = "Antihoraire : E";
+      // 
+      // label6
+      // 
+      this.label6.AutoSize = true;
+      this.label6.Location = new System.Drawing.Point(3, 90);
+      this.label6.Name = "label6";
+      this.label6.Size = new System.Drawing.Size(90, 13);
+      this.label6.TabIndex = 5;
+      this.label6.Text = "Tomber :  SPACE";
       // 
       // menuStripJeu
       // 
@@ -243,6 +466,13 @@
       this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.JeuTetris_KeyPress);
       this.tblLayoutJeu.ResumeLayout(false);
       this.tableLayoutPanel1.ResumeLayout(false);
+      this.grpBoxParametresJeu.ResumeLayout(false);
+      this.layoutParametresJeu.ResumeLayout(false);
+      this.layoutParametresJeu.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.numLignes)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.numColonnes)).EndInit();
+      this.layoutControles.ResumeLayout(false);
+      this.layoutControles.PerformLayout();
       this.menuStripJeu.ResumeLayout(false);
       this.menuStripJeu.PerformLayout();
       this.ResumeLayout(false);
@@ -265,7 +495,22 @@
     private System.Windows.Forms.Timer timerJeu;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     private System.Windows.Forms.GroupBox grpBoxStatistiquesJeu;
-    private System.Windows.Forms.GroupBox grpBoxOptionsJeu;
+    private System.Windows.Forms.GroupBox grpBoxParametresJeu;
+    private System.Windows.Forms.TableLayoutPanel layoutParametresJeu;
+    private System.Windows.Forms.Button btnValider;
+    private System.Windows.Forms.Label lblLignes;
+    private System.Windows.Forms.Label lblColonnes;
+    private System.Windows.Forms.CheckBox checkBoxMusique;
+    private System.Windows.Forms.Label lblMusique;
+    private System.Windows.Forms.NumericUpDown numLignes;
+    private System.Windows.Forms.NumericUpDown numColonnes;
+    private System.Windows.Forms.TableLayoutPanel layoutControles;
+    private System.Windows.Forms.Label lblGauche;
+    private System.Windows.Forms.Label label2;
+    private System.Windows.Forms.Label label3;
+    private System.Windows.Forms.Label label4;
+    private System.Windows.Forms.Label label5;
+    private System.Windows.Forms.Label label6;
   }
 }
 

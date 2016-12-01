@@ -67,6 +67,14 @@ namespace TP3
     // Variable qui représente le pointage du joueur pour la partie en cours.
     int pointage = 0;
 
+    // Indique le niveau de difficulté en cours du jeu. Le niveau de difficulté
+    // influence la descente de la pièce ainsi que le pointage obtenu.
+    // Le niveau de difficulté peut varier de 1 à 9.
+    int niveauDifficluteDe1A9 = 1;
+
+    // Variable qui indique le nombre de ligne complétées total dans une partie.
+    int nbLignesCompletesAuTotal = 0;
+
     //Nombre de pièces utilisées + type de la pièce
     int nbPieceBloc = 0; //couleur jaune
     int nbPieceBarreVerticale = 0; //couleur cyan
@@ -664,6 +672,7 @@ namespace TP3
         ActualiserTableauPieces(PieceTeris.Gelee);
         ActualiserPointage();
         AfficherJeu();
+        ActualiserNieauDifficulte();
         VérificationFinPartie();
         if (jeuEstEnCours == true)
         {
@@ -681,6 +690,97 @@ namespace TP3
       // </WLebel> et Mika gauthier
     }
 
+    /// <summary>
+    /// Permet de vérifier le niveau de difficulté et de le changer quand c'est nécessaire.
+    /// </summary>
+    void ActualiserNieauDifficulte()
+    {
+      int niveauDifficulteEvalue = 1;
+
+      // Le niveau de difficulté est évalué selon les lignes complétées.
+      if (nbLignesCompletesAuTotal > 40)
+      {
+        niveauDifficulteEvalue = 9;
+      }
+      else if (nbLignesCompletesAuTotal > 35)
+      {
+        niveauDifficulteEvalue = 8;
+      }
+      else if (nbLignesCompletesAuTotal > 30)
+      {
+        niveauDifficulteEvalue = 7;
+      }
+      else if (nbLignesCompletesAuTotal > 25)
+      {
+        niveauDifficulteEvalue = 6;
+      }
+      else if (nbLignesCompletesAuTotal > 20)
+      {
+        niveauDifficulteEvalue = 5;
+      }
+      else if (nbLignesCompletesAuTotal > 15)
+      {
+        niveauDifficulteEvalue = 4;
+      }
+      else if (nbLignesCompletesAuTotal > 10)
+      {
+        niveauDifficulteEvalue = 3;
+      }
+      else if (nbLignesCompletesAuTotal > 5)
+      {
+        niveauDifficulteEvalue = 2;
+      }
+
+      // Si le niveau de difficulté a changé, on traite le nouveau niveau de difficulté.
+      if (niveauDifficulteEvalue != niveauDifficluteDe1A9)
+      {
+        TraiterNouveauNiveauDifficulté(niveauDifficulteEvalue);
+      }
+    }
+
+    /// <summary>
+    /// Méthode qui permet d'initialiser un nouveau niveau de difficulté ainsi que de changer
+    /// la rapidité de descente de la pièce selon ce niveau de difficulté.
+    /// </summary>
+    /// <param name="nouveauNiveauDifficulte">Le nouveau niveau de difficulté.</param>
+    void TraiterNouveauNiveauDifficulté(int nouveauNiveauDifficulte)
+    {
+      // On détermine le nouveau niveau de difficulté.
+      niveauDifficluteDe1A9 = nouveauNiveauDifficulte;
+
+      // On change ensuite la rapidité de la pièce selon le niveau de difficulté.
+      switch (niveauDifficluteDe1A9)
+      {
+        case 9:
+          timerJeu.Interval = 100;
+          break;
+        case 8:
+          timerJeu.Interval = 150;
+          break;
+        case 7:
+          timerJeu.Interval = 200;
+          break;
+        case 6:
+          timerJeu.Interval = 250;
+          break;
+        case 5:
+          timerJeu.Interval = 300;
+          break;
+        case 4:
+          timerJeu.Interval = 350;
+          break;
+        case 3:
+          timerJeu.Interval = 400;
+          break;
+        case 2:
+          timerJeu.Interval = 450;
+          break;
+        default:
+          timerJeu.Interval = 500;
+          break;
+      }
+    }
+
     // <WLebel>
     /// <summary>
     /// Méthode qui permet de commencer le jeu en initialisant les valeurs.
@@ -693,16 +793,29 @@ namespace TP3
         musique.controls.play();
       }
 
+      // Génère la première pièce.
       GenererPieceAleatoire();
-      ////// Désactivation du groupbox "Options"
+
+      // Active le timer.
       timerJeu.Enabled = true;
+      
+      // Détermine la position de départ des pièces.
       colonneDeDepart = nbColonnesJeu / 2;
       colonneCourante = colonneDeDepart;
       ligneCourante = 0;
+
+      // Actualise le tableau des pièces et affiche le jeu.
       ActualiserTableauPieces(pieceEnCours);
       AfficherJeu();
 
+      // Définit que le jeu est en cours.
       jeuEstEnCours = true;
+
+      // Désactive les paramètres.
+      numLignes.Enabled = false;
+      numColonnes.Enabled = false;
+      checkBoxMusique.Enabled = false;
+      //btnValider.Enabled = false;
     }
     // </WLebel>
 
@@ -712,9 +825,10 @@ namespace TP3
     /// </summary>
     void ArreterExecutionJeu()
     {
-      // Remet les valeurs à leur état initial.
-      //////// Activation du groupbox "Options"
+      // Arrête le timer.
       timerJeu.Enabled = false;
+
+      // Désactive la pièce.
       ResetPiece();
 
       // Arrête la musique
@@ -729,8 +843,9 @@ namespace TP3
         }
       }
       AfficherJeu();
-      //Apporter les modification au formulaire des statistiques de fin de partie
+
       // Mika Gauthier
+      //Apporter les modification au formulaire des statistiques de fin de partie
       frmFinDePartie finDePartie = new frmFinDePartie();
       finDePartie.AfficherNbPieceGenere(
       nbPieceBloc, nbPieceBarreVerticale,
@@ -743,7 +858,15 @@ namespace TP3
       // Mika Gauthier
 
       pointage = 0;
+      TraiterNouveauNiveauDifficulté(1);
+      nbLignesCompletesAuTotal = 0;
       jeuEstEnCours = false;
+
+      // Active les paramètres.
+      numLignes.Enabled = true;
+      numColonnes.Enabled = true;
+      checkBoxMusique.Enabled = true;
+      btnValider.Enabled = true;
     }
     // </WLebel>
 
@@ -989,6 +1112,21 @@ namespace TP3
           AfficherJeu();
         }
       }
+      // <WLebel>
+      if (keyUsed == Mouvement.Tomber)
+      {
+        // Tant que le déplacement vers le bas est possible.
+        while (DeterminerSiBlocPeutBouger(Mouvement.DeplacerBas))
+        {
+          // Actualise et affiche le tableau.
+          ActualiserTableauPieces(PieceTeris.Rien);
+          ligneCourante++;
+          ActualiserTableauPieces(pieceEnCours);
+          AfficherJeu();
+        }
+
+      }
+      // </WLebel>
     }
 
     /// <summary>
@@ -1042,6 +1180,15 @@ namespace TP3
         keyUsed = Mouvement.RotationHoraire;
         DeplacerBloc(tableauPieces);
       }
+      // <WLebel>
+      // Si le joueur appuie sur la barre espace, la pièce tombe.
+      if (e.KeyChar == 32)
+      {
+        keyUsed = Mouvement.Tomber;
+        DeplacerBloc(tableauPieces);
+      }
+      // </WLebel>
+      
     }
     //Mika Gauhtier
 
@@ -1072,25 +1219,33 @@ namespace TP3
     void ActualiserPointage()
     {
 
+      // Valeurs de base.
       // 1 ligne retirée = 250pts
       // 2 lignes retirées = 500pts
       // 3 lignes retirées = 1000pts
       // 4 lignes retirées = 2000pts
+      int pointageAAjouter = 0;
       switch (RetirerLignesCompletees())
       {
         case 1:
-          pointage += 250;
+          pointageAAjouter = 250;
           break;
         case 2:
-          pointage += 500;
+          pointageAAjouter = 500;
           break;
         case 3:
-          pointage += 1000;
+          pointageAAjouter = 1000;
           break;
         case 4:
-          pointage += 2000;
+          pointageAAjouter = 2000;
           break;
       }
+
+      // Le pointage est ensuite multiplié par le niveau de difficulté en cours du jeu.
+      pointageAAjouter *= niveauDifficluteDe1A9;
+
+      // On ajoute le pointage.
+      pointage += pointageAAjouter;
     }
 
     /// <summary>
@@ -1115,6 +1270,7 @@ namespace TP3
         }
       }
 
+      nbLignesCompletesAuTotal += nbLignesCompletees;
       return nbLignesCompletees;
     }
 
@@ -1194,6 +1350,33 @@ namespace TP3
     //Mika Gauhtier
 
     #endregion
+    // </WLebel>
+
+    // <WLebel>
+    /// <summary>
+    /// Méthode qui est appelée lorsque le joueur clique sur le bouton «Valider» et qui permet
+    /// d'appliquer les changements faits dans la section «Paramètres» du jeu au jeu.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void OnMouseClickBtnValider(object sender, MouseEventArgs e)
+    {
+      // Appliquer le choix de nombres de lignes et de colonnes.
+      nbLignesJeu = Decimal.ToInt32(numLignes.Value);
+      nbColonnesJeu = Decimal.ToInt32(numColonnes.Value);
+
+      // Appliquer le choix de jouer la musique ou non.
+      if (checkBoxMusique.Checked == true)
+      {
+        doitJouerMusique = true;
+      }
+      else
+      {
+        doitJouerMusique = false;
+      }
+
+      InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+    }
     // </WLebel>
 
     #region Tests unitaires
@@ -1462,6 +1645,7 @@ namespace TP3
 
       // Clean-up
     }
+
 
     #endregion
 
