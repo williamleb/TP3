@@ -20,7 +20,7 @@ namespace TP3
     public char toucheDeplacerDroite = 'd';
     // Touche pour tourner la pièce de façon horaire. Par défaut: 'q'.
     public char toucheRotationHoraire = 'q';
-    // Touche pour tourner la pièce de façon anti-horaire. Par défaut: 'e'.
+    // Touche pour tourner la pièce de façon antihoraire. Par défaut: 'e'.
     public char toucheRotationAntiHoraire = 'e';
     // Touche pour faire tomber la pièce. Par défaut: barre espace.
     public char toucheTomber = (char)32;

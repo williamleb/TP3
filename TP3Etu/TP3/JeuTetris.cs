@@ -1001,6 +1001,7 @@ namespace TP3
 
         // Initialise et affiche les changements.
         InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+        AfficherTouchesDansFenetreJeu();
       }
 
     }
@@ -1013,6 +1014,15 @@ namespace TP3
     void AfficherTouchesDansFenetreJeu()
     {
       // Gauche.
+      lblGauche.Text = "Gauche : ";
+      if (Char.IsLetter(toucheDeplacerGauche))
+      {
+        lblGauche.Text += Char.ToUpper(toucheDeplacerGauche);
+      }
+      else
+      {
+
+      }
 
       // Bas.
 
