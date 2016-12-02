@@ -31,7 +31,7 @@ namespace TP3
     // Touche pour tourner la pièce de façon horaire. Par défaut: 'q'.
     public char toucheRotationHoraire = 'q';
     // Touche pour tourner la pièce de façon anti-horaire. Par défaut: 'e'.
-    public char toucheRotationAntiHoraire = 'e';
+    public char toucheRotationAntihoraire = 'e';
     // Touche pour faire tomber la pièce. Par défaut: barre espace.
     public char toucheTomber = (char)32;
     #endregion
@@ -152,7 +152,7 @@ namespace TP3
       configurationTouches.toucheDeplacerBas = toucheDeplacerBas;
       configurationTouches.toucheDeplacerDroite = toucheDeplacerDroite;
       configurationTouches.toucheDeplacerGauche = toucheDeplacerGauche;
-      configurationTouches.toucheRotationAntiHoraire = toucheRotationAntiHoraire;
+      configurationTouches.toucheRotationAntihoraire = toucheRotationAntihoraire;
       configurationTouches.toucheRotationHoraire = toucheRotationHoraire;
       configurationTouches.toucheTomber = toucheTomber;
 
@@ -162,7 +162,7 @@ namespace TP3
         toucheDeplacerBas = configurationTouches.toucheDeplacerBas;
         toucheDeplacerDroite = configurationTouches.toucheDeplacerDroite;
         toucheDeplacerGauche = configurationTouches.toucheDeplacerGauche;
-        toucheRotationAntiHoraire = configurationTouches.toucheRotationAntiHoraire;
+        toucheRotationAntihoraire = configurationTouches.toucheRotationAntihoraire;
         toucheRotationHoraire = configurationTouches.toucheRotationHoraire;
         toucheTomber = configurationTouches.toucheTomber;
       }

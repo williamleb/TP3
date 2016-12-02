@@ -34,6 +34,8 @@
       this.tblLayoutJeu = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.grpBoxStatistiquesJeu = new System.Windows.Forms.GroupBox();
+      this.lblNiveau = new System.Windows.Forms.Label();
+      this.lblPointage = new System.Windows.Forms.Label();
       this.grpBoxParametresJeu = new System.Windows.Forms.GroupBox();
       this.layoutParametresJeu = new System.Windows.Forms.TableLayoutPanel();
       this.btnValider = new System.Windows.Forms.Button();
@@ -48,7 +50,7 @@
       this.lblBas = new System.Windows.Forms.Label();
       this.lblDroite = new System.Windows.Forms.Label();
       this.lblHoraire = new System.Windows.Forms.Label();
-      this.lblAntiHoraire = new System.Windows.Forms.Label();
+      this.lblAntihoraire = new System.Windows.Forms.Label();
       this.lblTomber = new System.Windows.Forms.Label();
       this.menuStripJeu = new System.Windows.Forms.MenuStrip();
       this.menuPartie = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,6 +63,7 @@
       this.timerJeu = new System.Windows.Forms.Timer(this.components);
       this.tblLayoutJeu.SuspendLayout();
       this.tableLayoutPanel1.SuspendLayout();
+      this.grpBoxStatistiquesJeu.SuspendLayout();
       this.grpBoxParametresJeu.SuspendLayout();
       this.layoutParametresJeu.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.numLignes)).BeginInit();
@@ -91,7 +94,7 @@
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
+      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 137F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
       this.tableauJeu.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableauJeu.Location = new System.Drawing.Point(240, 0);
@@ -163,6 +166,8 @@
       // 
       // grpBoxStatistiquesJeu
       // 
+      this.grpBoxStatistiquesJeu.Controls.Add(this.lblNiveau);
+      this.grpBoxStatistiquesJeu.Controls.Add(this.lblPointage);
       this.grpBoxStatistiquesJeu.Dock = System.Windows.Forms.DockStyle.Fill;
       this.grpBoxStatistiquesJeu.Location = new System.Drawing.Point(3, 3);
       this.grpBoxStatistiquesJeu.Name = "grpBoxStatistiquesJeu";
@@ -170,6 +175,24 @@
       this.grpBoxStatistiquesJeu.TabIndex = 0;
       this.grpBoxStatistiquesJeu.TabStop = false;
       this.grpBoxStatistiquesJeu.Text = "Statistiques";
+      // 
+      // lblNiveau
+      // 
+      this.lblNiveau.AutoSize = true;
+      this.lblNiveau.Location = new System.Drawing.Point(9, 86);
+      this.lblNiveau.Name = "lblNiveau";
+      this.lblNiveau.Size = new System.Drawing.Size(56, 13);
+      this.lblNiveau.TabIndex = 1;
+      this.lblNiveau.Text = "Niveau : 1";
+      // 
+      // lblPointage
+      // 
+      this.lblPointage.AutoSize = true;
+      this.lblPointage.Location = new System.Drawing.Point(9, 42);
+      this.lblPointage.Name = "lblPointage";
+      this.lblPointage.Size = new System.Drawing.Size(64, 13);
+      this.lblPointage.TabIndex = 0;
+      this.lblPointage.Text = "Pointage : 0";
       // 
       // grpBoxParametresJeu
       // 
@@ -313,7 +336,7 @@
       this.layoutControles.Controls.Add(this.lblBas, 0, 1);
       this.layoutControles.Controls.Add(this.lblDroite, 0, 2);
       this.layoutControles.Controls.Add(this.lblHoraire, 0, 3);
-      this.layoutControles.Controls.Add(this.lblAntiHoraire, 0, 4);
+      this.layoutControles.Controls.Add(this.lblAntihoraire, 0, 4);
       this.layoutControles.Controls.Add(this.lblTomber, 0, 5);
       this.layoutControles.Dock = System.Windows.Forms.DockStyle.Fill;
       this.layoutControles.Location = new System.Drawing.Point(113, 3);
@@ -365,14 +388,14 @@
       this.lblHoraire.TabIndex = 3;
       this.lblHoraire.Text = "Horaire : Q";
       // 
-      // lblAntiHoraire
+      // lblAntihoraire
       // 
-      this.lblAntiHoraire.AutoSize = true;
-      this.lblAntiHoraire.Location = new System.Drawing.Point(3, 72);
-      this.lblAntiHoraire.Name = "lblAntiHoraire";
-      this.lblAntiHoraire.Size = new System.Drawing.Size(73, 13);
-      this.lblAntiHoraire.TabIndex = 4;
-      this.lblAntiHoraire.Text = "Antihoraire : E";
+      this.lblAntihoraire.AutoSize = true;
+      this.lblAntihoraire.Location = new System.Drawing.Point(3, 72);
+      this.lblAntihoraire.Name = "lblAntihoraire";
+      this.lblAntihoraire.Size = new System.Drawing.Size(73, 13);
+      this.lblAntihoraire.TabIndex = 4;
+      this.lblAntihoraire.Text = "Antihoraire : E";
       // 
       // lblTomber
       // 
@@ -466,6 +489,8 @@
       this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.JeuTetris_KeyPress);
       this.tblLayoutJeu.ResumeLayout(false);
       this.tableLayoutPanel1.ResumeLayout(false);
+      this.grpBoxStatistiquesJeu.ResumeLayout(false);
+      this.grpBoxStatistiquesJeu.PerformLayout();
       this.grpBoxParametresJeu.ResumeLayout(false);
       this.layoutParametresJeu.ResumeLayout(false);
       this.layoutParametresJeu.PerformLayout();
@@ -509,8 +534,10 @@
     private System.Windows.Forms.Label lblBas;
     private System.Windows.Forms.Label lblDroite;
     private System.Windows.Forms.Label lblHoraire;
-    private System.Windows.Forms.Label lblAntiHoraire;
+    private System.Windows.Forms.Label lblAntihoraire;
     private System.Windows.Forms.Label lblTomber;
+    private System.Windows.Forms.Label lblNiveau;
+    private System.Windows.Forms.Label lblPointage;
   }
 }
 
