@@ -34,6 +34,7 @@
       this.tblLayoutJeu = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.grpBoxStatistiquesJeu = new System.Windows.Forms.GroupBox();
+      this.lblTimerDeLaPartie = new System.Windows.Forms.Label();
       this.lblNiveau = new System.Windows.Forms.Label();
       this.lblPointage = new System.Windows.Forms.Label();
       this.grpBoxParametresJeu = new System.Windows.Forms.GroupBox();
@@ -62,7 +63,26 @@
       this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
       this.timerJeu = new System.Windows.Forms.Timer(this.components);
       this.timerTempsDeJeu = new System.Windows.Forms.Timer(this.components);
-      this.lblTimerDuLaPartie = new System.Windows.Forms.Label();
+      this.layoutJeu = new System.Windows.Forms.TableLayoutPanel();
+      this.groupStatistiques = new System.Windows.Forms.GroupBox();
+      this.groupCoupSuivant = new System.Windows.Forms.GroupBox();
+      this.layoutCoupSuivant = new System.Windows.Forms.TableLayoutPanel();
+      this.pbCoupSuivant0 = new System.Windows.Forms.PictureBox();
+      this.pbCoupSuivant1 = new System.Windows.Forms.PictureBox();
+      this.pbCoupSuivant2 = new System.Windows.Forms.PictureBox();
+      this.pbCoupSuivant3 = new System.Windows.Forms.PictureBox();
+      this.pbCoupSuivant7 = new System.Windows.Forms.PictureBox();
+      this.pbCoupSuivant6 = new System.Windows.Forms.PictureBox();
+      this.pbCoupSuivant5 = new System.Windows.Forms.PictureBox();
+      this.pbCoupSuivant4 = new System.Windows.Forms.PictureBox();
+      this.pbCoupSuivant11 = new System.Windows.Forms.PictureBox();
+      this.pbCoupSuivant10 = new System.Windows.Forms.PictureBox();
+      this.pbCoupSuivant9 = new System.Windows.Forms.PictureBox();
+      this.pbCoupSuivant8 = new System.Windows.Forms.PictureBox();
+      this.pbCoupSuivant15 = new System.Windows.Forms.PictureBox();
+      this.pbCoupSuivant14 = new System.Windows.Forms.PictureBox();
+      this.pbCoupSuivant13 = new System.Windows.Forms.PictureBox();
+      this.pbCoupSuivant12 = new System.Windows.Forms.PictureBox();
       this.tblLayoutJeu.SuspendLayout();
       this.tableLayoutPanel1.SuspendLayout();
       this.grpBoxStatistiquesJeu.SuspendLayout();
@@ -72,6 +92,26 @@
       ((System.ComponentModel.ISupportInitialize)(this.numColonnes)).BeginInit();
       this.layoutControles.SuspendLayout();
       this.menuStripJeu.SuspendLayout();
+      this.layoutJeu.SuspendLayout();
+      this.groupStatistiques.SuspendLayout();
+      this.groupCoupSuivant.SuspendLayout();
+      this.layoutCoupSuivant.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant0)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant2)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant3)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant7)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant6)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant5)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant4)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant11)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant10)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant9)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant8)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant15)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant14)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant13)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant12)).BeginInit();
       this.SuspendLayout();
       // 
       // tableauJeu
@@ -96,7 +136,7 @@
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
+      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 147F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
       this.tableauJeu.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableauJeu.Location = new System.Drawing.Point(240, 0);
@@ -168,21 +208,28 @@
       // 
       // grpBoxStatistiquesJeu
       // 
-      this.grpBoxStatistiquesJeu.Controls.Add(this.lblTimerDuLaPartie);
-      this.grpBoxStatistiquesJeu.Controls.Add(this.lblNiveau);
-      this.grpBoxStatistiquesJeu.Controls.Add(this.lblPointage);
+      this.grpBoxStatistiquesJeu.Controls.Add(this.layoutJeu);
       this.grpBoxStatistiquesJeu.Dock = System.Windows.Forms.DockStyle.Fill;
       this.grpBoxStatistiquesJeu.Location = new System.Drawing.Point(3, 3);
       this.grpBoxStatistiquesJeu.Name = "grpBoxStatistiquesJeu";
       this.grpBoxStatistiquesJeu.Size = new System.Drawing.Size(228, 413);
       this.grpBoxStatistiquesJeu.TabIndex = 0;
       this.grpBoxStatistiquesJeu.TabStop = false;
-      this.grpBoxStatistiquesJeu.Text = "Statistiques";
+      this.grpBoxStatistiquesJeu.Text = "Jeu";
+      // 
+      // lblTimerDeLaPartie
+      // 
+      this.lblTimerDeLaPartie.AutoSize = true;
+      this.lblTimerDeLaPartie.Location = new System.Drawing.Point(6, 148);
+      this.lblTimerDeLaPartie.Name = "lblTimerDeLaPartie";
+      this.lblTimerDeLaPartie.Size = new System.Drawing.Size(54, 13);
+      this.lblTimerDeLaPartie.TabIndex = 2;
+      this.lblTimerDeLaPartie.Text = "Temps : 0";
       // 
       // lblNiveau
       // 
       this.lblNiveau.AutoSize = true;
-      this.lblNiveau.Location = new System.Drawing.Point(9, 86);
+      this.lblNiveau.Location = new System.Drawing.Point(6, 89);
       this.lblNiveau.Name = "lblNiveau";
       this.lblNiveau.Size = new System.Drawing.Size(56, 13);
       this.lblNiveau.TabIndex = 1;
@@ -191,7 +238,7 @@
       // lblPointage
       // 
       this.lblPointage.AutoSize = true;
-      this.lblPointage.Location = new System.Drawing.Point(9, 42);
+      this.lblPointage.Location = new System.Drawing.Point(6, 30);
       this.lblPointage.Name = "lblPointage";
       this.lblPointage.Size = new System.Drawing.Size(64, 13);
       this.lblPointage.TabIndex = 0;
@@ -481,14 +528,238 @@
       this.timerTempsDeJeu.Interval = 1000;
       this.timerTempsDeJeu.Tick += new System.EventHandler(this.timerTempsDeJeu_Tick);
       // 
-      // lblTimerDuLaPartie
+      // layoutJeu
       // 
-      this.lblTimerDuLaPartie.AutoSize = true;
-      this.lblTimerDuLaPartie.Location = new System.Drawing.Point(9, 125);
-      this.lblTimerDuLaPartie.Name = "lblTimerDuLaPartie";
-      this.lblTimerDuLaPartie.Size = new System.Drawing.Size(54, 13);
-      this.lblTimerDuLaPartie.TabIndex = 2;
-      this.lblTimerDuLaPartie.Text = "Temps : 0";
+      this.layoutJeu.ColumnCount = 1;
+      this.layoutJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+      this.layoutJeu.Controls.Add(this.groupCoupSuivant, 0, 1);
+      this.layoutJeu.Controls.Add(this.groupStatistiques, 0, 0);
+      this.layoutJeu.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.layoutJeu.Location = new System.Drawing.Point(3, 16);
+      this.layoutJeu.Name = "layoutJeu";
+      this.layoutJeu.RowCount = 2;
+      this.layoutJeu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+      this.layoutJeu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+      this.layoutJeu.Size = new System.Drawing.Size(222, 394);
+      this.layoutJeu.TabIndex = 3;
+      // 
+      // groupStatistiques
+      // 
+      this.groupStatistiques.Controls.Add(this.lblPointage);
+      this.groupStatistiques.Controls.Add(this.lblNiveau);
+      this.groupStatistiques.Controls.Add(this.lblTimerDeLaPartie);
+      this.groupStatistiques.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.groupStatistiques.Location = new System.Drawing.Point(3, 3);
+      this.groupStatistiques.Name = "groupStatistiques";
+      this.groupStatistiques.Size = new System.Drawing.Size(216, 191);
+      this.groupStatistiques.TabIndex = 0;
+      this.groupStatistiques.TabStop = false;
+      this.groupStatistiques.Text = "Statistiques";
+      // 
+      // groupCoupSuivant
+      // 
+      this.groupCoupSuivant.Controls.Add(this.layoutCoupSuivant);
+      this.groupCoupSuivant.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.groupCoupSuivant.Location = new System.Drawing.Point(3, 200);
+      this.groupCoupSuivant.Name = "groupCoupSuivant";
+      this.groupCoupSuivant.Size = new System.Drawing.Size(216, 191);
+      this.groupCoupSuivant.TabIndex = 1;
+      this.groupCoupSuivant.TabStop = false;
+      this.groupCoupSuivant.Text = "Coup suivant";
+      // 
+      // layoutCoupSuivant
+      // 
+      this.layoutCoupSuivant.ColumnCount = 4;
+      this.layoutCoupSuivant.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+      this.layoutCoupSuivant.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+      this.layoutCoupSuivant.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+      this.layoutCoupSuivant.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+      this.layoutCoupSuivant.Controls.Add(this.pbCoupSuivant0, 0, 0);
+      this.layoutCoupSuivant.Controls.Add(this.pbCoupSuivant1, 1, 0);
+      this.layoutCoupSuivant.Controls.Add(this.pbCoupSuivant2, 2, 0);
+      this.layoutCoupSuivant.Controls.Add(this.pbCoupSuivant3, 3, 0);
+      this.layoutCoupSuivant.Controls.Add(this.pbCoupSuivant7, 3, 1);
+      this.layoutCoupSuivant.Controls.Add(this.pbCoupSuivant6, 2, 1);
+      this.layoutCoupSuivant.Controls.Add(this.pbCoupSuivant5, 1, 1);
+      this.layoutCoupSuivant.Controls.Add(this.pbCoupSuivant4, 0, 1);
+      this.layoutCoupSuivant.Controls.Add(this.pbCoupSuivant11, 3, 2);
+      this.layoutCoupSuivant.Controls.Add(this.pbCoupSuivant10, 2, 2);
+      this.layoutCoupSuivant.Controls.Add(this.pbCoupSuivant9, 1, 2);
+      this.layoutCoupSuivant.Controls.Add(this.pbCoupSuivant8, 0, 2);
+      this.layoutCoupSuivant.Controls.Add(this.pbCoupSuivant15, 3, 3);
+      this.layoutCoupSuivant.Controls.Add(this.pbCoupSuivant14, 2, 3);
+      this.layoutCoupSuivant.Controls.Add(this.pbCoupSuivant13, 1, 3);
+      this.layoutCoupSuivant.Controls.Add(this.pbCoupSuivant12, 0, 3);
+      this.layoutCoupSuivant.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.layoutCoupSuivant.Location = new System.Drawing.Point(3, 16);
+      this.layoutCoupSuivant.Name = "layoutCoupSuivant";
+      this.layoutCoupSuivant.RowCount = 4;
+      this.layoutCoupSuivant.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+      this.layoutCoupSuivant.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+      this.layoutCoupSuivant.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+      this.layoutCoupSuivant.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+      this.layoutCoupSuivant.Size = new System.Drawing.Size(210, 172);
+      this.layoutCoupSuivant.TabIndex = 0;
+      // 
+      // pbCoupSuivant0
+      // 
+      this.pbCoupSuivant0.BackColor = System.Drawing.Color.Black;
+      this.pbCoupSuivant0.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pbCoupSuivant0.Location = new System.Drawing.Point(3, 3);
+      this.pbCoupSuivant0.Name = "pbCoupSuivant0";
+      this.pbCoupSuivant0.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant0.TabIndex = 0;
+      this.pbCoupSuivant0.TabStop = false;
+      // 
+      // pbCoupSuivant1
+      // 
+      this.pbCoupSuivant1.BackColor = System.Drawing.Color.Black;
+      this.pbCoupSuivant1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pbCoupSuivant1.Location = new System.Drawing.Point(55, 3);
+      this.pbCoupSuivant1.Name = "pbCoupSuivant1";
+      this.pbCoupSuivant1.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant1.TabIndex = 1;
+      this.pbCoupSuivant1.TabStop = false;
+      // 
+      // pbCoupSuivant2
+      // 
+      this.pbCoupSuivant2.BackColor = System.Drawing.Color.Black;
+      this.pbCoupSuivant2.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pbCoupSuivant2.Location = new System.Drawing.Point(107, 3);
+      this.pbCoupSuivant2.Name = "pbCoupSuivant2";
+      this.pbCoupSuivant2.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant2.TabIndex = 2;
+      this.pbCoupSuivant2.TabStop = false;
+      // 
+      // pbCoupSuivant3
+      // 
+      this.pbCoupSuivant3.BackColor = System.Drawing.Color.Black;
+      this.pbCoupSuivant3.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pbCoupSuivant3.Location = new System.Drawing.Point(159, 3);
+      this.pbCoupSuivant3.Name = "pbCoupSuivant3";
+      this.pbCoupSuivant3.Size = new System.Drawing.Size(48, 37);
+      this.pbCoupSuivant3.TabIndex = 3;
+      this.pbCoupSuivant3.TabStop = false;
+      // 
+      // pbCoupSuivant7
+      // 
+      this.pbCoupSuivant7.BackColor = System.Drawing.Color.Black;
+      this.pbCoupSuivant7.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pbCoupSuivant7.Location = new System.Drawing.Point(159, 46);
+      this.pbCoupSuivant7.Name = "pbCoupSuivant7";
+      this.pbCoupSuivant7.Size = new System.Drawing.Size(48, 37);
+      this.pbCoupSuivant7.TabIndex = 4;
+      this.pbCoupSuivant7.TabStop = false;
+      // 
+      // pbCoupSuivant6
+      // 
+      this.pbCoupSuivant6.BackColor = System.Drawing.Color.Black;
+      this.pbCoupSuivant6.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pbCoupSuivant6.Location = new System.Drawing.Point(107, 46);
+      this.pbCoupSuivant6.Name = "pbCoupSuivant6";
+      this.pbCoupSuivant6.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant6.TabIndex = 5;
+      this.pbCoupSuivant6.TabStop = false;
+      // 
+      // pbCoupSuivant5
+      // 
+      this.pbCoupSuivant5.BackColor = System.Drawing.Color.Black;
+      this.pbCoupSuivant5.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pbCoupSuivant5.Location = new System.Drawing.Point(55, 46);
+      this.pbCoupSuivant5.Name = "pbCoupSuivant5";
+      this.pbCoupSuivant5.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant5.TabIndex = 6;
+      this.pbCoupSuivant5.TabStop = false;
+      // 
+      // pbCoupSuivant4
+      // 
+      this.pbCoupSuivant4.BackColor = System.Drawing.Color.Black;
+      this.pbCoupSuivant4.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pbCoupSuivant4.Location = new System.Drawing.Point(3, 46);
+      this.pbCoupSuivant4.Name = "pbCoupSuivant4";
+      this.pbCoupSuivant4.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant4.TabIndex = 7;
+      this.pbCoupSuivant4.TabStop = false;
+      // 
+      // pbCoupSuivant11
+      // 
+      this.pbCoupSuivant11.BackColor = System.Drawing.Color.Black;
+      this.pbCoupSuivant11.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pbCoupSuivant11.Location = new System.Drawing.Point(159, 89);
+      this.pbCoupSuivant11.Name = "pbCoupSuivant11";
+      this.pbCoupSuivant11.Size = new System.Drawing.Size(48, 37);
+      this.pbCoupSuivant11.TabIndex = 8;
+      this.pbCoupSuivant11.TabStop = false;
+      // 
+      // pbCoupSuivant10
+      // 
+      this.pbCoupSuivant10.BackColor = System.Drawing.Color.Black;
+      this.pbCoupSuivant10.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pbCoupSuivant10.Location = new System.Drawing.Point(107, 89);
+      this.pbCoupSuivant10.Name = "pbCoupSuivant10";
+      this.pbCoupSuivant10.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant10.TabIndex = 9;
+      this.pbCoupSuivant10.TabStop = false;
+      // 
+      // pbCoupSuivant9
+      // 
+      this.pbCoupSuivant9.BackColor = System.Drawing.Color.Black;
+      this.pbCoupSuivant9.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pbCoupSuivant9.Location = new System.Drawing.Point(55, 89);
+      this.pbCoupSuivant9.Name = "pbCoupSuivant9";
+      this.pbCoupSuivant9.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant9.TabIndex = 10;
+      this.pbCoupSuivant9.TabStop = false;
+      // 
+      // pbCoupSuivant8
+      // 
+      this.pbCoupSuivant8.BackColor = System.Drawing.Color.Black;
+      this.pbCoupSuivant8.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pbCoupSuivant8.Location = new System.Drawing.Point(3, 89);
+      this.pbCoupSuivant8.Name = "pbCoupSuivant8";
+      this.pbCoupSuivant8.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant8.TabIndex = 11;
+      this.pbCoupSuivant8.TabStop = false;
+      // 
+      // pbCoupSuivant15
+      // 
+      this.pbCoupSuivant15.BackColor = System.Drawing.Color.Black;
+      this.pbCoupSuivant15.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pbCoupSuivant15.Location = new System.Drawing.Point(159, 132);
+      this.pbCoupSuivant15.Name = "pbCoupSuivant15";
+      this.pbCoupSuivant15.Size = new System.Drawing.Size(48, 37);
+      this.pbCoupSuivant15.TabIndex = 12;
+      this.pbCoupSuivant15.TabStop = false;
+      // 
+      // pbCoupSuivant14
+      // 
+      this.pbCoupSuivant14.BackColor = System.Drawing.Color.Black;
+      this.pbCoupSuivant14.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pbCoupSuivant14.Location = new System.Drawing.Point(107, 132);
+      this.pbCoupSuivant14.Name = "pbCoupSuivant14";
+      this.pbCoupSuivant14.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant14.TabIndex = 13;
+      this.pbCoupSuivant14.TabStop = false;
+      // 
+      // pbCoupSuivant13
+      // 
+      this.pbCoupSuivant13.BackColor = System.Drawing.Color.Black;
+      this.pbCoupSuivant13.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pbCoupSuivant13.Location = new System.Drawing.Point(55, 132);
+      this.pbCoupSuivant13.Name = "pbCoupSuivant13";
+      this.pbCoupSuivant13.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant13.TabIndex = 14;
+      this.pbCoupSuivant13.TabStop = false;
+      // 
+      // pbCoupSuivant12
+      // 
+      this.pbCoupSuivant12.BackColor = System.Drawing.Color.Black;
+      this.pbCoupSuivant12.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pbCoupSuivant12.Location = new System.Drawing.Point(3, 132);
+      this.pbCoupSuivant12.Name = "pbCoupSuivant12";
+      this.pbCoupSuivant12.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant12.TabIndex = 15;
+      this.pbCoupSuivant12.TabStop = false;
       // 
       // JeuTetris
       // 
@@ -507,7 +778,6 @@
       this.tblLayoutJeu.ResumeLayout(false);
       this.tableLayoutPanel1.ResumeLayout(false);
       this.grpBoxStatistiquesJeu.ResumeLayout(false);
-      this.grpBoxStatistiquesJeu.PerformLayout();
       this.grpBoxParametresJeu.ResumeLayout(false);
       this.layoutParametresJeu.ResumeLayout(false);
       this.layoutParametresJeu.PerformLayout();
@@ -517,6 +787,27 @@
       this.layoutControles.PerformLayout();
       this.menuStripJeu.ResumeLayout(false);
       this.menuStripJeu.PerformLayout();
+      this.layoutJeu.ResumeLayout(false);
+      this.groupStatistiques.ResumeLayout(false);
+      this.groupStatistiques.PerformLayout();
+      this.groupCoupSuivant.ResumeLayout(false);
+      this.layoutCoupSuivant.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant0)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant2)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant3)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant7)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant6)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant5)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant4)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant11)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant10)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant9)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant8)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant15)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant14)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant13)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pbCoupSuivant12)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -556,7 +847,27 @@
     private System.Windows.Forms.Label lblNiveau;
     private System.Windows.Forms.Label lblPointage;
     private System.Windows.Forms.Timer timerTempsDeJeu;
-    private System.Windows.Forms.Label lblTimerDuLaPartie;
+    private System.Windows.Forms.Label lblTimerDeLaPartie;
+    private System.Windows.Forms.TableLayoutPanel layoutJeu;
+    private System.Windows.Forms.GroupBox groupCoupSuivant;
+    private System.Windows.Forms.TableLayoutPanel layoutCoupSuivant;
+    private System.Windows.Forms.PictureBox pbCoupSuivant0;
+    private System.Windows.Forms.PictureBox pbCoupSuivant1;
+    private System.Windows.Forms.PictureBox pbCoupSuivant2;
+    private System.Windows.Forms.PictureBox pbCoupSuivant3;
+    private System.Windows.Forms.PictureBox pbCoupSuivant7;
+    private System.Windows.Forms.PictureBox pbCoupSuivant6;
+    private System.Windows.Forms.PictureBox pbCoupSuivant5;
+    private System.Windows.Forms.PictureBox pbCoupSuivant4;
+    private System.Windows.Forms.PictureBox pbCoupSuivant11;
+    private System.Windows.Forms.PictureBox pbCoupSuivant10;
+    private System.Windows.Forms.PictureBox pbCoupSuivant9;
+    private System.Windows.Forms.PictureBox pbCoupSuivant8;
+    private System.Windows.Forms.PictureBox pbCoupSuivant15;
+    private System.Windows.Forms.PictureBox pbCoupSuivant14;
+    private System.Windows.Forms.PictureBox pbCoupSuivant13;
+    private System.Windows.Forms.PictureBox pbCoupSuivant12;
+    private System.Windows.Forms.GroupBox groupStatistiques;
   }
 }
 

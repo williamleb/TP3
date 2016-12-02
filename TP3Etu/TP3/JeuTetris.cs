@@ -18,6 +18,9 @@ namespace TP3
     // Représentation visuelles du jeu en mémoire.
     PictureBox[,] toutesImagesVisuelles = null;
 
+    // Représentation visuelle des coups suivants.
+    PictureBox[,] tousLesPicturesBoxCoupSuivant = new PictureBox[4, 4];
+
     // Nombre de lignes que contient le jeu.
     int nbLignesJeu = 20;
 
@@ -175,6 +178,8 @@ namespace TP3
       musique.settings.autoStart = false;
       musique.URL = @"Resources/MusiqueTetris.mp3";
       musique.settings.setMode("loop", true);
+
+      // tousLesPicturesBoxCoupSuivant = { { pbCoupSuivant0, pbCoupSuivant1, pbCoupSuivant2, pbCoupSuivant3 }, { pbCoupSuivant4, pbCoupSuivant5, pbCoupSuivant6, pbCoupSuivant7 }, { pbCoupSuivant8, pbCoupSuivant9, pbCoupSuivant10, pbCoupSuivant11 }, { pbCoupSuivant12, pbCoupSuivant13, pbCoupSuivant14, pbCoupSuivant15 } };
       // </WLebel>
 
     }
@@ -902,9 +907,6 @@ namespace TP3
       RemiseDesValeurInitiales();
 
       // Mika Gauthier
-
-      AfficherPointageDansFenetreJeu();
-      AfficherNiveauDansFenetreJeu();
     }
     // </WLebel>
 
@@ -1456,8 +1458,14 @@ namespace TP3
       //Valeur temporelle
       tempsDebutPartie = DateTime.Now;
       tempsDeLaPartie = DateTime.Now;
-      lblTimerDuLaPartie.Text = "Temps : 0";
+      lblTimerDeLaPartie.Text = "Temps : 0";
       compteurTemporel = 0;
+
+      // <WLebel>
+      // Affichage du pointage et du niveau par défaut.
+      AfficherPointageDansFenetreJeu();
+      AfficherNiveauDansFenetreJeu();
+      // </WLebel>
     }
 
   //Mika Gauthier
@@ -1480,7 +1488,7 @@ namespace TP3
       switch (RetirerLignesCompletees())
       {
         case 1:
-          pointageAAjouter = 250;
+          pointageAAjouter = 200;
           break;
         case 2:
           pointageAAjouter = 500;
@@ -1932,7 +1940,7 @@ namespace TP3
     {
       tempsDeLaPartie = DateTime.Now;
       compteurTemporel++;
-      lblTimerDuLaPartie.Text = "Temps : " + compteurTemporel;
+      lblTimerDeLaPartie.Text = "Temps : " + compteurTemporel;
 
     }
   }
