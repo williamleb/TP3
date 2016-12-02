@@ -274,7 +274,7 @@ namespace TP3
           }
           else if (tableauPieces[i, j] == PieceTeris.pieceEnZ)
           {
-            toutesImagesVisuelles[i, j].BackColor = Color.Pink;
+            toutesImagesVisuelles[i, j].BackColor = Color.LawnGreen;
           }
         }
       }
@@ -1445,7 +1445,7 @@ namespace TP3
       nbPieceEnJ = 0; //couleur orange
       nbPieceEnL = 0; //couleur bleu foncé
       nbPieceEnS = 0; //couleur rouge
-      nbPieceEnZ = 0; //couleur rose
+      nbPieceEnZ = 0; //couleur vert
       sommeDesPieces = 0; //Somme de toutes les pièces
 
       // Active les paramètres.
