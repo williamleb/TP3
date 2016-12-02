@@ -24,7 +24,7 @@ namespace TP3
     pieceEnJ, //couleur orange
     pieceEnL, //couleur bleu foncé
     pieceEnS, //couleur rouge
-    pieceEnZ, //couleur rose
+    pieceEnZ, //couleur vert
   }
 }
 //mika gauthier
