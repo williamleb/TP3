@@ -224,6 +224,8 @@ namespace TP3
       // Si la touche est dans les caractères permis (c'est-à-dire toutes
       // les lettres, la barre espace et les deux shift), on le sauvegarde.
       if (Char.IsLetter(e.KeyChar))
+      // les lettres , on le sauvegarde.
+      if (Char.IsLetter(e.KeyChar) || e.KeyChar == (char)32 )
       {
         toucheDeplacerGauche = Char.ToLower(e.KeyChar);
       }

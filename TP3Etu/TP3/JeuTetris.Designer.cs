@@ -61,6 +61,8 @@
       this.menuStatistiques = new System.Windows.Forms.ToolStripMenuItem();
       this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
       this.timerJeu = new System.Windows.Forms.Timer(this.components);
+      this.timerTempsDeJeu = new System.Windows.Forms.Timer(this.components);
+      this.lblTimerDuLaPartie = new System.Windows.Forms.Label();
       this.tblLayoutJeu.SuspendLayout();
       this.tableLayoutPanel1.SuspendLayout();
       this.grpBoxStatistiquesJeu.SuspendLayout();
@@ -94,7 +96,7 @@
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 137F));
+      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
       this.tableauJeu.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableauJeu.Location = new System.Drawing.Point(240, 0);
@@ -166,6 +168,7 @@
       // 
       // grpBoxStatistiquesJeu
       // 
+      this.grpBoxStatistiquesJeu.Controls.Add(this.lblTimerDuLaPartie);
       this.grpBoxStatistiquesJeu.Controls.Add(this.lblNiveau);
       this.grpBoxStatistiquesJeu.Controls.Add(this.lblPointage);
       this.grpBoxStatistiquesJeu.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -473,6 +476,20 @@
       this.timerJeu.Interval = 500;
       this.timerJeu.Tick += new System.EventHandler(this.OnTickTimerJeu);
       // 
+      // timerTempsDeJeu
+      // 
+      this.timerTempsDeJeu.Interval = 1000;
+      this.timerTempsDeJeu.Tick += new System.EventHandler(this.timerTempsDeJeu_Tick);
+      // 
+      // lblTimerDuLaPartie
+      // 
+      this.lblTimerDuLaPartie.AutoSize = true;
+      this.lblTimerDuLaPartie.Location = new System.Drawing.Point(9, 125);
+      this.lblTimerDuLaPartie.Name = "lblTimerDuLaPartie";
+      this.lblTimerDuLaPartie.Size = new System.Drawing.Size(54, 13);
+      this.lblTimerDuLaPartie.TabIndex = 2;
+      this.lblTimerDuLaPartie.Text = "Temps : 0";
+      // 
       // JeuTetris
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -538,6 +555,8 @@
     private System.Windows.Forms.Label lblTomber;
     private System.Windows.Forms.Label lblNiveau;
     private System.Windows.Forms.Label lblPointage;
+    private System.Windows.Forms.Timer timerTempsDeJeu;
+    private System.Windows.Forms.Label lblTimerDuLaPartie;
   }
 }
 

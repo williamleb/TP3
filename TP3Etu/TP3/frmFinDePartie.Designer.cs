@@ -46,6 +46,7 @@
       this.txtBNbEnS = new System.Windows.Forms.TextBox();
       this.txtBNbEnZ = new System.Windows.Forms.TextBox();
       this.lblPointage = new System.Windows.Forms.Label();
+      this.lblTempsEcoule = new System.Windows.Forms.Label();
       this.tLPStatistiqueFinDePartie.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -87,6 +88,7 @@
       this.tLPStatistiqueFinDePartie.Controls.Add(this.txtBNbEnS, 1, 6);
       this.tLPStatistiqueFinDePartie.Controls.Add(this.txtBNbEnZ, 1, 7);
       this.tLPStatistiqueFinDePartie.Controls.Add(this.lblPointage, 3, 0);
+      this.tLPStatistiqueFinDePartie.Controls.Add(this.lblTempsEcoule, 3, 4);
       this.tLPStatistiqueFinDePartie.Location = new System.Drawing.Point(13, 13);
       this.tLPStatistiqueFinDePartie.Name = "tLPStatistiqueFinDePartie";
       this.tLPStatistiqueFinDePartie.RowCount = 8;
@@ -242,6 +244,15 @@
       this.lblPointage.Text = "Pointage :";
       this.lblPointage.Click += new System.EventHandler(this.lblPointage_Click);
       // 
+      // lblTempsEcoule
+      // 
+      this.lblTempsEcoule.AutoSize = true;
+      this.lblTempsEcoule.Location = new System.Drawing.Point(546, 348);
+      this.lblTempsEcoule.Name = "lblTempsEcoule";
+      this.lblTempsEcoule.Size = new System.Drawing.Size(39, 13);
+      this.lblTempsEcoule.TabIndex = 17;
+      this.lblTempsEcoule.Text = "Temps";
+      // 
       // frmFinDePartie
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -277,5 +288,6 @@
     private System.Windows.Forms.TextBox txtBNbEnS;
     private System.Windows.Forms.TextBox txtBNbEnZ;
     private System.Windows.Forms.Label lblPointage;
+    private System.Windows.Forms.Label lblTempsEcoule;
   }
 }

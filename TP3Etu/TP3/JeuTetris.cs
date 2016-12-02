@@ -100,6 +100,12 @@ namespace TP3
 
     float sommeDesPieces = 0; //Somme de toutes les pièces
 
+    //Variable qui va acceuillir le temps de jeu du joueur
+    DateTime tempsDebutPartie;
+
+    //Variable qui va acceuillir le temps de jeu d'une partie
+    DateTime tempsDeLaPartie;
+
     // Tableau qui représente les positions vertivales relativent des blocs d'une pièce 
     // par rapport aux variables ligneCourante et colonneCourante. Sert à la sécurité
     // du programme
@@ -109,6 +115,9 @@ namespace TP3
     // par rapport aux variables ligneCourante et colonneCourante. Sert à la sécurité
     // du programme
     int[] VerificationBlocActifX = new int[4];
+
+    //Compteur temporel partagé
+    int compteurTemporel = 0;
     //Mika Gauthier
     #endregion
     // </WLebel>
@@ -804,6 +813,12 @@ namespace TP3
     /// </summary>
     void CommencerJeu()
     {
+      //Début du timer
+      timerTempsDeJeu.Enabled = true;
+
+      //Prendre la valeur de début de partie(Temps)
+      tempsDebutPartie = DateTime.Now;
+
       // Commence la musique si elle est activée.
       if (doitJouerMusique)
       {
@@ -845,6 +860,9 @@ namespace TP3
       // Arrête le timer.
       timerJeu.Enabled = false;
 
+      // Arrête le second timer
+      timerTempsDeJeu.Enabled = false;
+
       // Désactive la pièce.
       ResetPiece();
 
@@ -864,6 +882,7 @@ namespace TP3
       // Mika Gauthier
       //Apporter les modification au formulaire des statistiques de fin de partie
       sommeDesPieces = nbPieceBarreHorizontale + nbPieceBarreVerticale + nbPieceBloc + nbPieceEnJ + nbPieceEnL + nbPieceEnS + nbPieceEnT + nbPieceEnZ;
+      
       frmFinDePartie finDePartie = new frmFinDePartie();
       finDePartie.AfficherNbPieceGenere(
       nbPieceBloc, nbPieceBarreVerticale,
@@ -871,8 +890,12 @@ namespace TP3
       nbPieceEnJ, nbPieceEnL, 
       nbPieceEnS, nbPieceEnZ,
       sommeDesPieces
+      
       );
       finDePartie.AfficherPointage(pointage);
+
+      finDePartie.AfficherTimer(tempsDebutPartie, tempsDeLaPartie);
+      
       finDePartie.ShowDialog();
 
       //Remise à 0
@@ -1428,6 +1451,13 @@ namespace TP3
       numColonnes.Enabled = true;
       checkBoxMusique.Enabled = true;
       btnValider.Enabled = true;
+      timerTempsDeJeu.Enabled = false;
+
+      //Valeur temporelle
+      tempsDebutPartie = DateTime.Now;
+      tempsDeLaPartie = DateTime.Now;
+      lblTimerDuLaPartie.Text = "Temps : 0";
+      compteurTemporel = 0;
     }
 
   //Mika Gauthier
@@ -1893,10 +1923,17 @@ namespace TP3
     }
 
 
-    #endregion
 
     #endregion
 
+    #endregion
 
+    private void timerTempsDeJeu_Tick(object sender, EventArgs e)
+    {
+      tempsDeLaPartie = DateTime.Now;
+      compteurTemporel++;
+      lblTimerDuLaPartie.Text = "Temps : " + compteurTemporel;
+
+    }
   }
 }   
