@@ -23,19 +23,21 @@ namespace TP3
     }
 
     public void AfficherNbPieceGenere(
-      int nbPieceBloc, int nbPieceBarreVerticale,
-      int nbPieceBarreHorizontale, int nbPieceEnT,
-      int nbPieceEnJ, int nbPieceEnL,
-      int nbPieceEnS, int nbPieceEnZ)
+      float nbPieceBloc, float nbPieceBarreVerticale,
+      float nbPieceBarreHorizontale, float nbPieceEnT,
+      float nbPieceEnJ, float nbPieceEnL,
+      float nbPieceEnS, float nbPieceEnZ,
+      float sommeDesPieces
+      )
     {
-      txtBNbBloc.Text = nbPieceBloc.ToString();
-      txtBNbBarreVerticale.Text = nbPieceBarreVerticale.ToString();
-      txtBNbBarreHorizontale.Text = nbPieceBarreHorizontale.ToString();
-      txtBNbEnT.Text = nbPieceEnT.ToString();
-      txtBNbEnJ.Text = nbPieceEnJ.ToString();
-      txtBNbEnL.Text = nbPieceEnL.ToString();
-      txtBNbEnS.Text = nbPieceEnS.ToString();
-      txtBNbEnZ.Text = nbPieceEnZ.ToString();
+      txtBNbBloc.Text = nbPieceBloc.ToString() + "\t Pourcentage : " + (nbPieceBloc / sommeDesPieces).ToString("p");
+      txtBNbBarreVerticale.Text = nbPieceBarreVerticale.ToString() + "\t Pourcentage : " + (nbPieceBarreVerticale / sommeDesPieces).ToString("p");
+      txtBNbBarreHorizontale.Text = nbPieceBarreHorizontale.ToString() + "\t Pourcentage : " + (nbPieceBarreHorizontale / sommeDesPieces).ToString("p");
+      txtBNbEnT.Text = nbPieceEnT.ToString() + "\t Pourcentage : " + (nbPieceEnT/sommeDesPieces).ToString("p");
+      txtBNbEnJ.Text = nbPieceEnJ.ToString() + "\t Pourcentage : " + (nbPieceEnJ / sommeDesPieces).ToString("p");
+      txtBNbEnL.Text = nbPieceEnL.ToString() + "\t Pourcentage : " + (nbPieceEnL / sommeDesPieces).ToString("p");
+      txtBNbEnS.Text = nbPieceEnS.ToString() + "\t Pourcentage : " + (nbPieceEnS / sommeDesPieces).ToString("p");
+      txtBNbEnZ.Text = nbPieceEnZ.ToString() + "\t Pourcentage : " + (nbPieceEnZ / sommeDesPieces).ToString("p");
     }
 
     public void AfficherPointage(int pointage)
