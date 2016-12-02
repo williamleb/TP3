@@ -89,14 +89,16 @@ namespace TP3
     Mouvement keyUsed = Mouvement.Immobile;
 
     //Nombre de pièces utilisées + type de la pièce
-    int nbPieceBloc = 0; //couleur jaune
-    int nbPieceBarreVerticale = 0; //couleur cyan
-    int nbPieceBarreHorizontale = 0; //couleur cyan
-    int nbPieceEnT = 0; //couleur mauve
-    int nbPieceEnJ = 0; //couleur orange
-    int nbPieceEnL = 0; //couleur bleu foncé
-    int nbPieceEnS = 0; //couleur rouge
-    int nbPieceEnZ = 0; //couleur rose
+    float nbPieceBloc = 0; //couleur jaune
+    float nbPieceBarreVerticale = 0; //couleur cyan
+    float nbPieceBarreHorizontale = 0; //couleur cyan
+    float nbPieceEnT = 0; //couleur mauve
+    float nbPieceEnJ = 0; //couleur orange
+    float nbPieceEnL = 0; //couleur bleu foncé
+    float nbPieceEnS = 0; //couleur rouge
+    float nbPieceEnZ = 0; //couleur rose
+
+    float sommeDesPieces = 0; //Somme de toutes les pièces
 
     // Tableau qui représente les positions vertivales relativent des blocs d'une pièce 
     // par rapport aux variables ligneCourante et colonneCourante. Sert à la sécurité
@@ -858,32 +860,28 @@ namespace TP3
         }
       }
       AfficherJeu();
-
+      
       // Mika Gauthier
       //Apporter les modification au formulaire des statistiques de fin de partie
+      sommeDesPieces = nbPieceBarreHorizontale + nbPieceBarreVerticale + nbPieceBloc + nbPieceEnJ + nbPieceEnL + nbPieceEnS + nbPieceEnT + nbPieceEnZ;
       frmFinDePartie finDePartie = new frmFinDePartie();
       finDePartie.AfficherNbPieceGenere(
       nbPieceBloc, nbPieceBarreVerticale,
       nbPieceBarreHorizontale, nbPieceEnT, 
       nbPieceEnJ, nbPieceEnL, 
-      nbPieceEnS, nbPieceEnZ
+      nbPieceEnS, nbPieceEnZ,
+      sommeDesPieces
       );
       finDePartie.AfficherPointage(pointage);
       finDePartie.ShowDialog();
+
+      //Remise à 0
+      RemiseDesValeurInitiales();
+
       // Mika Gauthier
 
       AfficherPointageDansFenetreJeu();
       AfficherNiveauDansFenetreJeu();
-      pointage = 0;
-      TraiterNouveauNiveauDifficulté(1);
-      nbLignesCompleteesAuTotal = 0;
-      jeuEstEnCours = false;
-
-      // Active les paramètres.
-      numLignes.Enabled = true;
-      numColonnes.Enabled = true;
-      checkBoxMusique.Enabled = true;
-      btnValider.Enabled = true;
     }
     // </WLebel>
 
@@ -1246,6 +1244,7 @@ namespace TP3
           AfficherJeu();
         }
       }
+      //easter egg
       //Déplace le bloc vers le haut si le joueur appuie sur la lettre w
       if (keyUsed == Mouvement.DeplacerHaut)
       {
@@ -1352,6 +1351,7 @@ namespace TP3
       }
 
       /*
+      easter egg
       //Déplacement vers le haut(w)
       if (e.KeyChar == 'w')
       {
@@ -1392,24 +1392,53 @@ namespace TP3
     /// </summary>
     void VérificationFinPartie()
     {
-    for (int i = 0; i<blocActifY.Length;i++)
-    {
-      if (tableauPieces[VerificationBlocActifY[i],VerificationBlocActifX[i] + colonneDeDepart] == PieceTeris.Gelee)
+      for (int i = 0; i < blocActifY.Length; i++)
       {
-         jeuEstEnCours = false;
+        if (tableauPieces[VerificationBlocActifY[i], VerificationBlocActifX[i] + colonneDeDepart] == PieceTeris.Gelee)
+        {
+          jeuEstEnCours = false;
+       
+        }
       }
     }
 
-    }
-    //Mika Gauthier
-
-    // <WLebel>
-    #region Métodes qui permettent de gérer les lignes complétées
     /// <summary>
-    /// Méthode qui vérifie si des lignes dans le jeu sont complétés et les retire si c'est le cas.
-    /// Actualise le pointage en conséquent.
+    /// 
     /// </summary>
-    void ActualiserPointage()
+    void RemiseDesValeurInitiales()
+    {
+      // Remise à niveau des statistiques
+      pointage = 0;
+      TraiterNouveauNiveauDifficulté(1);
+      nbLignesCompletesAuTotal = 0;
+      jeuEstEnCours = false;
+
+      nbPieceBloc = 0; //couleur jaune
+      nbPieceBarreVerticale = 0; //couleur cyan
+      nbPieceBarreHorizontale = 0; //couleur cyan
+      nbPieceEnT = 0; //couleur mauve
+      nbPieceEnJ = 0; //couleur orange
+      nbPieceEnL = 0; //couleur bleu foncé
+      nbPieceEnS = 0; //couleur rouge
+      nbPieceEnZ = 0; //couleur rose
+      sommeDesPieces = 0; //Somme de toutes les pièces
+
+      // Active les paramètres.
+      numLignes.Enabled = true;
+      numColonnes.Enabled = true;
+      checkBoxMusique.Enabled = true;
+      btnValider.Enabled = true;
+    }
+
+  //Mika Gauthier
+
+  // <WLebel>
+  #region Métodes qui permettent de gérer les lignes complétées
+  /// <summary>
+  /// Méthode qui vérifie si des lignes dans le jeu sont complétés et les retire si c'est le cas.
+  /// Actualise le pointage en conséquent.
+  /// </summary>
+  void ActualiserPointage()
     {
 
       // Valeurs de base.
