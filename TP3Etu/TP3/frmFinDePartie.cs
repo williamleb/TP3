@@ -22,6 +22,14 @@ namespace TP3
 
     }
 
+    public void AfficherTimer(DateTime tempsDebutPartie, DateTime tempsDeLaPartie)
+    {
+      TimeSpan tempsEcoule = (tempsDeLaPartie - tempsDebutPartie);
+      lblTempsEcoule.Text = tempsEcoule.ToString();
+    }
+
+
+
     public void AfficherNbPieceGenere(
       float nbPieceBloc, float nbPieceBarreVerticale,
       float nbPieceBarreHorizontale, float nbPieceEnT,
