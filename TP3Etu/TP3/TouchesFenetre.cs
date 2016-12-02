@@ -60,7 +60,7 @@ namespace TP3
     void AfficherToutesLesTouches()
     {
       // Gauche.
-      btnGauche.Text = "Gauche : ";
+      btnGauche.Text = "";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheDeplacerGauche))
       {
@@ -82,7 +82,7 @@ namespace TP3
       }
 
       // Bas.
-      btnBas.Text = "Bas : ";
+      btnBas.Text = "";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheDeplacerBas))
       {
@@ -104,7 +104,7 @@ namespace TP3
       }
 
       // Droite.
-      btnDroite.Text = "Droite : ";
+      btnDroite.Text = "";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheDeplacerDroite))
       {
@@ -126,7 +126,7 @@ namespace TP3
       }
 
       // Horaire.
-      btnHoraire.Text = "Horaire : ";
+      btnHoraire.Text = "";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheRotationHoraire))
       {
@@ -148,7 +148,7 @@ namespace TP3
       }
 
       // Antihoraire.
-      btnAntihoraire.Text = "Antihoraire : ";
+      btnAntihoraire.Text = "";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheRotationAntihoraire))
       {
@@ -170,7 +170,7 @@ namespace TP3
       }
 
       // Tomber.
-      btnTomber.Text = "Tomber : ";
+      btnTomber.Text = "";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheTomber))
       {
@@ -180,7 +180,7 @@ namespace TP3
       else
       {
         // Shift.
-        if (toucheTomber == (char)14 || toucheTomber == (char)14)
+        if (toucheTomber == (char)14 || toucheTomber == (char)15)
         {
           btnTomber.Text += "SHIFT";
         }
@@ -212,14 +212,148 @@ namespace TP3
       AfficherToutesLesTouches();
     }
 
+    /// <summary>
+    /// Méthode qui est appelée lorsque le le joueur appuie sur une touche
+    /// en sélectionnant le bouton «btnGauche». La métode sauvegarde la nouvelle
+    /// touche du joueur pour un déplacement gauche.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void OnKeyPressBtnGauche(object sender, KeyPressEventArgs e)
     {
       // Si la touche est dans les caractères permis (c'est-à-dire toutes
-      // les lettres , on le sauvegarde.
-      if (Char.IsLetter(e.KeyChar) || e.KeyChar == (char)32 || )
+      // les lettres, la barre espace et les deux shift), on le sauvegarde.
+      if (Char.IsLetter(e.KeyChar))
       {
-
+        toucheDeplacerGauche = Char.ToLower(e.KeyChar);
       }
+      else if (e.KeyChar == (char)32 || e.KeyChar == (char)14 || e.KeyChar == (char)15)
+      {
+        toucheDeplacerGauche = e.KeyChar;
+      }
+
+      // Affiche la nouvelle touche.
+      AfficherToutesLesTouches();
+    }
+
+    /// <summary>
+    /// Méthode qui est appelée lorsque le le joueur appuie sur une touche
+    /// en sélectionnant le bouton «btnBas». La métode sauvegarde la nouvelle
+    /// touche du joueur pour un déplacement bas.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void OnKeyPressBtnBas(object sender, KeyPressEventArgs e)
+    {
+      // Si la touche est dans les caractères permis (c'est-à-dire toutes
+      // les lettres, la barre espace et les deux shift), on le sauvegarde.
+      if (Char.IsLetter(e.KeyChar))
+      {
+        toucheDeplacerBas = Char.ToLower(e.KeyChar);
+      }
+      else if (e.KeyChar == (char)32 || e.KeyChar == (char)14 || e.KeyChar == (char)15)
+      {
+        toucheDeplacerBas = e.KeyChar;
+      }
+
+      // Affiche la nouvelle touche.
+      AfficherToutesLesTouches();
+    }
+
+    /// <summary>
+    /// Méthode qui est appelée lorsque le le joueur appuie sur une touche
+    /// en sélectionnant le bouton «btnDroite». La métode sauvegarde la nouvelle
+    /// touche du joueur pour un déplacement droite.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void OnKeyPressBtnDroite(object sender, KeyPressEventArgs e)
+    {
+      // Si la touche est dans les caractères permis (c'est-à-dire toutes
+      // les lettres, la barre espace et les deux shift), on le sauvegarde.
+      if (Char.IsLetter(e.KeyChar))
+      {
+        toucheDeplacerDroite = Char.ToLower(e.KeyChar);
+      }
+      else if (e.KeyChar == (char)32 || e.KeyChar == (char)14 || e.KeyChar == (char)15)
+      {
+        toucheDeplacerDroite = e.KeyChar;
+      }
+
+      // Affiche la nouvelle touche.
+      AfficherToutesLesTouches();
+    }
+
+    /// <summary>
+    /// Méthode qui est appelée lorsque le le joueur appuie sur une touche
+    /// en sélectionnant le bouton «btnHoraire». La métode sauvegarde la nouvelle
+    /// touche du joueur pour une rotation horaire.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void OnKeyPressBtnHoraire(object sender, KeyPressEventArgs e)
+    {
+      // Si la touche est dans les caractères permis (c'est-à-dire toutes
+      // les lettres, la barre espace et les deux shift), on le sauvegarde.
+      if (Char.IsLetter(e.KeyChar))
+      {
+        toucheRotationHoraire = Char.ToLower(e.KeyChar);
+      }
+      else if (e.KeyChar == (char)32 || e.KeyChar == (char)14 || e.KeyChar == (char)15)
+      {
+        toucheRotationHoraire = e.KeyChar;
+      }
+
+      // Affiche la nouvelle touche.
+      AfficherToutesLesTouches();
+    }
+
+    /// <summary>
+    /// Méthode qui est appelée lorsque le le joueur appuie sur une touche
+    /// en sélectionnant le bouton «btnAntihoraire». La métode sauvegarde la nouvelle
+    /// touche du joueur pour une rotation antihoraire.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void OnKeyPressBtnAntihoraire(object sender, KeyPressEventArgs e)
+    {
+      // Si la touche est dans les caractères permis (c'est-à-dire toutes
+      // les lettres, la barre espace et les deux shift), on le sauvegarde.
+      if (Char.IsLetter(e.KeyChar))
+      {
+        toucheRotationAntihoraire = Char.ToLower(e.KeyChar);
+      }
+      else if (e.KeyChar == (char)32 || e.KeyChar == (char)14 || e.KeyChar == (char)15)
+      {
+        toucheRotationAntihoraire = e.KeyChar;
+      }
+
+      // Affiche la nouvelle touche.
+      AfficherToutesLesTouches();
+    }
+
+    /// <summary>
+    /// Méthode qui est appelée lorsque le le joueur appuie sur une touche
+    /// en sélectionnant le bouton «btnTomber». La métode sauvegarde la nouvelle
+    /// touche du joueur pour faire tomber la pièce.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void OnKeyPressBtnTomber(object sender, KeyPressEventArgs e)
+    {
+      // Si la touche est dans les caractères permis (c'est-à-dire toutes
+      // les lettres, la barre espace et les deux shift), on le sauvegarde.
+      if (Char.IsLetter(e.KeyChar))
+      {
+        toucheTomber = Char.ToLower(e.KeyChar);
+      }
+      else if (e.KeyChar == (char)32 || e.KeyChar == (char)14 || e.KeyChar == (char)15)
+      {
+        toucheTomber = e.KeyChar;
+      }
+
+      // Affiche la nouvelle touche.
+      AfficherToutesLesTouches();
     }
   }
 }

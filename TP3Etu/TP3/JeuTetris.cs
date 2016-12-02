@@ -1410,7 +1410,7 @@ namespace TP3
       // Remise à niveau des statistiques
       pointage = 0;
       TraiterNouveauNiveauDifficulté(1);
-      nbLignesCompletesAuTotal = 0;
+      nbLignesCompleteesAuTotal = 0;
       jeuEstEnCours = false;
 
       nbPieceBloc = 0; //couleur jaune

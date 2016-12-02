@@ -102,6 +102,7 @@
       this.btnBas.TabIndex = 1;
       this.btnBas.Text = "S";
       this.btnBas.UseVisualStyleBackColor = true;
+      this.btnBas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKeyPressBtnBas);
       // 
       // btnDroite
       // 
@@ -112,6 +113,7 @@
       this.btnDroite.TabIndex = 2;
       this.btnDroite.Text = "D";
       this.btnDroite.UseVisualStyleBackColor = true;
+      this.btnDroite.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKeyPressBtnDroite);
       // 
       // btnHoraire
       // 
@@ -122,6 +124,7 @@
       this.btnHoraire.TabIndex = 3;
       this.btnHoraire.Text = "Q";
       this.btnHoraire.UseVisualStyleBackColor = true;
+      this.btnHoraire.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKeyPressBtnHoraire);
       // 
       // btnAntihoraire
       // 
@@ -132,6 +135,7 @@
       this.btnAntihoraire.TabIndex = 4;
       this.btnAntihoraire.Text = "E";
       this.btnAntihoraire.UseVisualStyleBackColor = true;
+      this.btnAntihoraire.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKeyPressBtnAntihoraire);
       // 
       // btnTomber
       // 
@@ -142,6 +146,7 @@
       this.btnTomber.TabIndex = 5;
       this.btnTomber.Text = "SPACE";
       this.btnTomber.UseVisualStyleBackColor = true;
+      this.btnTomber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKeyPressBtnTomber);
       // 
       // btnDefaut
       // 
