@@ -41,6 +41,7 @@
       this.trackBarNbColonnes = new System.Windows.Forms.TrackBar();
       this.numNbLignes = new System.Windows.Forms.NumericUpDown();
       this.numNbColonnes = new System.Windows.Forms.NumericUpDown();
+      this.btnConfigurerTouches = new System.Windows.Forms.Button();
       this.layoutConfig.SuspendLayout();
       this.layoutBtns.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.trackBarNbLignes)).BeginInit();
@@ -65,6 +66,7 @@
       this.layoutConfig.Controls.Add(this.trackBarNbColonnes, 2, 1);
       this.layoutConfig.Controls.Add(this.numNbLignes, 1, 0);
       this.layoutConfig.Controls.Add(this.numNbColonnes, 1, 1);
+      this.layoutConfig.Controls.Add(this.btnConfigurerTouches, 1, 3);
       this.layoutConfig.Dock = System.Windows.Forms.DockStyle.Fill;
       this.layoutConfig.Location = new System.Drawing.Point(0, 0);
       this.layoutConfig.Name = "layoutConfig";
@@ -234,6 +236,18 @@
             0});
       this.numNbColonnes.ValueChanged += new System.EventHandler(this.OnChangeNumNbColonnes);
       // 
+      // btnConfigurerTouches
+      // 
+      this.layoutConfig.SetColumnSpan(this.btnConfigurerTouches, 2);
+      this.btnConfigurerTouches.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.btnConfigurerTouches.Location = new System.Drawing.Point(102, 105);
+      this.btnConfigurerTouches.Name = "btnConfigurerTouches";
+      this.btnConfigurerTouches.Size = new System.Drawing.Size(213, 28);
+      this.btnConfigurerTouches.TabIndex = 14;
+      this.btnConfigurerTouches.Text = "Configurer les touches";
+      this.btnConfigurerTouches.UseVisualStyleBackColor = true;
+      this.btnConfigurerTouches.Click += new System.EventHandler(this.OnClickBtnConfigurerTouches);
+      // 
       // ConfigurationFenetre
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,5 +287,6 @@
     private System.Windows.Forms.TrackBar trackBarNbColonnes;
     private System.Windows.Forms.NumericUpDown numNbLignes;
     private System.Windows.Forms.NumericUpDown numNbColonnes;
+    private System.Windows.Forms.Button btnConfigurerTouches;
   }
 }

@@ -59,11 +59,6 @@ namespace TP3
     // Variable qui sert à jouer la musique.
     WindowsMediaPlayer musique = new WindowsMediaPlayer();
 
-    //Mika Gauthier
-    //État du joueur au début
-    Mouvement keyUsed = Mouvement.Immobile;
-
-
     // Variable qui représente le pointage du joueur pour la partie en cours.
     int pointage = 0;
 
@@ -74,6 +69,24 @@ namespace TP3
 
     // Variable qui indique le nombre de ligne complétées total dans une partie.
     int nbLignesCompletesAuTotal = 0;
+
+    // Variables qui détermine quelle touche est utilisée pour quelle commande du joueur.
+    // Touche pour déplacer la pièce à gauche. Par défaut: 'a'.
+    char toucheDeplacerGauche = 'a';
+    // Touche pour descendre la pièce d'une case. Par défaut: 's'.
+    char toucheDeplacerBas = 's';
+    // Touche pour déplacer la pièce à droite. Par défaut: 'd'.
+    char toucheDeplacerDroite = 'd';
+    // Touche pour tourner la pièce de façon horaire. Par défaut: 'q'.
+    char toucheRotationHoraire = 'q';
+    // Touche pour tourner la pièce de façon anti-horaire. Par défaut: 'e'.
+    char toucheRotationAntiHoraire = 'e';
+    // Touche pour faire tomber la pièce. Par défaut: barre espace.
+    char toucheTomber = (char)32;
+
+    //Mika Gauthier
+    //État du joueur au début
+    Mouvement keyUsed = Mouvement.Immobile;
 
     //Nombre de pièces utilisées + type de la pièce
     int nbPieceBloc = 0; //couleur jaune
@@ -960,14 +973,18 @@ namespace TP3
           ArreterExecutionJeu();
         }
       }
-      // </WLebel>
 
-      // Demande des nouvelles configurations au joueur.
       ConfigurationFenetre fenetreDeConfiguration = new ConfigurationFenetre();
+      // Affectation des valeurs en cours dans le nouveau formulaire.
       fenetreDeConfiguration.nombreDeLignesDansLeJeu = nbLignesJeu;
       fenetreDeConfiguration.nombreDeColonnesDansLeJeu = nbColonnesJeu;
       fenetreDeConfiguration.doitJouerMusique = doitJouerMusique;
-      // Trucs pour commandes
+      fenetreDeConfiguration.toucheDeplacerBas = toucheDeplacerBas;
+      fenetreDeConfiguration.toucheDeplacerDroite = toucheDeplacerDroite;
+      fenetreDeConfiguration.toucheDeplacerGauche = toucheDeplacerGauche;
+      fenetreDeConfiguration.toucheRotationAntiHoraire = toucheRotationAntiHoraire;
+      fenetreDeConfiguration.toucheRotationHoraire = toucheRotationHoraire;
+      fenetreDeConfiguration.toucheTomber = toucheTomber;
 
       // Prise des choix du joueur si le joueur a cliqué sur « Ok ».
       if (fenetreDeConfiguration.ShowDialog() == DialogResult.OK)
@@ -975,13 +992,39 @@ namespace TP3
         nbLignesJeu = fenetreDeConfiguration.nombreDeLignesDansLeJeu;
         nbColonnesJeu = fenetreDeConfiguration.nombreDeColonnesDansLeJeu;
         doitJouerMusique = fenetreDeConfiguration.doitJouerMusique;
-        //truc pour commandes
+        toucheDeplacerBas = fenetreDeConfiguration.toucheDeplacerBas;
+        toucheDeplacerDroite = fenetreDeConfiguration.toucheDeplacerDroite;
+        toucheDeplacerGauche = fenetreDeConfiguration.toucheDeplacerGauche;
+        toucheRotationAntiHoraire = fenetreDeConfiguration.toucheRotationAntiHoraire;
+        toucheRotationHoraire = fenetreDeConfiguration.toucheRotationHoraire;
+        toucheTomber = fenetreDeConfiguration.toucheTomber;
 
+        // Initialise et affiche les changements.
         InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
       }
 
     }
     // </WLebel>
+
+    /// <summary>
+    /// Méthode qui affiche les touches au joueurs dans le «layoutControles» selon
+    /// les touches qui se trouvent dans la variable partagée.
+    /// </summary>
+    void AfficherTouchesDansFenetreJeu()
+    {
+      // Gauche.
+
+      // Bas.
+
+      // Droite.
+
+      // Horaire.
+
+      // Anti-Horaire.
+
+      // Tomber.
+
+    }
 
     // <WLebel>
     /// <summary>
@@ -1140,49 +1183,51 @@ namespace TP3
     {
       //Déplacement du joueur selon la touche choisie(a,s,d,w,e,q)
       //Déplacement vers la gauche(a)
-      if (e.KeyChar == 'a')
+      if (e.KeyChar == toucheDeplacerGauche)
       {
         keyUsed = Mouvement.DeplacerGauche;
         DeplacerBloc(tableauPieces);
       }
 
       //Déplacement vers la droite(d)
-      if (e.KeyChar == 'd')
+      if (e.KeyChar == toucheDeplacerDroite)
       {
         keyUsed = Mouvement.DeplacerDroite;
         DeplacerBloc(tableauPieces);
       }
 
       //déplacement vers le bas(s)
-      if (e.KeyChar == 's')
+      if (e.KeyChar == toucheDeplacerBas)
       {
         keyUsed = Mouvement.DeplacerBas;
         DeplacerBloc(tableauPieces);
       }
 
+      /*
       //Déplacement vers le haut(w)
       if (e.KeyChar == 'w')
       {
         keyUsed = Mouvement.DeplacerHaut;
         DeplacerBloc(tableauPieces);
       }
+      */
 
       //Rotation dans le sens antihoraire(q)
-      if (e.KeyChar == 'e')
+      if (e.KeyChar == toucheRotationAntiHoraire)
       {
         keyUsed = Mouvement.RotationAntihoraire;
         DeplacerBloc(tableauPieces);
       }
 
       //Rotation dans le sens horaire(e)
-      if (e.KeyChar == 'q')
+      if (e.KeyChar == toucheRotationHoraire)
       {
         keyUsed = Mouvement.RotationHoraire;
         DeplacerBloc(tableauPieces);
       }
       // <WLebel>
       // Si le joueur appuie sur la barre espace, la pièce tombe.
-      if (e.KeyChar == 32)
+      if (e.KeyChar == toucheTomber)
       {
         keyUsed = Mouvement.Tomber;
         DeplacerBloc(tableauPieces);
@@ -1288,7 +1333,7 @@ namespace TP3
       if (ligne >= 0 && ligne < nbLignesJeu)
       {
         // Pour tous les pièces de la ligne.
-        for (int j = 0; j < nbColonnesJeu - 1; j++)
+        for (int j = 0; j < nbColonnesJeu; j++)
         {
           // Si la case est vide, c'est que ce n'est pas une ligne complète.
           if (tableauPieces[ligne, j] == PieceTeris.Rien)
@@ -1361,21 +1406,27 @@ namespace TP3
     /// <param name="e"></param>
     private void OnMouseClickBtnValider(object sender, MouseEventArgs e)
     {
-      // Appliquer le choix de nombres de lignes et de colonnes.
-      nbLignesJeu = Decimal.ToInt32(numLignes.Value);
-      nbColonnesJeu = Decimal.ToInt32(numColonnes.Value);
 
-      // Appliquer le choix de jouer la musique ou non.
-      if (checkBoxMusique.Checked == true)
+      // Si le jeu n'est pas en cours.
+      if (!jeuEstEnCours)
       {
-        doitJouerMusique = true;
-      }
-      else
-      {
-        doitJouerMusique = false;
-      }
+        // Appliquer le choix de nombres de lignes et de colonnes.
+        nbLignesJeu = Decimal.ToInt32(numLignes.Value);
+        nbColonnesJeu = Decimal.ToInt32(numColonnes.Value);
 
-      InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+        // Appliquer le choix de jouer la musique ou non.
+        if (checkBoxMusique.Checked == true)
+        {
+          doitJouerMusique = true;
+        }
+        else
+        {
+          doitJouerMusique = false;
+        }
+
+        InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+      }
+    
     }
     // </WLebel>
 
