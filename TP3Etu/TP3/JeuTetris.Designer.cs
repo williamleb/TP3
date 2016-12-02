@@ -34,6 +34,8 @@
       this.tblLayoutJeu = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.grpBoxStatistiquesJeu = new System.Windows.Forms.GroupBox();
+      this.lblNiveau = new System.Windows.Forms.Label();
+      this.lblPointage = new System.Windows.Forms.Label();
       this.grpBoxParametresJeu = new System.Windows.Forms.GroupBox();
       this.layoutParametresJeu = new System.Windows.Forms.TableLayoutPanel();
       this.btnValider = new System.Windows.Forms.Button();
@@ -45,11 +47,11 @@
       this.numColonnes = new System.Windows.Forms.NumericUpDown();
       this.layoutControles = new System.Windows.Forms.TableLayoutPanel();
       this.lblGauche = new System.Windows.Forms.Label();
-      this.label2 = new System.Windows.Forms.Label();
-      this.label3 = new System.Windows.Forms.Label();
-      this.label4 = new System.Windows.Forms.Label();
-      this.label5 = new System.Windows.Forms.Label();
-      this.label6 = new System.Windows.Forms.Label();
+      this.lblBas = new System.Windows.Forms.Label();
+      this.lblDroite = new System.Windows.Forms.Label();
+      this.lblHoraire = new System.Windows.Forms.Label();
+      this.lblAntihoraire = new System.Windows.Forms.Label();
+      this.lblTomber = new System.Windows.Forms.Label();
       this.menuStripJeu = new System.Windows.Forms.MenuStrip();
       this.menuPartie = new System.Windows.Forms.ToolStripMenuItem();
       this.menuJouer = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,8 +62,10 @@
       this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
       this.timerJeu = new System.Windows.Forms.Timer(this.components);
       this.timerTempsDeJeu = new System.Windows.Forms.Timer(this.components);
+      this.lblTimerDuLaPartie = new System.Windows.Forms.Label();
       this.tblLayoutJeu.SuspendLayout();
       this.tableLayoutPanel1.SuspendLayout();
+      this.grpBoxStatistiquesJeu.SuspendLayout();
       this.grpBoxParametresJeu.SuspendLayout();
       this.layoutParametresJeu.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.numLignes)).BeginInit();
@@ -92,7 +96,7 @@
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
+      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
       this.tableauJeu.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableauJeu.Location = new System.Drawing.Point(240, 0);
@@ -164,6 +168,9 @@
       // 
       // grpBoxStatistiquesJeu
       // 
+      this.grpBoxStatistiquesJeu.Controls.Add(this.lblTimerDuLaPartie);
+      this.grpBoxStatistiquesJeu.Controls.Add(this.lblNiveau);
+      this.grpBoxStatistiquesJeu.Controls.Add(this.lblPointage);
       this.grpBoxStatistiquesJeu.Dock = System.Windows.Forms.DockStyle.Fill;
       this.grpBoxStatistiquesJeu.Location = new System.Drawing.Point(3, 3);
       this.grpBoxStatistiquesJeu.Name = "grpBoxStatistiquesJeu";
@@ -171,6 +178,24 @@
       this.grpBoxStatistiquesJeu.TabIndex = 0;
       this.grpBoxStatistiquesJeu.TabStop = false;
       this.grpBoxStatistiquesJeu.Text = "Statistiques";
+      // 
+      // lblNiveau
+      // 
+      this.lblNiveau.AutoSize = true;
+      this.lblNiveau.Location = new System.Drawing.Point(9, 86);
+      this.lblNiveau.Name = "lblNiveau";
+      this.lblNiveau.Size = new System.Drawing.Size(56, 13);
+      this.lblNiveau.TabIndex = 1;
+      this.lblNiveau.Text = "Niveau : 1";
+      // 
+      // lblPointage
+      // 
+      this.lblPointage.AutoSize = true;
+      this.lblPointage.Location = new System.Drawing.Point(9, 42);
+      this.lblPointage.Name = "lblPointage";
+      this.lblPointage.Size = new System.Drawing.Size(64, 13);
+      this.lblPointage.TabIndex = 0;
+      this.lblPointage.Text = "Pointage : 0";
       // 
       // grpBoxParametresJeu
       // 
@@ -311,11 +336,11 @@
       this.layoutControles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.layoutControles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.layoutControles.Controls.Add(this.lblGauche, 0, 0);
-      this.layoutControles.Controls.Add(this.label2, 0, 1);
-      this.layoutControles.Controls.Add(this.label3, 0, 2);
-      this.layoutControles.Controls.Add(this.label4, 0, 3);
-      this.layoutControles.Controls.Add(this.label5, 0, 4);
-      this.layoutControles.Controls.Add(this.label6, 0, 5);
+      this.layoutControles.Controls.Add(this.lblBas, 0, 1);
+      this.layoutControles.Controls.Add(this.lblDroite, 0, 2);
+      this.layoutControles.Controls.Add(this.lblHoraire, 0, 3);
+      this.layoutControles.Controls.Add(this.lblAntihoraire, 0, 4);
+      this.layoutControles.Controls.Add(this.lblTomber, 0, 5);
       this.layoutControles.Dock = System.Windows.Forms.DockStyle.Fill;
       this.layoutControles.Location = new System.Drawing.Point(113, 3);
       this.layoutControles.Name = "layoutControles";
@@ -339,50 +364,50 @@
       this.lblGauche.TabIndex = 0;
       this.lblGauche.Text = "Gauche : A";
       // 
-      // label2
+      // lblBas
       // 
-      this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(3, 18);
-      this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(41, 13);
-      this.label2.TabIndex = 1;
-      this.label2.Text = "Bas : S";
+      this.lblBas.AutoSize = true;
+      this.lblBas.Location = new System.Drawing.Point(3, 18);
+      this.lblBas.Name = "lblBas";
+      this.lblBas.Size = new System.Drawing.Size(41, 13);
+      this.lblBas.TabIndex = 1;
+      this.lblBas.Text = "Bas : S";
       // 
-      // label3
+      // lblDroite
       // 
-      this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(3, 36);
-      this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(52, 13);
-      this.label3.TabIndex = 2;
-      this.label3.Text = "Droite : D";
+      this.lblDroite.AutoSize = true;
+      this.lblDroite.Location = new System.Drawing.Point(3, 36);
+      this.lblDroite.Name = "lblDroite";
+      this.lblDroite.Size = new System.Drawing.Size(52, 13);
+      this.lblDroite.TabIndex = 2;
+      this.lblDroite.Text = "Droite : D";
       // 
-      // label4
+      // lblHoraire
       // 
-      this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(3, 54);
-      this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(58, 13);
-      this.label4.TabIndex = 3;
-      this.label4.Text = "Horaire : Q";
+      this.lblHoraire.AutoSize = true;
+      this.lblHoraire.Location = new System.Drawing.Point(3, 54);
+      this.lblHoraire.Name = "lblHoraire";
+      this.lblHoraire.Size = new System.Drawing.Size(58, 13);
+      this.lblHoraire.TabIndex = 3;
+      this.lblHoraire.Text = "Horaire : Q";
       // 
-      // label5
+      // lblAntihoraire
       // 
-      this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(3, 72);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(73, 13);
-      this.label5.TabIndex = 4;
-      this.label5.Text = "Antihoraire : E";
+      this.lblAntihoraire.AutoSize = true;
+      this.lblAntihoraire.Location = new System.Drawing.Point(3, 72);
+      this.lblAntihoraire.Name = "lblAntihoraire";
+      this.lblAntihoraire.Size = new System.Drawing.Size(73, 13);
+      this.lblAntihoraire.TabIndex = 4;
+      this.lblAntihoraire.Text = "Antihoraire : E";
       // 
-      // label6
+      // lblTomber
       // 
-      this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(3, 90);
-      this.label6.Name = "label6";
-      this.label6.Size = new System.Drawing.Size(90, 13);
-      this.label6.TabIndex = 5;
-      this.label6.Text = "Tomber :  SPACE";
+      this.lblTomber.AutoSize = true;
+      this.lblTomber.Location = new System.Drawing.Point(3, 90);
+      this.lblTomber.Name = "lblTomber";
+      this.lblTomber.Size = new System.Drawing.Size(90, 13);
+      this.lblTomber.TabIndex = 5;
+      this.lblTomber.Text = "Tomber :  SPACE";
       // 
       // menuStripJeu
       // 
@@ -456,6 +481,15 @@
       this.timerTempsDeJeu.Interval = 1000;
       this.timerTempsDeJeu.Tick += new System.EventHandler(this.timerTempsDeJeu_Tick);
       // 
+      // lblTimerDuLaPartie
+      // 
+      this.lblTimerDuLaPartie.AutoSize = true;
+      this.lblTimerDuLaPartie.Location = new System.Drawing.Point(9, 125);
+      this.lblTimerDuLaPartie.Name = "lblTimerDuLaPartie";
+      this.lblTimerDuLaPartie.Size = new System.Drawing.Size(54, 13);
+      this.lblTimerDuLaPartie.TabIndex = 2;
+      this.lblTimerDuLaPartie.Text = "Temps : 0";
+      // 
       // JeuTetris
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -472,6 +506,8 @@
       this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.JeuTetris_KeyPress);
       this.tblLayoutJeu.ResumeLayout(false);
       this.tableLayoutPanel1.ResumeLayout(false);
+      this.grpBoxStatistiquesJeu.ResumeLayout(false);
+      this.grpBoxStatistiquesJeu.PerformLayout();
       this.grpBoxParametresJeu.ResumeLayout(false);
       this.layoutParametresJeu.ResumeLayout(false);
       this.layoutParametresJeu.PerformLayout();
@@ -512,12 +548,15 @@
     private System.Windows.Forms.NumericUpDown numColonnes;
     private System.Windows.Forms.TableLayoutPanel layoutControles;
     private System.Windows.Forms.Label lblGauche;
-    private System.Windows.Forms.Label label2;
-    private System.Windows.Forms.Label label3;
-    private System.Windows.Forms.Label label4;
-    private System.Windows.Forms.Label label5;
-    private System.Windows.Forms.Label label6;
+    private System.Windows.Forms.Label lblBas;
+    private System.Windows.Forms.Label lblDroite;
+    private System.Windows.Forms.Label lblHoraire;
+    private System.Windows.Forms.Label lblAntihoraire;
+    private System.Windows.Forms.Label lblTomber;
+    private System.Windows.Forms.Label lblNiveau;
+    private System.Windows.Forms.Label lblPointage;
     private System.Windows.Forms.Timer timerTempsDeJeu;
+    private System.Windows.Forms.Label lblTimerDuLaPartie;
   }
 }
 

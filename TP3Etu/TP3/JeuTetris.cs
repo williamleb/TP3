@@ -68,7 +68,7 @@ namespace TP3
     int niveauDifficluteDe1A9 = 1;
 
     // Variable qui indique le nombre de ligne complétées total dans une partie.
-    int nbLignesCompletesAuTotal = 0;
+    int nbLignesCompleteesAuTotal = 0;
 
     // Variables qui détermine quelle touche est utilisée pour quelle commande du joueur.
     // Touche pour déplacer la pièce à gauche. Par défaut: 'a'.
@@ -80,7 +80,7 @@ namespace TP3
     // Touche pour tourner la pièce de façon horaire. Par défaut: 'q'.
     char toucheRotationHoraire = 'q';
     // Touche pour tourner la pièce de façon anti-horaire. Par défaut: 'e'.
-    char toucheRotationAntiHoraire = 'e';
+    char toucheRotationAntihoraire = 'e';
     // Touche pour faire tomber la pièce. Par défaut: barre espace.
     char toucheTomber = (char)32;
 
@@ -115,6 +115,9 @@ namespace TP3
     // par rapport aux variables ligneCourante et colonneCourante. Sert à la sécurité
     // du programme
     int[] VerificationBlocActifX = new int[4];
+
+    //Compteur temporel partagé
+    int compteurTemporel = 0;
     //Mika Gauthier
     #endregion
     // </WLebel>
@@ -719,43 +722,45 @@ namespace TP3
       int niveauDifficulteEvalue = 1;
 
       // Le niveau de difficulté est évalué selon les lignes complétées.
-      if (nbLignesCompletesAuTotal > 40)
+      if (nbLignesCompleteesAuTotal > 40)
       {
         niveauDifficulteEvalue = 9;
       }
-      else if (nbLignesCompletesAuTotal > 35)
+      else if (nbLignesCompleteesAuTotal > 35)
       {
         niveauDifficulteEvalue = 8;
       }
-      else if (nbLignesCompletesAuTotal > 30)
+      else if (nbLignesCompleteesAuTotal > 30)
       {
         niveauDifficulteEvalue = 7;
       }
-      else if (nbLignesCompletesAuTotal > 25)
+      else if (nbLignesCompleteesAuTotal > 25)
       {
         niveauDifficulteEvalue = 6;
       }
-      else if (nbLignesCompletesAuTotal > 20)
+      else if (nbLignesCompleteesAuTotal > 20)
       {
         niveauDifficulteEvalue = 5;
       }
-      else if (nbLignesCompletesAuTotal > 15)
+      else if (nbLignesCompleteesAuTotal > 15)
       {
         niveauDifficulteEvalue = 4;
       }
-      else if (nbLignesCompletesAuTotal > 10)
+      else if (nbLignesCompleteesAuTotal > 10)
       {
         niveauDifficulteEvalue = 3;
       }
-      else if (nbLignesCompletesAuTotal > 5)
+      else if (nbLignesCompleteesAuTotal > 5)
       {
         niveauDifficulteEvalue = 2;
       }
 
-      // Si le niveau de difficulté a changé, on traite le nouveau niveau de difficulté.
+      // Si le niveau de difficulté a changé, on traite le nouveau niveau de difficulté
+      // et on l'affiche au joueur.
       if (niveauDifficulteEvalue != niveauDifficluteDe1A9)
       {
         TraiterNouveauNiveauDifficulté(niveauDifficulteEvalue);
+        AfficherNiveauDansFenetreJeu();
       }
     }
 
@@ -898,6 +903,8 @@ namespace TP3
 
       // Mika Gauthier
 
+      AfficherPointageDansFenetreJeu();
+      AfficherNiveauDansFenetreJeu();
     }
     // </WLebel>
 
@@ -1000,7 +1007,7 @@ namespace TP3
       fenetreDeConfiguration.toucheDeplacerBas = toucheDeplacerBas;
       fenetreDeConfiguration.toucheDeplacerDroite = toucheDeplacerDroite;
       fenetreDeConfiguration.toucheDeplacerGauche = toucheDeplacerGauche;
-      fenetreDeConfiguration.toucheRotationAntiHoraire = toucheRotationAntiHoraire;
+      fenetreDeConfiguration.toucheRotationAntihoraire = toucheRotationAntihoraire;
       fenetreDeConfiguration.toucheRotationHoraire = toucheRotationHoraire;
       fenetreDeConfiguration.toucheTomber = toucheTomber;
 
@@ -1013,17 +1020,40 @@ namespace TP3
         toucheDeplacerBas = fenetreDeConfiguration.toucheDeplacerBas;
         toucheDeplacerDroite = fenetreDeConfiguration.toucheDeplacerDroite;
         toucheDeplacerGauche = fenetreDeConfiguration.toucheDeplacerGauche;
-        toucheRotationAntiHoraire = fenetreDeConfiguration.toucheRotationAntiHoraire;
+        toucheRotationAntihoraire = fenetreDeConfiguration.toucheRotationAntihoraire;
         toucheRotationHoraire = fenetreDeConfiguration.toucheRotationHoraire;
         toucheTomber = fenetreDeConfiguration.toucheTomber;
 
         // Initialise et affiche les changements.
         InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+        AfficherTouchesDansFenetreJeu();
       }
 
     }
     // </WLebel>
 
+    //<WLebel>
+    /// <summary>
+    /// Affiche le pointage donnée par la variable partagée «pointage» au joueur pendant la partie.
+    /// </summary>
+    void AfficherPointageDansFenetreJeu()
+    {
+      lblPointage.Text = "Pointage : " + pointage;
+    }
+    // </WLebel>
+
+    // <WLebel>
+    /// <summary>
+    /// Affiche le nibeau de difficulté donné par la variable «niveauDifficulteDe1A9» 
+    /// au joueur pendant la partie.
+    /// </summary>
+    void AfficherNiveauDansFenetreJeu()
+    {
+      lblNiveau.Text = "Niveau : " + niveauDifficluteDe1A9;
+    }
+    // </WLebel>
+
+    // <WLebel>
     /// <summary>
     /// Méthode qui affiche les touches au joueurs dans le «layoutControles» selon
     /// les touches qui se trouvent dans la variable partagée.
@@ -1031,18 +1061,139 @@ namespace TP3
     void AfficherTouchesDansFenetreJeu()
     {
       // Gauche.
+      lblGauche.Text = "Gauche : ";
+      // Si c'est une lettre, on la met en majuscule.
+      if (Char.IsLetter(toucheDeplacerGauche))
+      {
+        lblGauche.Text += Char.ToUpper(toucheDeplacerGauche);
+      }
+      // Si c'est un caractère spécial, on l'écrit.
+      else
+      {
+        // Shift.
+        if (toucheDeplacerGauche == (char)14 || toucheDeplacerGauche == (char)14)
+        {
+          lblGauche.Text += "SHIFT";
+        }
+        // Barre espace.
+        if (toucheDeplacerGauche == (char)32)
+        {
+          lblGauche.Text += "SPACE";
+        }
+      }
 
       // Bas.
+      lblBas.Text = "Bas : ";
+      // Si c'est une lettre, on la met en majuscule.
+      if (Char.IsLetter(toucheDeplacerBas))
+      {
+        lblBas.Text += Char.ToUpper(toucheDeplacerBas);
+      }
+      // Si c'est un caractère spécial, on l'écrit.
+      else
+      {
+        // Shift.
+        if (toucheDeplacerBas == (char)14 || toucheDeplacerBas == (char)14)
+        {
+          lblBas.Text += "SHIFT";
+        }
+        // Barre espace.
+        if (toucheDeplacerBas == (char)32)
+        {
+          lblBas.Text += "SPACE";
+        }
+      }
 
       // Droite.
+      lblDroite.Text = "Droite : ";
+      // Si c'est une lettre, on la met en majuscule.
+      if (Char.IsLetter(toucheDeplacerDroite))
+      {
+        lblDroite.Text += Char.ToUpper(toucheDeplacerDroite);
+      }
+      // Si c'est un caractère spécial, on l'écrit.
+      else
+      {
+        // Shift.
+        if (toucheDeplacerDroite == (char)14 || toucheDeplacerDroite == (char)14)
+        {
+          lblDroite.Text += "SHIFT";
+        }
+        // Barre espace.
+        if (toucheDeplacerDroite == (char)32)
+        {
+          lblDroite.Text += "SPACE";
+        }
+      }
 
       // Horaire.
+      lblHoraire.Text = "Horaire : ";
+      // Si c'est une lettre, on la met en majuscule.
+      if (Char.IsLetter(toucheRotationHoraire))
+      {
+        lblHoraire.Text += Char.ToUpper(toucheRotationHoraire);
+      }
+      // Si c'est un caractère spécial, on l'écrit.
+      else
+      {
+        // Shift.
+        if (toucheRotationHoraire == (char)14 || toucheRotationHoraire == (char)14)
+        {
+          lblHoraire.Text += "SHIFT";
+        }
+        // Barre espace.
+        if (toucheRotationHoraire == (char)32)
+        {
+          lblHoraire.Text += "SPACE";
+        }
+      }
 
-      // Anti-Horaire.
+      // Antihoraire.
+      lblAntihoraire.Text = "Antihoraire : ";
+      // Si c'est une lettre, on la met en majuscule.
+      if (Char.IsLetter(toucheRotationAntihoraire))
+      {
+        lblAntihoraire.Text += Char.ToUpper(toucheRotationAntihoraire);
+      }
+      // Si c'est un caractère spécial, on l'écrit.
+      else
+      {
+        // Shift.
+        if (toucheRotationAntihoraire == (char)14 || toucheRotationAntihoraire == (char)14)
+        {
+          lblAntihoraire.Text += "SHIFT";
+        }
+        // Barre espace.
+        if (toucheRotationAntihoraire == (char)32)
+        {
+          lblAntihoraire.Text += "SPACE";
+        }
+      }
 
       // Tomber.
+      lblTomber.Text = "Tomber : ";
+      // Si c'est une lettre, on la met en majuscule.
+      if (Char.IsLetter(toucheTomber))
+      {
+        lblTomber.Text += Char.ToUpper(toucheTomber);
+      }
+      // Si c'est un caractère spécial, on l'écrit.
+      else
+      {
+        // Shift.
+        if (toucheTomber == (char)14 || toucheTomber == (char)14)
+        {
+          lblTomber.Text += "SHIFT";
+        }
+        // Barre espace.
+        if (toucheTomber == (char)32)
+        {
+          lblTomber.Text += "SPACE";
+        }
+      }
 
     }
+    // </WLebel>
 
     // <WLebel>
     /// <summary>
@@ -1233,7 +1384,7 @@ namespace TP3
       */
 
       //Rotation dans le sens antihoraire(q)
-      if (e.KeyChar == toucheRotationAntiHoraire)
+      if (e.KeyChar == toucheRotationAntihoraire)
       {
         keyUsed = Mouvement.RotationAntihoraire;
         DeplacerBloc(tableauPieces);
@@ -1282,7 +1433,7 @@ namespace TP3
       // Remise à niveau des statistiques
       pointage = 0;
       TraiterNouveauNiveauDifficulté(1);
-      nbLignesCompletesAuTotal = 0;
+      nbLignesCompleteesAuTotal = 0;
       jeuEstEnCours = false;
 
       nbPieceBloc = 0; //couleur jaune
@@ -1305,6 +1456,8 @@ namespace TP3
       //Valeur temporelle
       tempsDebutPartie = DateTime.Now;
       tempsDeLaPartie = DateTime.Now;
+      lblTimerDuLaPartie.Text = "Temps : 0";
+      compteurTemporel = 0;
     }
 
   //Mika Gauthier
@@ -1345,6 +1498,9 @@ namespace TP3
 
       // On ajoute le pointage.
       pointage += pointageAAjouter;
+
+      // On affiche le pointage au joueur.
+      AfficherPointageDansFenetreJeu();
     }
 
     /// <summary>
@@ -1369,7 +1525,7 @@ namespace TP3
         }
       }
 
-      nbLignesCompletesAuTotal += nbLignesCompletees;
+      nbLignesCompleteesAuTotal += nbLignesCompletees;
       return nbLignesCompletees;
     }
 
@@ -1502,12 +1658,27 @@ namespace TP3
     /// </summary>
     void TesterRetirerLignesCompletees()
     {
+      // Effectuer les tests.
       TesterRetraitUneLigneSeule();
       TesterDecalage();
       TesterRetraitDeuxLignesConsecutives();
       TesterRetraitDeuxLignesDistantes();
       TesterRetraitTroisLignes();
       TesterRetraitQuatreLignes();
+
+      // Clean-up global.
+      pointage = 0;
+      niveauDifficluteDe1A9 = 1;
+      nbLignesCompleteesAuTotal = 0;
+      nbPieceBloc = 0;
+      nbPieceBarreVerticale = 0;
+      nbPieceBarreHorizontale = 0;
+      nbPieceEnT = 0;
+      nbPieceEnJ = 0;
+      nbPieceEnL = 0;
+      nbPieceEnS = 0;
+      nbPieceEnZ = 0;
+
     }
 
     /// <summary>
@@ -1760,6 +1931,9 @@ namespace TP3
     private void timerTempsDeJeu_Tick(object sender, EventArgs e)
     {
       tempsDeLaPartie = DateTime.Now;
+      compteurTemporel++;
+      lblTimerDuLaPartie.Text = "Temps : " + compteurTemporel;
+
     }
   }
 }   

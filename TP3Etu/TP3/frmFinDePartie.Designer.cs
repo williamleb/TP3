@@ -249,9 +249,9 @@
       this.lblTempsEcoule.AutoSize = true;
       this.lblTempsEcoule.Location = new System.Drawing.Point(546, 348);
       this.lblTempsEcoule.Name = "lblTempsEcoule";
-      this.lblTempsEcoule.Size = new System.Drawing.Size(35, 13);
+      this.lblTempsEcoule.Size = new System.Drawing.Size(39, 13);
       this.lblTempsEcoule.TabIndex = 17;
-      this.lblTempsEcoule.Text = "label1";
+      this.lblTempsEcoule.Text = "Temps";
       // 
       // frmFinDePartie
       // 
