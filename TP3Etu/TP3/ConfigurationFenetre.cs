@@ -11,6 +11,7 @@ namespace TP3
       InitializeComponent();
     }
 
+    #region Variables partagées
     // Représente le nombre de lignes dans le jeu.
     public int nombreDeLignesDansLeJeu = 0;
 
@@ -19,6 +20,21 @@ namespace TP3
 
     // Détermine si la musique doit être jouée (vrai) ou non (faux).
     public bool doitJouerMusique = false;
+
+    // Variables qui détermine quelle touche est utilisée pour quelle commande du joueur.
+    // Touche pour déplacer la pièce à gauche. Par défaut: 'a'.
+    public char toucheDeplacerGauche = 'a';
+    // Touche pour descendre la pièce d'une case. Par défaut: 's'.
+    public char toucheDeplacerBas = 's';
+    // Touche pour déplacer la pièce à droite. Par défaut: 'd'.
+    public char toucheDeplacerDroite = 'd';
+    // Touche pour tourner la pièce de façon horaire. Par défaut: 'q'.
+    public char toucheRotationHoraire = 'q';
+    // Touche pour tourner la pièce de façon anti-horaire. Par défaut: 'e'.
+    public char toucheRotationAntiHoraire = 'e';
+    // Touche pour faire tomber la pièce. Par défaut: barre espace.
+    public char toucheTomber = (char)32;
+    #endregion
 
     /// <summary>
     /// Méthode qui est appelée à l'ouverture du formulaire de configuration.
@@ -121,6 +137,36 @@ namespace TP3
       numNbColonnes.Value = trackBarNbColonnes.Value;
     }
 
+    /// <summary>
+    /// Méthode appelée lorsque le joueur clique sur le bouton «Configurer les touches».
+    /// La méthode permet d'ouvrir un nouveau formulaire qui permet au joueur de configurer
+    /// ses touches.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void OnClickBtnConfigurerTouches(object sender, EventArgs e)
+    {
+      TouchesFenetre configurationTouches = new TouchesFenetre();
+
+      // Assignation des valeurs en cours dans le nouveau formulaire.
+      configurationTouches.toucheDeplacerBas = toucheDeplacerBas;
+      configurationTouches.toucheDeplacerDroite = toucheDeplacerDroite;
+      configurationTouches.toucheDeplacerGauche = toucheDeplacerGauche;
+      configurationTouches.toucheRotationAntiHoraire = toucheRotationAntiHoraire;
+      configurationTouches.toucheRotationHoraire = toucheRotationHoraire;
+      configurationTouches.toucheTomber = toucheTomber;
+
+      // Si le joueur a valider ses touches on les garde en mémoire.
+      if (configurationTouches.ShowDialog() == DialogResult.OK)
+      {
+        toucheDeplacerBas = configurationTouches.toucheDeplacerBas;
+        toucheDeplacerDroite = configurationTouches.toucheDeplacerDroite;
+        toucheDeplacerGauche = configurationTouches.toucheDeplacerGauche;
+        toucheRotationAntiHoraire = configurationTouches.toucheRotationAntiHoraire;
+        toucheRotationHoraire = configurationTouches.toucheRotationHoraire;
+        toucheTomber = configurationTouches.toucheTomber;
+      }
+    }
   }
 }
 // </WLebel>
