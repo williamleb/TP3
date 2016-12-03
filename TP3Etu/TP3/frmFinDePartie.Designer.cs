@@ -280,7 +280,7 @@
       // 
       // pictureBox1
       // 
-      this.pictureBox1.Image = global::TP3.Properties.Resources.Tetris_Bolcpng;
+      /*this.pictureBox1.Image = global::TP3.Properties.Resources.Tetris_Bolcpng;*/
       this.pictureBox1.Location = new System.Drawing.Point(381, 3);
       this.pictureBox1.Name = "pictureBox1";
       this.pictureBox1.Size = new System.Drawing.Size(183, 85);
@@ -290,7 +290,7 @@
       // 
       // pictureBox2
       // 
-      this.pictureBox2.Image = global::TP3.Properties.Resources.Tetris_I__2_;
+      /*this.pictureBox2.Image = global::TP3.Properties.Resources.Tetris_I__2_;*/
       this.pictureBox2.Location = new System.Drawing.Point(381, 94);
       this.pictureBox2.Name = "pictureBox2";
       this.pictureBox2.Size = new System.Drawing.Size(183, 85);
@@ -300,7 +300,7 @@
       // 
       // pictureBox3
       // 
-      this.pictureBox3.Image = global::TP3.Properties.Resources.Tetris_I;
+      /*this.pictureBox3.Image = global::TP3.Properties.Resources.Tetris_I;*/
       this.pictureBox3.Location = new System.Drawing.Point(381, 185);
       this.pictureBox3.Name = "pictureBox3";
       this.pictureBox3.Size = new System.Drawing.Size(183, 85);
@@ -310,7 +310,7 @@
       // 
       // pictureBox4
       // 
-      this.pictureBox4.Image = global::TP3.Properties.Resources.Tetris_T;
+      /*this.pictureBox4.Image = global::TP3.Properties.Resources.Tetris_T;*/
       this.pictureBox4.Location = new System.Drawing.Point(381, 276);
       this.pictureBox4.Name = "pictureBox4";
       this.pictureBox4.Size = new System.Drawing.Size(183, 81);
@@ -320,7 +320,7 @@
       // 
       // pictureBox5
       // 
-      this.pictureBox5.Image = global::TP3.Properties.Resources.Tetris_J;
+      /*this.pictureBox5.Image = global::TP3.Properties.Resources.Tetris_J;*/
       this.pictureBox5.Location = new System.Drawing.Point(381, 367);
       this.pictureBox5.Name = "pictureBox5";
       this.pictureBox5.Size = new System.Drawing.Size(183, 82);
@@ -330,7 +330,7 @@
       // 
       // pictureBox6
       // 
-      this.pictureBox6.Image = global::TP3.Properties.Resources.Tetris_L;
+      /*this.pictureBox6.Image = global::TP3.Properties.Resources.Tetris_L;*/
       this.pictureBox6.Location = new System.Drawing.Point(381, 459);
       this.pictureBox6.Name = "pictureBox6";
       this.pictureBox6.Size = new System.Drawing.Size(183, 84);
@@ -340,7 +340,7 @@
       // 
       // pictureBox7
       // 
-      this.pictureBox7.Image = global::TP3.Properties.Resources.Tetris_S;
+      /*this.pictureBox7.Image = global::TP3.Properties.Resources.Tetris_S;*/
       this.pictureBox7.Location = new System.Drawing.Point(381, 549);
       this.pictureBox7.Name = "pictureBox7";
       this.pictureBox7.Size = new System.Drawing.Size(183, 85);
@@ -350,7 +350,7 @@
       // 
       // pictureBox8
       // 
-      this.pictureBox8.Image = global::TP3.Properties.Resources.Tetris_Z;
+      /*this.pictureBox8.Image = global::TP3.Properties.Resources.Tetris_Z;*/
       this.pictureBox8.Location = new System.Drawing.Point(381, 640);
       this.pictureBox8.Name = "pictureBox8";
       this.pictureBox8.Size = new System.Drawing.Size(183, 91);

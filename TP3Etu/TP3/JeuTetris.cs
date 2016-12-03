@@ -19,7 +19,7 @@ namespace TP3
     PictureBox[,] toutesImagesVisuelles = null;
 
     // Représentation visuelle des coups suivants.
-    PictureBox[,] tousLesPicturesBoxCoupSuivant = new PictureBox[4, 4];
+    PictureBox[,] tousLesPicturesBoxCoupSuivant = null;
 
     // Nombre de lignes que contient le jeu.
     int nbLignesJeu = 20;
@@ -49,6 +49,15 @@ namespace TP3
 
     // Type de la pièce qui est jouée.
     PieceTeris pieceEnCours = PieceTeris.Rien;
+
+    // Tableau qui représente les positions horizontales des blocs de la pièce suivante.
+    int[] blocSuivantY = new int[4];
+
+    // Tableau qui représente les positions verticales des blocs de la pièce suivante.
+    int[] blocSuivantX = new int[4];
+
+    // Type de pièce qui sera jouée.
+    PieceTeris pieceSuivante = PieceTeris.Rien;
 
     // Variable qui sert à choisir une pièce de manière aléatoire.
     Random rnd = new Random();
@@ -161,7 +170,133 @@ namespace TP3
 
     #region Code à développer
 
-    // <summary>
+    // <WLebel>
+    /// <summary>
+    /// switch pièce suivante et pièce en cours...
+    /// </summary>
+    void GenererPieceEnCours()
+    {
+      // Change le bloc actif pour le bloc suivant.
+      // Pour toutes les coordonées des blocs, prendre la
+      // valeur des blocs suivants.
+      pieceEnCours = pieceSuivante;
+      for (int i = 0; i < blocActifY.Length; i++)
+      {
+        blocActifY[i] = blocSuivantY[i];
+        blocActifX[i] = blocSuivantX[i];
+      }
+      // </WLebel>
+
+      // Ajoute le bloc au compteur de blocs.
+      switch(pieceEnCours)
+      {
+        case PieceTeris.block:
+          nbPieceBloc++;
+          break;
+        case PieceTeris.barreVerticale:
+          nbPieceBarreVerticale++;
+          break;
+        case PieceTeris.barreHorizontale:
+          nbPieceBarreHorizontale++;
+          break;
+        case PieceTeris.pieceEnT:
+          nbPieceEnT++;
+          break;
+        case PieceTeris.pieceEnJ:
+          nbPieceEnJ++;
+          break;
+        case PieceTeris.pieceEnL:
+          nbPieceEnL++;
+          break;
+        case PieceTeris.pieceEnS:
+          nbPieceEnS++;
+          break;
+        case PieceTeris.pieceEnZ:
+          nbPieceEnZ++;
+          break;
+
+      }
+
+      // Mika Gauthier
+      //Mesure de sécurité (en cas de bogue)
+      for (int i = 0; i < blocActifY.Length; i++)
+      {
+        VerificationBlocActifY[i] = blocActifY[i];
+      }
+      for (int j = 0; j < blocActifX.Length; j++)
+      {
+        VerificationBlocActifX[j] = blocActifX[j];
+      }
+      // Mika Gauthier
+    }
+
+    // <WLebel>
+    /// <summary>
+    /// remet tout noir
+    /// </summary>
+    void EffacerCoupSuivant()
+    {
+      // Réafiche les blocs sous leur état initial.
+      for (int i = 0; i < tousLesPicturesBoxCoupSuivant.GetLength(0); i++)
+      {
+        for (int j = 0; j < tousLesPicturesBoxCoupSuivant.GetLength(1); j++)
+        {
+          tousLesPicturesBoxCoupSuivant[i, j].BackColor = Color.Black;
+        }
+      }
+    }
+    // </WLebel>
+    
+    // <WLebel>
+    /// <summary>
+    /// affiche suivant
+    /// </summary>
+    void AfficherPieceSuivante()
+    {
+      // Affiche une couleur de fond selon la pièce.
+      for (int i = 0; i < blocSuivantY.Length; i++)
+      {
+        if (pieceSuivante == PieceTeris.Rien)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Black;
+        }
+        else if (pieceSuivante == PieceTeris.Gelee)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Gray;
+        }
+        else if (pieceSuivante == PieceTeris.block)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Yellow;
+        }
+        else if (pieceSuivante == PieceTeris.barreVerticale || pieceSuivante == PieceTeris.barreHorizontale)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Cyan;
+        }
+        else if (pieceSuivante == PieceTeris.pieceEnT)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Purple;
+        }
+        else if (pieceSuivante == PieceTeris.pieceEnJ)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Orange;
+        }
+        else if (pieceSuivante == PieceTeris.pieceEnL)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.DarkBlue;
+        }
+        else if (pieceSuivante == PieceTeris.pieceEnS)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Red;
+        }
+        else if (pieceSuivante == PieceTeris.pieceEnZ)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.LawnGreen;
+        }
+      }
+    }
+    // </WLebel>
+
+    /// <summary>
     /// Gestionnaire de l'événement se produisant lors du premier affichage 
     /// du formulaire principal.
     /// </summary>
@@ -179,7 +314,12 @@ namespace TP3
       musique.URL = @"Resources/MusiqueTetris.mp3";
       musique.settings.setMode("loop", true);
 
-      // tousLesPicturesBoxCoupSuivant = { { pbCoupSuivant0, pbCoupSuivant1, pbCoupSuivant2, pbCoupSuivant3 }, { pbCoupSuivant4, pbCoupSuivant5, pbCoupSuivant6, pbCoupSuivant7 }, { pbCoupSuivant8, pbCoupSuivant9, pbCoupSuivant10, pbCoupSuivant11 }, { pbCoupSuivant12, pbCoupSuivant13, pbCoupSuivant14, pbCoupSuivant15 } };
+      tousLesPicturesBoxCoupSuivant = new PictureBox[4, 4] { 
+                                                            { pbCoupSuivant0, pbCoupSuivant1, pbCoupSuivant2, pbCoupSuivant3 }, 
+                                                            { pbCoupSuivant4, pbCoupSuivant5, pbCoupSuivant6, pbCoupSuivant7 }, 
+                                                            { pbCoupSuivant8, pbCoupSuivant9, pbCoupSuivant10, pbCoupSuivant11 }, 
+                                                            { pbCoupSuivant12, pbCoupSuivant13, pbCoupSuivant14, pbCoupSuivant15 }
+                                                           };
       // </WLebel>
 
     }
@@ -390,239 +530,168 @@ namespace TP3
     #endregion
 
     // <WLebel> et Mika Gauthier
-    #region Générateurs des différentes pièces.
+    #region Générateurs des différentes pièces pour les pièces suivantes.
 
     /// <summary>
-    /// Génère la pièce « Carré ».
+    /// Génère la pièce « Carré » comme pièce suivante.
     /// </summary>
     void GenererCarre()
     {
-      pieceEnCours = PieceTeris.block;
+      pieceSuivante = PieceTeris.block;
 
-      blocActifY[0] = 0;
-      blocActifY[1] = 0;
-      blocActifY[2] = 1;
-      blocActifY[3] = 1;
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 0;
+      blocSuivantY[2] = 1;
+      blocSuivantY[3] = 1;
 
-      blocActifX[0] = 0;
-      blocActifX[1] = 1;
-      blocActifX[2] = 0;
-      blocActifX[3] = 1;
+      blocSuivantX[0] = 0;
+      blocSuivantX[1] = 1;
+      blocSuivantX[2] = 0;
+      blocSuivantX[3] = 1;
 
-      //Mesure de sécurité (en cas de bogue)
-      for (int i = 0; i < blocActifY.Length;i++)
-      {
-        VerificationBlocActifY[i] = blocActifY[i];
-      }
-      for (int j = 0; j < blocActifX.Length; j++)
-      {
-        VerificationBlocActifX[j] = blocActifX[j];
-      }
     }
 
 
     /// <summary>
-    /// Génère la pièce « Barre horizontale ».
+    /// Génère la pièce « Barre horizontale » comme pièce suivante.
     /// </summary>
     void GenererBarreH()
     {
-      pieceEnCours = PieceTeris.barreHorizontale;
+      pieceSuivante = PieceTeris.barreHorizontale;
 
-      blocActifY[0] = 0;
-      blocActifY[1] = 0;
-      blocActifY[2] = 0;
-      blocActifY[3] = 0;
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 0;
+      blocSuivantY[2] = 0;
+      blocSuivantY[3] = 0;
 
-      blocActifX[0] = 0;
-      blocActifX[1] = 1;
-      blocActifX[2] = 2;
-      blocActifX[3] = 3;
+      blocSuivantX[0] = 0;
+      blocSuivantX[1] = 1;
+      blocSuivantX[2] = 2;
+      blocSuivantX[3] = 3;
 
-      //Mesure de sécurité (en cas de bogue)
-      for (int i = 0; i < blocActifY.Length; i++)
-      {
-        VerificationBlocActifY[i] = blocActifY[i];
-      }
-      for (int j = 0; j < blocActifX.Length; j++)
-      {
-        VerificationBlocActifX[j] = blocActifX[j];
-      }
     }
 
 
     /// <summary>
-    /// Génère la pièce « Barre Verticale».
+    /// Génère la pièce « Barre Verticale» comme pièce suivante.
     /// </summary>
     void GenererBarreV()
     {
-      pieceEnCours = PieceTeris.barreVerticale;
+      pieceSuivante = PieceTeris.barreVerticale;
 
-      blocActifY[0] = 0;
-      blocActifY[1] = 1;
-      blocActifY[2] = 2;
-      blocActifY[3] = 3;
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 1;
+      blocSuivantY[2] = 2;
+      blocSuivantY[3] = 3;
 
-      blocActifX[0] = 0;
-      blocActifX[1] = 0;
-      blocActifX[2] = 0;
-      blocActifX[3] = 0;
+      blocSuivantX[0] = 0;
+      blocSuivantX[1] = 0;
+      blocSuivantX[2] = 0;
+      blocSuivantX[3] = 0;
 
-      //Mesure de sécurité (en cas de bogue)
-      for (int i = 0; i < blocActifY.Length; i++)
-      {
-        VerificationBlocActifY[i] = blocActifY[i];
-      }
-      for (int j = 0; j < blocActifX.Length; j++)
-      {
-        VerificationBlocActifX[j] = blocActifX[j];
-      }
     }
 
     /// <summary>
-    /// Génère la pièce en forme de T.
+    /// Génère la pièce en forme de T comme pièce suivante.
     /// </summary>
     void GenererT()
     {
-      pieceEnCours = PieceTeris.pieceEnT;
+      pieceSuivante = PieceTeris.pieceEnT;
 
-      blocActifY[0] = 0;
-      blocActifY[1] = 1;
-      blocActifY[2] = 1;
-      blocActifY[3] = 1;
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 1;
+      blocSuivantY[2] = 1;
+      blocSuivantY[3] = 1;
 
-      blocActifX[0] = 1;
-      blocActifX[1] = 0;
-      blocActifX[2] = 1;
-      blocActifX[3] = 2;
+      blocSuivantX[0] = 1;
+      blocSuivantX[1] = 0;
+      blocSuivantX[2] = 1;
+      blocSuivantX[3] = 2;
 
-      //Mesure de sécurité (en cas de bogue)
-      for (int i = 0; i < blocActifY.Length; i++)
-      {
-        VerificationBlocActifY[i] = blocActifY[i];
-      }
-      for (int j = 0; j < blocActifX.Length; j++)
-      {
-        VerificationBlocActifX[j] = blocActifX[j];
-      }
     }
 
     /// <summary>
-    /// Génère la pièce en forme de J.
+    /// Génère la pièce en forme de J comme pièce suivante.
     /// </summary>
     void GenererJ()
     {
-      pieceEnCours = PieceTeris.pieceEnJ;
+      pieceSuivante = PieceTeris.pieceEnJ;
 
-      blocActifY[0] = 0;
-      blocActifY[1] = 1;
-      blocActifY[2] = 2;
-      blocActifY[3] = 2;
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 1;
+      blocSuivantY[2] = 2;
+      blocSuivantY[3] = 2;
 
-      blocActifX[0] = 1;
-      blocActifX[1] = 1;
-      blocActifX[2] = 0;
-      blocActifX[3] = 1;
+      blocSuivantX[0] = 1;
+      blocSuivantX[1] = 1;
+      blocSuivantX[2] = 0;
+      blocSuivantX[3] = 1;
 
-      //Mesure de sécurité (en cas de bogue)
-      for (int i = 0; i < blocActifY.Length; i++)
-      {
-        VerificationBlocActifY[i] = blocActifY[i];
-      }
-      for (int j = 0; j < blocActifX.Length; j++)
-      {
-        VerificationBlocActifX[j] = blocActifX[j];
-      }
     }
 
     /// <summary>
-    /// Génère la pièce en forme de L.
+    /// Génère la pièce en forme de L comme pièce suivante.
     /// </summary>
     void GenererL()
     {
-      pieceEnCours = PieceTeris.pieceEnL;
+      pieceSuivante = PieceTeris.pieceEnL;
 
-      blocActifY[0] = 0;
-      blocActifY[1] = 1;
-      blocActifY[2] = 2;
-      blocActifY[3] = 2;
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 1;
+      blocSuivantY[2] = 2;
+      blocSuivantY[3] = 2;
 
-      blocActifX[0] = 0;
-      blocActifX[1] = 0;
-      blocActifX[2] = 0;
-      blocActifX[3] = 1;
+      blocSuivantX[0] = 0;
+      blocSuivantX[1] = 0;
+      blocSuivantX[2] = 0;
+      blocSuivantX[3] = 1;
 
-      //Mesure de sécurité (en cas de bogue)
-      for (int i = 0; i < blocActifY.Length; i++)
-      {
-        VerificationBlocActifY[i] = blocActifY[i];
-      }
-      for (int j = 0; j < blocActifX.Length; j++)
-      {
-        VerificationBlocActifX[j] = blocActifX[j];
-      }
     }
 
     /// <summary>
-    /// Génère la pièce en forme de S.
+    /// Génère la pièce en forme de S comme pièce suivante.
     /// </summary>
     void GenererS()
     {
-      pieceEnCours = PieceTeris.pieceEnS;
+      pieceSuivante = PieceTeris.pieceEnS;
 
-      blocActifY[0] = 0;
-      blocActifY[1] = 1;
-      blocActifY[2] = 1;
-      blocActifY[3] = 2;
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 1;
+      blocSuivantY[2] = 1;
+      blocSuivantY[3] = 2;
 
-      blocActifX[0] = 0;
-      blocActifX[1] = 0;
-      blocActifX[2] = 1;
-      blocActifX[3] = 1;
+      blocSuivantX[0] = 0;
+      blocSuivantX[1] = 0;
+      blocSuivantX[2] = 1;
+      blocSuivantX[3] = 1;
 
-      //Mesure de sécurité (en cas de bogue)
-      for (int i = 0; i < blocActifY.Length; i++)
-      {
-        VerificationBlocActifY[i] = blocActifY[i];
-      }
-      for (int j = 0; j < blocActifX.Length; j++)
-      {
-        VerificationBlocActifX[j] = blocActifX[j];
-      }
     }
 
     /// <summary>
-    /// Génère la pièce en forme de Z.
+    /// Génère la pièce en forme de Z comme pièce suivante.
     /// </summary>
     void GenererZ()
     {
-      pieceEnCours = PieceTeris.pieceEnZ;
+      pieceSuivante = PieceTeris.pieceEnZ;
 
-      blocActifY[0] = 0;
-      blocActifY[1] = 1;
-      blocActifY[2] = 1;
-      blocActifY[3] = 2;
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 1;
+      blocSuivantY[2] = 1;
+      blocSuivantY[3] = 2;
 
-      blocActifX[0] = 1;
-      blocActifX[1] = 0;
-      blocActifX[2] = 1;
-      blocActifX[3] = 0;
+      blocSuivantX[0] = 1;
+      blocSuivantX[1] = 0;
+      blocSuivantX[2] = 1;
+      blocSuivantX[3] = 0;
 
-      //Mesure de sécurité (en cas de bogue)
-      for (int i = 0; i < blocActifY.Length; i++)
-      {
-        VerificationBlocActifY[i] = blocActifY[i];
-      }
-      for (int j = 0; j < blocActifX.Length; j++)
-      {
-        VerificationBlocActifX[j] = blocActifX[j];
-      }
     }
 
     /// <summary>
     /// Supprime toute pièce générée en remplaçant leurs coordonnées par 0.
     /// </summary>
-    void ResetPiece()
+    void ResetPieces()
     {
+      // Pièces en cours.
       pieceEnCours = PieceTeris.Rien;
 
       blocActifY[0] = 0;
@@ -635,18 +704,21 @@ namespace TP3
       blocActifX[2] = 0;
       blocActifX[3] = 0;
 
-      //Mesure de sécurité (en cas de bogue)
-      for (int i = 0; i < blocActifY.Length;i++)
-      {
-        VerificationBlocActifY[i] = blocActifY[i];
-      }
-      for (int j = 0; j < blocActifX.Length; j++)
-      {
-        VerificationBlocActifX[j] = blocActifX[j];
-      }
+      pieceSuivante = PieceTeris.Rien;
+
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 0;
+      blocSuivantY[2] = 0;
+      blocSuivantY[3] = 0;
+
+      blocSuivantX[0] = 0;
+      blocSuivantX[1] = 0;
+      blocSuivantX[2] = 0;
+      blocSuivantX[3] = 0;
+
     }
     #endregion
-    // </WLebel> et Mika Gauthier
+    // </WLebel>
 
     // <WLebel>
     /// <summary>
@@ -705,11 +777,14 @@ namespace TP3
         VérificationFinPartie();
         if (jeuEstEnCours == true)
         {
+          GenererPieceEnCours();
           GenererPieceAleatoire();
           colonneCourante = colonneDeDepart;
           ligneCourante = 0;
           ActualiserTableauPieces(pieceEnCours);
           AfficherJeu();
+          EffacerCoupSuivant();
+          AfficherPieceSuivante();
         }
         else
         {
@@ -830,7 +905,11 @@ namespace TP3
         musique.controls.play();
       }
 
-      // Génère la première pièce.
+      // Génère la première pièce en cours.
+      GenererPieceAleatoire();
+      GenererPieceEnCours();
+
+      // Génère la pièce suivante.
       GenererPieceAleatoire();
 
       // Active le timer.
@@ -844,6 +923,7 @@ namespace TP3
       // Actualise le tableau des pièces et affiche le jeu.
       ActualiserTableauPieces(pieceEnCours);
       AfficherJeu();
+      AfficherPieceSuivante();
 
       // Définit que le jeu est en cours.
       jeuEstEnCours = true;
@@ -869,7 +949,7 @@ namespace TP3
       timerTempsDeJeu.Enabled = false;
 
       // Désactive la pièce.
-      ResetPiece();
+      ResetPieces();
 
       // Arrête la musique
       musique.controls.stop();
@@ -905,7 +985,6 @@ namespace TP3
 
       //Remise à 0
       RemiseDesValeurInitiales();
-
       // Mika Gauthier
     }
     // </WLebel>
@@ -953,7 +1032,7 @@ namespace TP3
           nbPieceEnZ++;
           break;
         default:
-          ResetPiece();
+          ResetPieces();
           break;
       }
     }
@@ -1465,6 +1544,8 @@ namespace TP3
       // Affichage du pointage et du niveau par défaut.
       AfficherPointageDansFenetreJeu();
       AfficherNiveauDansFenetreJeu();
+      // Effacer le coup suivant.
+      EffacerCoupSuivant();
       // </WLebel>
     }
 
