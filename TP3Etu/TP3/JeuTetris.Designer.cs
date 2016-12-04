@@ -79,7 +79,6 @@
       this.menuReinitialiser = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
       this.menuQuitter = new System.Windows.Forms.ToolStripMenuItem();
-      this.menuStatistiques = new System.Windows.Forms.ToolStripMenuItem();
       this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
       this.timerJeu = new System.Windows.Forms.Timer(this.components);
       this.timerTempsDeJeu = new System.Windows.Forms.Timer(this.components);
@@ -136,7 +135,7 @@
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 149F));
+      this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 157F));
       this.tableauJeu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
       this.tableauJeu.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableauJeu.Location = new System.Drawing.Point(240, 0);
@@ -281,9 +280,10 @@
       // 
       this.pbCoupSuivant0.BackColor = System.Drawing.Color.Black;
       this.pbCoupSuivant0.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pbCoupSuivant0.Location = new System.Drawing.Point(3, 3);
+      this.pbCoupSuivant0.Location = new System.Drawing.Point(1, 1);
+      this.pbCoupSuivant0.Margin = new System.Windows.Forms.Padding(1);
       this.pbCoupSuivant0.Name = "pbCoupSuivant0";
-      this.pbCoupSuivant0.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant0.Size = new System.Drawing.Size(50, 41);
       this.pbCoupSuivant0.TabIndex = 0;
       this.pbCoupSuivant0.TabStop = false;
       // 
@@ -291,9 +291,10 @@
       // 
       this.pbCoupSuivant1.BackColor = System.Drawing.Color.Black;
       this.pbCoupSuivant1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pbCoupSuivant1.Location = new System.Drawing.Point(55, 3);
+      this.pbCoupSuivant1.Location = new System.Drawing.Point(53, 1);
+      this.pbCoupSuivant1.Margin = new System.Windows.Forms.Padding(1);
       this.pbCoupSuivant1.Name = "pbCoupSuivant1";
-      this.pbCoupSuivant1.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant1.Size = new System.Drawing.Size(50, 41);
       this.pbCoupSuivant1.TabIndex = 1;
       this.pbCoupSuivant1.TabStop = false;
       // 
@@ -301,9 +302,10 @@
       // 
       this.pbCoupSuivant2.BackColor = System.Drawing.Color.Black;
       this.pbCoupSuivant2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pbCoupSuivant2.Location = new System.Drawing.Point(107, 3);
+      this.pbCoupSuivant2.Location = new System.Drawing.Point(105, 1);
+      this.pbCoupSuivant2.Margin = new System.Windows.Forms.Padding(1);
       this.pbCoupSuivant2.Name = "pbCoupSuivant2";
-      this.pbCoupSuivant2.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant2.Size = new System.Drawing.Size(50, 41);
       this.pbCoupSuivant2.TabIndex = 2;
       this.pbCoupSuivant2.TabStop = false;
       // 
@@ -311,9 +313,10 @@
       // 
       this.pbCoupSuivant3.BackColor = System.Drawing.Color.Black;
       this.pbCoupSuivant3.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pbCoupSuivant3.Location = new System.Drawing.Point(159, 3);
+      this.pbCoupSuivant3.Location = new System.Drawing.Point(157, 1);
+      this.pbCoupSuivant3.Margin = new System.Windows.Forms.Padding(1);
       this.pbCoupSuivant3.Name = "pbCoupSuivant3";
-      this.pbCoupSuivant3.Size = new System.Drawing.Size(48, 37);
+      this.pbCoupSuivant3.Size = new System.Drawing.Size(52, 41);
       this.pbCoupSuivant3.TabIndex = 3;
       this.pbCoupSuivant3.TabStop = false;
       // 
@@ -321,9 +324,10 @@
       // 
       this.pbCoupSuivant7.BackColor = System.Drawing.Color.Black;
       this.pbCoupSuivant7.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pbCoupSuivant7.Location = new System.Drawing.Point(159, 46);
+      this.pbCoupSuivant7.Location = new System.Drawing.Point(157, 44);
+      this.pbCoupSuivant7.Margin = new System.Windows.Forms.Padding(1);
       this.pbCoupSuivant7.Name = "pbCoupSuivant7";
-      this.pbCoupSuivant7.Size = new System.Drawing.Size(48, 37);
+      this.pbCoupSuivant7.Size = new System.Drawing.Size(52, 41);
       this.pbCoupSuivant7.TabIndex = 4;
       this.pbCoupSuivant7.TabStop = false;
       // 
@@ -331,9 +335,10 @@
       // 
       this.pbCoupSuivant6.BackColor = System.Drawing.Color.Black;
       this.pbCoupSuivant6.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pbCoupSuivant6.Location = new System.Drawing.Point(107, 46);
+      this.pbCoupSuivant6.Location = new System.Drawing.Point(105, 44);
+      this.pbCoupSuivant6.Margin = new System.Windows.Forms.Padding(1);
       this.pbCoupSuivant6.Name = "pbCoupSuivant6";
-      this.pbCoupSuivant6.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant6.Size = new System.Drawing.Size(50, 41);
       this.pbCoupSuivant6.TabIndex = 5;
       this.pbCoupSuivant6.TabStop = false;
       // 
@@ -341,9 +346,10 @@
       // 
       this.pbCoupSuivant5.BackColor = System.Drawing.Color.Black;
       this.pbCoupSuivant5.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pbCoupSuivant5.Location = new System.Drawing.Point(55, 46);
+      this.pbCoupSuivant5.Location = new System.Drawing.Point(53, 44);
+      this.pbCoupSuivant5.Margin = new System.Windows.Forms.Padding(1);
       this.pbCoupSuivant5.Name = "pbCoupSuivant5";
-      this.pbCoupSuivant5.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant5.Size = new System.Drawing.Size(50, 41);
       this.pbCoupSuivant5.TabIndex = 6;
       this.pbCoupSuivant5.TabStop = false;
       // 
@@ -351,9 +357,10 @@
       // 
       this.pbCoupSuivant4.BackColor = System.Drawing.Color.Black;
       this.pbCoupSuivant4.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pbCoupSuivant4.Location = new System.Drawing.Point(3, 46);
+      this.pbCoupSuivant4.Location = new System.Drawing.Point(1, 44);
+      this.pbCoupSuivant4.Margin = new System.Windows.Forms.Padding(1);
       this.pbCoupSuivant4.Name = "pbCoupSuivant4";
-      this.pbCoupSuivant4.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant4.Size = new System.Drawing.Size(50, 41);
       this.pbCoupSuivant4.TabIndex = 7;
       this.pbCoupSuivant4.TabStop = false;
       // 
@@ -361,9 +368,10 @@
       // 
       this.pbCoupSuivant11.BackColor = System.Drawing.Color.Black;
       this.pbCoupSuivant11.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pbCoupSuivant11.Location = new System.Drawing.Point(159, 89);
+      this.pbCoupSuivant11.Location = new System.Drawing.Point(157, 87);
+      this.pbCoupSuivant11.Margin = new System.Windows.Forms.Padding(1);
       this.pbCoupSuivant11.Name = "pbCoupSuivant11";
-      this.pbCoupSuivant11.Size = new System.Drawing.Size(48, 37);
+      this.pbCoupSuivant11.Size = new System.Drawing.Size(52, 41);
       this.pbCoupSuivant11.TabIndex = 8;
       this.pbCoupSuivant11.TabStop = false;
       // 
@@ -371,9 +379,10 @@
       // 
       this.pbCoupSuivant10.BackColor = System.Drawing.Color.Black;
       this.pbCoupSuivant10.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pbCoupSuivant10.Location = new System.Drawing.Point(107, 89);
+      this.pbCoupSuivant10.Location = new System.Drawing.Point(105, 87);
+      this.pbCoupSuivant10.Margin = new System.Windows.Forms.Padding(1);
       this.pbCoupSuivant10.Name = "pbCoupSuivant10";
-      this.pbCoupSuivant10.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant10.Size = new System.Drawing.Size(50, 41);
       this.pbCoupSuivant10.TabIndex = 9;
       this.pbCoupSuivant10.TabStop = false;
       // 
@@ -381,9 +390,10 @@
       // 
       this.pbCoupSuivant9.BackColor = System.Drawing.Color.Black;
       this.pbCoupSuivant9.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pbCoupSuivant9.Location = new System.Drawing.Point(55, 89);
+      this.pbCoupSuivant9.Location = new System.Drawing.Point(53, 87);
+      this.pbCoupSuivant9.Margin = new System.Windows.Forms.Padding(1);
       this.pbCoupSuivant9.Name = "pbCoupSuivant9";
-      this.pbCoupSuivant9.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant9.Size = new System.Drawing.Size(50, 41);
       this.pbCoupSuivant9.TabIndex = 10;
       this.pbCoupSuivant9.TabStop = false;
       // 
@@ -391,9 +401,10 @@
       // 
       this.pbCoupSuivant8.BackColor = System.Drawing.Color.Black;
       this.pbCoupSuivant8.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pbCoupSuivant8.Location = new System.Drawing.Point(3, 89);
+      this.pbCoupSuivant8.Location = new System.Drawing.Point(1, 87);
+      this.pbCoupSuivant8.Margin = new System.Windows.Forms.Padding(1);
       this.pbCoupSuivant8.Name = "pbCoupSuivant8";
-      this.pbCoupSuivant8.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant8.Size = new System.Drawing.Size(50, 41);
       this.pbCoupSuivant8.TabIndex = 11;
       this.pbCoupSuivant8.TabStop = false;
       // 
@@ -401,9 +412,10 @@
       // 
       this.pbCoupSuivant15.BackColor = System.Drawing.Color.Black;
       this.pbCoupSuivant15.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pbCoupSuivant15.Location = new System.Drawing.Point(159, 132);
+      this.pbCoupSuivant15.Location = new System.Drawing.Point(157, 130);
+      this.pbCoupSuivant15.Margin = new System.Windows.Forms.Padding(1);
       this.pbCoupSuivant15.Name = "pbCoupSuivant15";
-      this.pbCoupSuivant15.Size = new System.Drawing.Size(48, 37);
+      this.pbCoupSuivant15.Size = new System.Drawing.Size(52, 41);
       this.pbCoupSuivant15.TabIndex = 12;
       this.pbCoupSuivant15.TabStop = false;
       // 
@@ -411,9 +423,10 @@
       // 
       this.pbCoupSuivant14.BackColor = System.Drawing.Color.Black;
       this.pbCoupSuivant14.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pbCoupSuivant14.Location = new System.Drawing.Point(107, 132);
+      this.pbCoupSuivant14.Location = new System.Drawing.Point(105, 130);
+      this.pbCoupSuivant14.Margin = new System.Windows.Forms.Padding(1);
       this.pbCoupSuivant14.Name = "pbCoupSuivant14";
-      this.pbCoupSuivant14.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant14.Size = new System.Drawing.Size(50, 41);
       this.pbCoupSuivant14.TabIndex = 13;
       this.pbCoupSuivant14.TabStop = false;
       // 
@@ -421,9 +434,10 @@
       // 
       this.pbCoupSuivant13.BackColor = System.Drawing.Color.Black;
       this.pbCoupSuivant13.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pbCoupSuivant13.Location = new System.Drawing.Point(55, 132);
+      this.pbCoupSuivant13.Location = new System.Drawing.Point(53, 130);
+      this.pbCoupSuivant13.Margin = new System.Windows.Forms.Padding(1);
       this.pbCoupSuivant13.Name = "pbCoupSuivant13";
-      this.pbCoupSuivant13.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant13.Size = new System.Drawing.Size(50, 41);
       this.pbCoupSuivant13.TabIndex = 14;
       this.pbCoupSuivant13.TabStop = false;
       // 
@@ -431,9 +445,10 @@
       // 
       this.pbCoupSuivant12.BackColor = System.Drawing.Color.Black;
       this.pbCoupSuivant12.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pbCoupSuivant12.Location = new System.Drawing.Point(3, 132);
+      this.pbCoupSuivant12.Location = new System.Drawing.Point(1, 130);
+      this.pbCoupSuivant12.Margin = new System.Windows.Forms.Padding(1);
       this.pbCoupSuivant12.Name = "pbCoupSuivant12";
-      this.pbCoupSuivant12.Size = new System.Drawing.Size(46, 37);
+      this.pbCoupSuivant12.Size = new System.Drawing.Size(50, 41);
       this.pbCoupSuivant12.TabIndex = 15;
       this.pbCoupSuivant12.TabStop = false;
       // 
@@ -693,7 +708,6 @@
       // 
       this.menuStripJeu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuPartie,
-            this.menuStatistiques,
             this.menuConfiguration});
       this.menuStripJeu.Location = new System.Drawing.Point(0, 0);
       this.menuStripJeu.Name = "menuStripJeu";
@@ -715,34 +729,28 @@
       // menuJouer
       // 
       this.menuJouer.Name = "menuJouer";
-      this.menuJouer.Size = new System.Drawing.Size(134, 22);
+      this.menuJouer.Size = new System.Drawing.Size(152, 22);
       this.menuJouer.Text = "Jouer";
       this.menuJouer.Click += new System.EventHandler(this.OnClickMenuJouer);
       // 
       // menuReinitialiser
       // 
       this.menuReinitialiser.Name = "menuReinitialiser";
-      this.menuReinitialiser.Size = new System.Drawing.Size(134, 22);
+      this.menuReinitialiser.Size = new System.Drawing.Size(152, 22);
       this.menuReinitialiser.Text = "Réinitialiser";
       this.menuReinitialiser.Click += new System.EventHandler(this.menuReinitialiser_Click);
       // 
       // toolStripMenuItem1
       // 
       this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-      this.toolStripMenuItem1.Size = new System.Drawing.Size(131, 6);
+      this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
       // 
       // menuQuitter
       // 
       this.menuQuitter.Name = "menuQuitter";
-      this.menuQuitter.Size = new System.Drawing.Size(134, 22);
+      this.menuQuitter.Size = new System.Drawing.Size(152, 22);
       this.menuQuitter.Text = "Quitter";
       this.menuQuitter.Click += new System.EventHandler(this.menuQuitter_Click);
-      // 
-      // menuStatistiques
-      // 
-      this.menuStatistiques.Name = "menuStatistiques";
-      this.menuStatistiques.Size = new System.Drawing.Size(79, 20);
-      this.menuStatistiques.Text = "Statistiques";
       // 
       // menuConfiguration
       // 
@@ -823,7 +831,6 @@
     private System.Windows.Forms.ToolStripMenuItem menuReinitialiser;
     private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     private System.Windows.Forms.ToolStripMenuItem menuQuitter;
-    private System.Windows.Forms.ToolStripMenuItem menuStatistiques;
     private System.Windows.Forms.ToolStripMenuItem menuConfiguration;
     private System.Windows.Forms.Timer timerJeu;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;

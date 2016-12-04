@@ -1,4 +1,14 @@
-﻿using System;
+﻿// <WLebel>
+/* L'application sert à jouer au jeu «Tetris» en permettant au joueur
+ * de modifier plusieurs paramètres du jeu.
+ * 
+ * Auteurs: 
+ * William Lebel,
+ * Mika Gauthier
+ * */
+ // </WLebel>
+
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using WMPLib;
@@ -15,7 +25,7 @@ namespace TP3
 
     // <WLebel> (et mika gauthier, voir plus bas dans la région Variable partagées)
     #region Variables patagées
-    // Représentation visuelles du jeu en mémoire.
+    // Représentation visuelle du jeu en mémoire.
     PictureBox[,] toutesImagesVisuelles = null;
 
     // Représentation visuelle des coups suivants.
@@ -39,11 +49,11 @@ namespace TP3
     // Colonne où les nouveaux blocs apparaissent sur la surface du jeu.
     int colonneDeDepart = 5;
 
-    // Tableau qui représente les positions vertivales relativent des blocs d'une pièce 
+    // Tableau qui représente les positions verticales relatives des blocs d'une pièce 
     // par rapport aux variables ligneCourante et colonneCourante.
     int[] blocActifY = new int[4];
 
-    // Tableau qui représente les positions horizontales relativent des blocs d'une pièce 
+    // Tableau qui représente les positions horizontales relatives des blocs d'une pièce 
     // par rapport aux variables ligneCourante et colonneCourante.
     int[] blocActifX = new int[4];
 
@@ -56,16 +66,16 @@ namespace TP3
     // Tableau qui représente les positions verticales des blocs de la pièce suivante.
     int[] blocSuivantX = new int[4];
 
-    // Type de pièce qui sera jouée.
+    // Type de pièce qui est en attente d'être jouée.
     PieceTeris pieceSuivante = PieceTeris.Rien;
 
-    // Variable qui sert à choisir une pièce de manière aléatoire.
+    // Variable qui sert à choisir une pièce de façon aléatoire.
     Random rnd = new Random();
 
-    // Sert à savoir si le jeu est en cours d'exécution.
+    // Sert à savoir si le jeu est en cours d'exécution (true) ou non (false).
     bool jeuEstEnCours = false;
 
-    // Sert à savoir si on doit jouer une musique durant la partie.
+    // Sert à savoir si on doit jouer une musique durant la partie (true) ou non (false).
     bool doitJouerMusique = true;
 
     // Variable qui sert à jouer la musique.
@@ -82,7 +92,7 @@ namespace TP3
     // Variable qui indique le nombre de ligne complétées total dans une partie.
     int nbLignesCompleteesAuTotal = 0;
 
-    // Variables qui détermine quelle touche est utilisée pour quelle commande du joueur.
+    // Variables qui détermine quelle touche active quel commande.
     // Touche pour déplacer la pièce à gauche. Par défaut: 'a'.
     char toucheDeplacerGauche = 'a';
     // Touche pour descendre la pièce d'une case. Par défaut: 's'.
@@ -96,7 +106,7 @@ namespace TP3
     // Touche pour faire tomber la pièce. Par défaut: barre espace.
     char toucheTomber = (char)32;
 
-    //Mika Gauthier
+    // Mika Gauthier
     //État du joueur au début
     Mouvement keyUsed = Mouvement.Immobile;
 
@@ -130,7 +140,7 @@ namespace TP3
 
     //Compteur temporel partagé
     int compteurTemporel = 0;
-    //Mika Gauthier
+    // /Mika Gauthier
     #endregion
     // </WLebel>
 
@@ -170,132 +180,7 @@ namespace TP3
 
     #region Code à développer
 
-    // <WLebel>
-    /// <summary>
-    /// switch pièce suivante et pièce en cours...
-    /// </summary>
-    void GenererPieceEnCours()
-    {
-      // Change le bloc actif pour le bloc suivant.
-      // Pour toutes les coordonées des blocs, prendre la
-      // valeur des blocs suivants.
-      pieceEnCours = pieceSuivante;
-      for (int i = 0; i < blocActifY.Length; i++)
-      {
-        blocActifY[i] = blocSuivantY[i];
-        blocActifX[i] = blocSuivantX[i];
-      }
-      // </WLebel>
-
-      // Ajoute le bloc au compteur de blocs.
-      switch(pieceEnCours)
-      {
-        case PieceTeris.block:
-          nbPieceBloc++;
-          break;
-        case PieceTeris.barreVerticale:
-          nbPieceBarreVerticale++;
-          break;
-        case PieceTeris.barreHorizontale:
-          nbPieceBarreHorizontale++;
-          break;
-        case PieceTeris.pieceEnT:
-          nbPieceEnT++;
-          break;
-        case PieceTeris.pieceEnJ:
-          nbPieceEnJ++;
-          break;
-        case PieceTeris.pieceEnL:
-          nbPieceEnL++;
-          break;
-        case PieceTeris.pieceEnS:
-          nbPieceEnS++;
-          break;
-        case PieceTeris.pieceEnZ:
-          nbPieceEnZ++;
-          break;
-
-      }
-
-      // Mika Gauthier
-      //Mesure de sécurité (en cas de bogue)
-      for (int i = 0; i < blocActifY.Length; i++)
-      {
-        VerificationBlocActifY[i] = blocActifY[i];
-      }
-      for (int j = 0; j < blocActifX.Length; j++)
-      {
-        VerificationBlocActifX[j] = blocActifX[j];
-      }
-      // Mika Gauthier
-    }
-
-    // <WLebel>
-    /// <summary>
-    /// remet tout noir
-    /// </summary>
-    void EffacerCoupSuivant()
-    {
-      // Réafiche les blocs sous leur état initial.
-      for (int i = 0; i < tousLesPicturesBoxCoupSuivant.GetLength(0); i++)
-      {
-        for (int j = 0; j < tousLesPicturesBoxCoupSuivant.GetLength(1); j++)
-        {
-          tousLesPicturesBoxCoupSuivant[i, j].BackColor = Color.Black;
-        }
-      }
-    }
-    // </WLebel>
-    
-    // <WLebel>
-    /// <summary>
-    /// affiche suivant
-    /// </summary>
-    void AfficherPieceSuivante()
-    {
-      // Affiche une couleur de fond selon la pièce.
-      for (int i = 0; i < blocSuivantY.Length; i++)
-      {
-        if (pieceSuivante == PieceTeris.Rien)
-        {
-          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Black;
-        }
-        else if (pieceSuivante == PieceTeris.Gelee)
-        {
-          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Gray;
-        }
-        else if (pieceSuivante == PieceTeris.block)
-        {
-          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Yellow;
-        }
-        else if (pieceSuivante == PieceTeris.barreVerticale || pieceSuivante == PieceTeris.barreHorizontale)
-        {
-          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Cyan;
-        }
-        else if (pieceSuivante == PieceTeris.pieceEnT)
-        {
-          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Purple;
-        }
-        else if (pieceSuivante == PieceTeris.pieceEnJ)
-        {
-          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Orange;
-        }
-        else if (pieceSuivante == PieceTeris.pieceEnL)
-        {
-          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.DarkBlue;
-        }
-        else if (pieceSuivante == PieceTeris.pieceEnS)
-        {
-          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Red;
-        }
-        else if (pieceSuivante == PieceTeris.pieceEnZ)
-        {
-          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.LawnGreen;
-        }
-      }
-    }
-    // </WLebel>
-
+    #region Méthodes qui gèrent les événements et qui sont appelées automatiquement.
     /// <summary>
     /// Gestionnaire de l'événement se produisant lors du premier affichage 
     /// du formulaire principal.
@@ -314,411 +199,15 @@ namespace TP3
       musique.URL = @"Resources/MusiqueTetris.mp3";
       musique.settings.setMode("loop", true);
 
-      tousLesPicturesBoxCoupSuivant = new PictureBox[4, 4] { 
-                                                            { pbCoupSuivant0, pbCoupSuivant1, pbCoupSuivant2, pbCoupSuivant3 }, 
-                                                            { pbCoupSuivant4, pbCoupSuivant5, pbCoupSuivant6, pbCoupSuivant7 }, 
-                                                            { pbCoupSuivant8, pbCoupSuivant9, pbCoupSuivant10, pbCoupSuivant11 }, 
+      tousLesPicturesBoxCoupSuivant = new PictureBox[4, 4] {
+                                                            { pbCoupSuivant0, pbCoupSuivant1, pbCoupSuivant2, pbCoupSuivant3 },
+                                                            { pbCoupSuivant4, pbCoupSuivant5, pbCoupSuivant6, pbCoupSuivant7 },
+                                                            { pbCoupSuivant8, pbCoupSuivant9, pbCoupSuivant10, pbCoupSuivant11 },
                                                             { pbCoupSuivant12, pbCoupSuivant13, pbCoupSuivant14, pbCoupSuivant15 }
                                                            };
       // </WLebel>
 
     }
-    
-    // <WLebel>
-    /// <summary>
-    /// Méthode qui initialise le nombre de lignes et de colonnes du jeu, la surface de jeu,
-    /// le tableau des pièces du jeu et la position de départ des blocs selon un nouveau
-    /// nombre de lignes et de colonnes données.
-    /// </summary>
-    /// <param name="nouveauNbLignes">Nouveau nombre de lignes qui composeront le jeu.</param>
-    /// <param name="nouveauNbColonnes">Nouveau nombre de colonnes qui composeront le jeu.</param>
-    void InitialiserValeursJeu(int nouveauNbLignes, int nouveauNbColonnes)
-    {
-      nbColonnesJeu = nouveauNbColonnes;
-      nbLignesJeu = nouveauNbLignes;
-
-      InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
-
-      tableauPieces = new PieceTeris[nbLignesJeu, nbColonnesJeu];
-      // Initialise le tableau de pièces à vide.
-      for (int i = 0; i < tableauPieces.GetLength(0); i++)
-      {
-        for (int j = 0; j < tableauPieces.GetLength(1); j++)
-        {
-          tableauPieces[i, j] = PieceTeris.Rien;
-        }
-      }
-
-      // Sélectionne la colonne du milieu
-      colonneDeDepart = nbColonnesJeu / 2;
-    }
-    // </WLebel>
-
-    // <WLebel>
-    /// <summary>
-    /// Méthode qui permet de remplacer les coordonées des pièces courantes avec un autre type de pièce
-    /// dans le but d'actualiser la nouvelle position des pièces.
-    /// </summary>
-    /// <param name="pieceQuiRemplace">Pièce qui sera attribuée aux coordonnées présentes de la pièce.</param>
-    void ActualiserTableauPieces(PieceTeris pieceQuiRemplace)
-    {
-      for (int i = 0; i < blocActifY.Length; i++)
-      {
-        tableauPieces[blocActifY[i] + ligneCourante, blocActifX[i] + colonneCourante] = pieceQuiRemplace;
-      }
-    }
-    // </WLebel>
-
-    // <WLebel>
-    /// <summary>
-    /// Affiche le tableau de jeu au joueur en utilisant différentes couleurs pour les différents types de pièce.
-    /// </summary>
-    void AfficherJeu()
-    {
-      // Affiche une couleur de fond selon la pièce.
-      for (int i = 0; i < tableauPieces.GetLength(0); i++)
-      {
-        for (int j = 0; j < tableauPieces.GetLength(1); j++)
-        {
-          if (tableauPieces[i, j] == PieceTeris.Rien)
-          {
-            toutesImagesVisuelles[i, j].BackColor = Color.Black;
-          }
-          else if (tableauPieces[i, j] == PieceTeris.Gelee)
-          {
-            toutesImagesVisuelles[i, j].BackColor = Color.Gray;
-          }
-          else if (tableauPieces[i, j] == PieceTeris.block)
-          {
-            toutesImagesVisuelles[i, j].BackColor = Color.Yellow;
-          }
-          else if (tableauPieces[i, j] == PieceTeris.barreVerticale || tableauPieces[i, j] == PieceTeris.barreHorizontale)
-          {
-            toutesImagesVisuelles[i, j].BackColor = Color.Cyan;
-          }
-          else if (tableauPieces[i, j] == PieceTeris.pieceEnT)
-          {
-            toutesImagesVisuelles[i, j].BackColor = Color.Purple;
-          }
-          else if (tableauPieces[i, j] == PieceTeris.pieceEnJ)
-          {
-            toutesImagesVisuelles[i, j].BackColor = Color.Orange;
-          }
-          else if (tableauPieces[i, j] == PieceTeris.pieceEnL)
-          {
-            toutesImagesVisuelles[i, j].BackColor = Color.DarkBlue;
-          }
-          else if (tableauPieces[i, j] == PieceTeris.pieceEnS)
-          {
-            toutesImagesVisuelles[i, j].BackColor = Color.Red;
-          }
-          else if (tableauPieces[i, j] == PieceTeris.pieceEnZ)
-          {
-            toutesImagesVisuelles[i, j].BackColor = Color.LawnGreen;
-          }
-        }
-      }
-    }
-
-    #region Méthodes qui gèrent les déplacements des pièces
-
-    // <WLebel>
-    /// <summary>
-    /// Méthode qui détermine si la pièce active peut bouger dans un certain sens.
-    /// La pièce peut bouger si son mouvement n'entraîne pas une sortie du jeu
-    /// ou une collision avec une pièce gelée.
-    /// </summary>
-    /// <param name="sens">Détermine le sens du déplacement à tester.</param>
-    /// <returns></returns>
-    bool DeterminerSiBlocPeutBouger(Mouvement sens)
-    {
-      bool peutBouger = true;
-
-      if (sens == Mouvement.DeplacerBas)
-      {
-        // Pour tous les blocs actifs.
-        for (int i = 0; i < blocActifY.Length; i++)
-        {
-          // Test si le nouvement causera un débordement de tableau (si le mouvement positionne les 
-          // blocs en dehors du jeu).
-          // Sinon, test si à la nouvelle position se trouve une pièce gelée.
-          if (blocActifY[i] + ligneCourante + 1 >= nbLignesJeu)
-          {
-            peutBouger = false;
-          }
-          else if (tableauPieces[blocActifY[i] + ligneCourante + 1, blocActifX[i] + colonneCourante] == PieceTeris.Gelee)
-          {
-            peutBouger = false;
-          }
-        }
-      }
-      else if (sens == Mouvement.DeplacerGauche)
-      {
-        for (int i = 0; i < blocActifY.Length; i++)
-        {
-          if (blocActifX[i] + colonneCourante - 1 < 0)
-          {
-            peutBouger = false;
-          }
-          else if (tableauPieces[blocActifY[i] + ligneCourante, blocActifX[i] + colonneCourante - 1] == PieceTeris.Gelee)
-          {
-            peutBouger = false;
-          }
-        }
-      }
-      else if (sens == Mouvement.DeplacerDroite)
-      {
-        for (int i = 0; i < blocActifY.Length; i++)
-        {
-          if (blocActifX[i] + colonneCourante + 1 >= nbColonnesJeu)
-          {
-            peutBouger = false;
-          }
-          else if (tableauPieces[blocActifY[i] + ligneCourante, blocActifX[i] + colonneCourante + 1] == PieceTeris.Gelee)
-          {
-            peutBouger = false;
-          }
-        }
-      }
-      else if (sens == Mouvement.RotationAntihoraire)
-      {
-        for (int i = 0; i < blocActifY.Length; i++)
-        {
-          if (-blocActifX[i] + ligneCourante < 0 || -blocActifX[i] + ligneCourante >= nbLignesJeu || blocActifY[i] + colonneCourante < 0 || blocActifY[i] + colonneCourante >= nbColonnesJeu)
-          {
-            peutBouger = false;
-          }
-          else if (tableauPieces[-blocActifX[i] + ligneCourante, blocActifY[i] + colonneCourante] == PieceTeris.Gelee)
-          {
-            peutBouger = false;
-          }
-        }
-      }
-      else if (sens == Mouvement.RotationHoraire)
-      {
-        for (int i = 0; i < blocActifY.Length; i++)
-        {
-          if (blocActifX[i] + ligneCourante < 0 || blocActifX[i] + ligneCourante >= nbLignesJeu || -blocActifY[i] + colonneCourante < 0 || -blocActifY[i] + colonneCourante >= nbColonnesJeu)
-          {
-            peutBouger = false;
-          }
-          else if (tableauPieces[blocActifX[i] + ligneCourante, -blocActifY[i] + colonneCourante] == PieceTeris.Gelee)
-          {
-            peutBouger = false;
-          }
-        }
-      }
-      else if (sens == Mouvement.DeplacerHaut) // Seulement à titre de test.
-      {
-        for (int i = 0; i < blocActifY.Length; i++)
-        {
-          if (blocActifY[i] + ligneCourante - 1 < 0)
-          {
-            peutBouger = false;
-          }
-          else if (tableauPieces[blocActifY[i] + ligneCourante - 1, blocActifX[i] + colonneCourante] == PieceTeris.Gelee)
-          {
-            peutBouger = false;
-          }
-        }
-      }
-
-      return peutBouger;
-    }
-    // </WLebel>
-
-    #endregion
-
-    // <WLebel> et Mika Gauthier
-    #region Générateurs des différentes pièces pour les pièces suivantes.
-
-    /// <summary>
-    /// Génère la pièce « Carré » comme pièce suivante.
-    /// </summary>
-    void GenererCarre()
-    {
-      pieceSuivante = PieceTeris.block;
-
-      blocSuivantY[0] = 0;
-      blocSuivantY[1] = 0;
-      blocSuivantY[2] = 1;
-      blocSuivantY[3] = 1;
-
-      blocSuivantX[0] = 0;
-      blocSuivantX[1] = 1;
-      blocSuivantX[2] = 0;
-      blocSuivantX[3] = 1;
-
-    }
-
-
-    /// <summary>
-    /// Génère la pièce « Barre horizontale » comme pièce suivante.
-    /// </summary>
-    void GenererBarreH()
-    {
-      pieceSuivante = PieceTeris.barreHorizontale;
-
-      blocSuivantY[0] = 0;
-      blocSuivantY[1] = 0;
-      blocSuivantY[2] = 0;
-      blocSuivantY[3] = 0;
-
-      blocSuivantX[0] = 0;
-      blocSuivantX[1] = 1;
-      blocSuivantX[2] = 2;
-      blocSuivantX[3] = 3;
-
-    }
-
-
-    /// <summary>
-    /// Génère la pièce « Barre Verticale» comme pièce suivante.
-    /// </summary>
-    void GenererBarreV()
-    {
-      pieceSuivante = PieceTeris.barreVerticale;
-
-      blocSuivantY[0] = 0;
-      blocSuivantY[1] = 1;
-      blocSuivantY[2] = 2;
-      blocSuivantY[3] = 3;
-
-      blocSuivantX[0] = 0;
-      blocSuivantX[1] = 0;
-      blocSuivantX[2] = 0;
-      blocSuivantX[3] = 0;
-
-    }
-
-    /// <summary>
-    /// Génère la pièce en forme de T comme pièce suivante.
-    /// </summary>
-    void GenererT()
-    {
-      pieceSuivante = PieceTeris.pieceEnT;
-
-      blocSuivantY[0] = 0;
-      blocSuivantY[1] = 1;
-      blocSuivantY[2] = 1;
-      blocSuivantY[3] = 1;
-
-      blocSuivantX[0] = 1;
-      blocSuivantX[1] = 0;
-      blocSuivantX[2] = 1;
-      blocSuivantX[3] = 2;
-
-    }
-
-    /// <summary>
-    /// Génère la pièce en forme de J comme pièce suivante.
-    /// </summary>
-    void GenererJ()
-    {
-      pieceSuivante = PieceTeris.pieceEnJ;
-
-      blocSuivantY[0] = 0;
-      blocSuivantY[1] = 1;
-      blocSuivantY[2] = 2;
-      blocSuivantY[3] = 2;
-
-      blocSuivantX[0] = 1;
-      blocSuivantX[1] = 1;
-      blocSuivantX[2] = 0;
-      blocSuivantX[3] = 1;
-
-    }
-
-    /// <summary>
-    /// Génère la pièce en forme de L comme pièce suivante.
-    /// </summary>
-    void GenererL()
-    {
-      pieceSuivante = PieceTeris.pieceEnL;
-
-      blocSuivantY[0] = 0;
-      blocSuivantY[1] = 1;
-      blocSuivantY[2] = 2;
-      blocSuivantY[3] = 2;
-
-      blocSuivantX[0] = 0;
-      blocSuivantX[1] = 0;
-      blocSuivantX[2] = 0;
-      blocSuivantX[3] = 1;
-
-    }
-
-    /// <summary>
-    /// Génère la pièce en forme de S comme pièce suivante.
-    /// </summary>
-    void GenererS()
-    {
-      pieceSuivante = PieceTeris.pieceEnS;
-
-      blocSuivantY[0] = 0;
-      blocSuivantY[1] = 1;
-      blocSuivantY[2] = 1;
-      blocSuivantY[3] = 2;
-
-      blocSuivantX[0] = 0;
-      blocSuivantX[1] = 0;
-      blocSuivantX[2] = 1;
-      blocSuivantX[3] = 1;
-
-    }
-
-    /// <summary>
-    /// Génère la pièce en forme de Z comme pièce suivante.
-    /// </summary>
-    void GenererZ()
-    {
-      pieceSuivante = PieceTeris.pieceEnZ;
-
-      blocSuivantY[0] = 0;
-      blocSuivantY[1] = 1;
-      blocSuivantY[2] = 1;
-      blocSuivantY[3] = 2;
-
-      blocSuivantX[0] = 1;
-      blocSuivantX[1] = 0;
-      blocSuivantX[2] = 1;
-      blocSuivantX[3] = 0;
-
-    }
-
-    /// <summary>
-    /// Supprime toute pièce générée en remplaçant leurs coordonnées par 0.
-    /// </summary>
-    void ResetPieces()
-    {
-      // Pièces en cours.
-      pieceEnCours = PieceTeris.Rien;
-
-      blocActifY[0] = 0;
-      blocActifY[1] = 0;
-      blocActifY[2] = 0;
-      blocActifY[3] = 0;
-
-      blocActifX[0] = 0;
-      blocActifX[1] = 0;
-      blocActifX[2] = 0;
-      blocActifX[3] = 0;
-
-      pieceSuivante = PieceTeris.Rien;
-
-      blocSuivantY[0] = 0;
-      blocSuivantY[1] = 0;
-      blocSuivantY[2] = 0;
-      blocSuivantY[3] = 0;
-
-      blocSuivantX[0] = 0;
-      blocSuivantX[1] = 0;
-      blocSuivantX[2] = 0;
-      blocSuivantX[3] = 0;
-
-    }
-    #endregion
-    // </WLebel>
 
     // <WLebel>
     /// <summary>
@@ -794,273 +283,6 @@ namespace TP3
       // </WLebel> et Mika gauthier
     }
 
-    /// <summary>
-    /// Permet de vérifier le niveau de difficulté et de le changer quand c'est nécessaire.
-    /// </summary>
-    void ActualiserNieauDifficulte()
-    {
-      int niveauDifficulteEvalue = 1;
-
-      // Le niveau de difficulté est évalué selon les lignes complétées.
-      if (nbLignesCompleteesAuTotal > 40)
-      {
-        niveauDifficulteEvalue = 9;
-      }
-      else if (nbLignesCompleteesAuTotal > 35)
-      {
-        niveauDifficulteEvalue = 8;
-      }
-      else if (nbLignesCompleteesAuTotal > 30)
-      {
-        niveauDifficulteEvalue = 7;
-      }
-      else if (nbLignesCompleteesAuTotal > 25)
-      {
-        niveauDifficulteEvalue = 6;
-      }
-      else if (nbLignesCompleteesAuTotal > 20)
-      {
-        niveauDifficulteEvalue = 5;
-      }
-      else if (nbLignesCompleteesAuTotal > 15)
-      {
-        niveauDifficulteEvalue = 4;
-      }
-      else if (nbLignesCompleteesAuTotal > 10)
-      {
-        niveauDifficulteEvalue = 3;
-      }
-      else if (nbLignesCompleteesAuTotal > 5)
-      {
-        niveauDifficulteEvalue = 2;
-      }
-
-      // Si le niveau de difficulté a changé, on traite le nouveau niveau de difficulté
-      // et on l'affiche au joueur.
-      if (niveauDifficulteEvalue != niveauDifficluteDe1A9)
-      {
-        TraiterNouveauNiveauDifficulté(niveauDifficulteEvalue);
-        AfficherNiveauDansFenetreJeu();
-      }
-    }
-
-    /// <summary>
-    /// Méthode qui permet d'initialiser un nouveau niveau de difficulté ainsi que de changer
-    /// la rapidité de descente de la pièce selon ce niveau de difficulté.
-    /// </summary>
-    /// <param name="nouveauNiveauDifficulte">Le nouveau niveau de difficulté.</param>
-    void TraiterNouveauNiveauDifficulté(int nouveauNiveauDifficulte)
-    {
-      // On détermine le nouveau niveau de difficulté.
-      niveauDifficluteDe1A9 = nouveauNiveauDifficulte;
-
-      // On change ensuite la rapidité de la pièce selon le niveau de difficulté.
-      switch (niveauDifficluteDe1A9)
-      {
-        case 9:
-          timerJeu.Interval = 100;
-          break;
-        case 8:
-          timerJeu.Interval = 150;
-          break;
-        case 7:
-          timerJeu.Interval = 200;
-          break;
-        case 6:
-          timerJeu.Interval = 250;
-          break;
-        case 5:
-          timerJeu.Interval = 300;
-          break;
-        case 4:
-          timerJeu.Interval = 350;
-          break;
-        case 3:
-          timerJeu.Interval = 400;
-          break;
-        case 2:
-          timerJeu.Interval = 450;
-          break;
-        default:
-          timerJeu.Interval = 500;
-          break;
-      }
-    }
-
-    // <WLebel>
-    /// <summary>
-    /// Méthode qui permet de commencer le jeu en initialisant les valeurs.
-    /// </summary>
-    void CommencerJeu()
-    {
-      //Début du timer
-      timerTempsDeJeu.Enabled = true;
-
-      //Prendre la valeur de début de partie(Temps)
-      tempsDebutPartie = DateTime.Now;
-
-      // Commence la musique si elle est activée.
-      if (doitJouerMusique)
-      {
-        musique.controls.play();
-      }
-
-      // Génère la première pièce en cours.
-      GenererPieceAleatoire();
-      GenererPieceEnCours();
-
-      // Génère la pièce suivante.
-      GenererPieceAleatoire();
-
-      // Active le timer.
-      timerJeu.Enabled = true;
-      
-      // Détermine la position de départ des pièces.
-      colonneDeDepart = nbColonnesJeu / 2;
-      colonneCourante = colonneDeDepart;
-      ligneCourante = 0;
-
-      // Actualise le tableau des pièces et affiche le jeu.
-      ActualiserTableauPieces(pieceEnCours);
-      AfficherJeu();
-      AfficherPieceSuivante();
-
-      // Définit que le jeu est en cours.
-      jeuEstEnCours = true;
-
-      // Désactive les paramètres.
-      numLignes.Enabled = false;
-      numColonnes.Enabled = false;
-      checkBoxMusique.Enabled = false;
-      //btnValider.Enabled = false;
-    }
-    // </WLebel>
-
-    // <WLebel>
-    /// <summary>
-    /// Méthode qui permet d'arrêter l'exécution du jeu et d'afficher le jeu à son état vide.
-    /// </summary>
-    void ArreterExecutionJeu()
-    {
-      // Arrête le timer.
-      timerJeu.Enabled = false;
-
-      // Arrête le second timer
-      timerTempsDeJeu.Enabled = false;
-
-      // Désactive la pièce.
-      ResetPieces();
-
-      // Arrête la musique
-      musique.controls.stop();
-
-      // Remet le tableau jeu à son état initial et réaffiche au joueur son état vide.
-      for (int i = 0; i < tableauPieces.GetLength(0); i++)
-      {
-        for (int j = 0; j < tableauPieces.GetLength(1); j++)
-        {
-          tableauPieces[i, j] = PieceTeris.Rien;
-        }
-      }
-      AfficherJeu();
-      
-      // Mika Gauthier
-      //Apporter les modification au formulaire des statistiques de fin de partie
-      sommeDesPieces = nbPieceBarreHorizontale + nbPieceBarreVerticale + nbPieceBloc + nbPieceEnJ + nbPieceEnL + nbPieceEnS + nbPieceEnT + nbPieceEnZ;
-      
-      frmFinDePartie finDePartie = new frmFinDePartie();
-      finDePartie.AfficherNbPieceGenere(
-      nbPieceBloc, nbPieceBarreVerticale,
-      nbPieceBarreHorizontale, nbPieceEnT, 
-      nbPieceEnJ, nbPieceEnL, 
-      nbPieceEnS, nbPieceEnZ,
-      sommeDesPieces
-      
-      );
-      finDePartie.AfficherPointage(pointage);
-
-      finDePartie.AfficherTimer(tempsDebutPartie, tempsDeLaPartie);
-      
-      finDePartie.ShowDialog();
-
-      //Remise à 0
-      RemiseDesValeurInitiales();
-      // Mika Gauthier
-    }
-    // </WLebel>
-
-    // <WLebel> et Mika Gauthier
-    /// <summary>
-    /// Méthode qui choisit une pièce aléatoirement et la génère.
-    /// </summary>
-    void GenererPieceAleatoire()
-    {
-      int pieceAleatoire = rnd.Next(0, 8);
-
-      switch (pieceAleatoire)
-      {
-        case 0:
-          GenererCarre();
-          nbPieceBloc++;
-          break;
-        case 1:
-          GenererBarreH();
-          nbPieceBarreHorizontale++;
-          break;
-        case 2:
-          GenererBarreV();
-          nbPieceBarreVerticale++;
-          break;
-        case 3:
-          GenererT();
-          nbPieceEnT++;
-          break;
-        case 4:
-          GenererJ();
-          nbPieceEnJ++;
-          break;
-        case 5:
-          GenererL();
-          nbPieceEnL++;
-          break;
-        case 6:
-          GenererS();
-          nbPieceEnS++;
-          break;
-        case 7:
-          GenererZ();
-          nbPieceEnZ++;
-          break;
-        default:
-          ResetPieces();
-          break;
-      }
-    }
-    // </WLebel> et Mika Gauthier
-
-    // <WLebel>
-    /// <summary>
-    /// Pause le jeu et affiche une boîte de message au joueur demandant s'il veut abandonner la partie en cours.
-    /// </summary>
-    /// <returns>Un booléen qui indique si le joueur veut abandonner (vrai) ou non (faux).</returns>
-    bool DemanderAbandonnerPartie()
-    {
-      bool veutAbandonner = false;
-
-      timerJeu.Enabled = false;
-
-      if (MessageBox.Show("Êtes-vous certain de vouloir abandonner la partie en cours?", "Attention",
-                          MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
-      {
-        veutAbandonner = true;
-      }
-
-      timerJeu.Enabled = true;
-
-      return veutAbandonner;
-    }
-    // </WLebel>
-
     // <WLebel>
     /// <summary>
     /// Métode appelée lorsque le joueur clique sur le menu « Configuration ». 
@@ -1110,6 +332,267 @@ namespace TP3
         AfficherTouchesDansFenetreJeu();
       }
 
+    }
+    // </WLebel>
+
+    // <WLebel>
+    /// <summary>
+    /// Méthode appelée lorsque le joueur clique sur le menu « Quitter ».
+    /// La métode quite le jeu.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void menuQuitter_Click(object sender, EventArgs e)
+    {
+      if (jeuEstEnCours)
+      {
+        if (DemanderAbandonnerPartie() == true)
+        {
+          ArreterExecutionJeu();
+          Application.Exit();
+        }
+      }
+      else
+      {
+        Application.Exit();
+      }
+    }
+    // </WLebel>
+
+    //Mika Gauthier
+    /// <summary>
+    /// Cette fonction détermine si le joueur appuie sur l'une des touches du jeu,
+    /// il permet aussi le déplacement de la pièce si l'une des touches (a,s,d,w,e,q)
+    /// est choisie
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void JeuTetris_KeyPress(object sender, KeyPressEventArgs e)
+    {
+      //Déplacement du joueur selon la touche choisie(a,s,d,w,e,q)
+      //Déplacement vers la gauche(a)
+      if (e.KeyChar == toucheDeplacerGauche)
+      {
+        keyUsed = Mouvement.DeplacerGauche;
+        DeplacerBloc(tableauPieces);
+      }
+
+      //Déplacement vers la droite(d)
+      if (e.KeyChar == toucheDeplacerDroite)
+      {
+        keyUsed = Mouvement.DeplacerDroite;
+        DeplacerBloc(tableauPieces);
+      }
+
+      //déplacement vers le bas(s)
+      if (e.KeyChar == toucheDeplacerBas)
+      {
+        keyUsed = Mouvement.DeplacerBas;
+        DeplacerBloc(tableauPieces);
+      }
+
+      /*
+      easter egg
+      //Déplacement vers le haut(w)
+      if (e.KeyChar == 'w')
+      {
+        keyUsed = Mouvement.DeplacerHaut;
+        DeplacerBloc(tableauPieces);
+      }
+      */
+
+      //Rotation dans le sens antihoraire(q)
+      if (e.KeyChar == toucheRotationAntihoraire)
+      {
+        keyUsed = Mouvement.RotationAntihoraire;
+        DeplacerBloc(tableauPieces);
+      }
+
+      //Rotation dans le sens horaire(e)
+      if (e.KeyChar == toucheRotationHoraire)
+      {
+        keyUsed = Mouvement.RotationHoraire;
+        DeplacerBloc(tableauPieces);
+      }
+      // <WLebel>
+      // Si le joueur appuie sur la barre espace, la pièce tombe.
+      if (e.KeyChar == toucheTomber)
+      {
+        keyUsed = Mouvement.Tomber;
+        DeplacerBloc(tableauPieces);
+      }
+      // </WLebel>
+
+    }
+    //Mika Gauhtier
+
+    // <WLebel>
+    /// <summary>
+    /// Méthode qui est appelée lorsque le joueur clique sur le bouton «Valider» et qui permet
+    /// d'appliquer les changements faits dans la section «Paramètres» du jeu au jeu.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void OnMouseClickBtnValider(object sender, MouseEventArgs e)
+    {
+
+      // Si le jeu n'est pas en cours.
+      if (!jeuEstEnCours)
+      {
+        // Appliquer le choix de nombres de lignes et de colonnes.
+        nbLignesJeu = Decimal.ToInt32(numLignes.Value);
+        nbColonnesJeu = Decimal.ToInt32(numColonnes.Value);
+
+        // Appliquer le choix de jouer la musique ou non.
+        if (checkBoxMusique.Checked == true)
+        {
+          doitJouerMusique = true;
+        }
+        else
+        {
+          doitJouerMusique = false;
+        }
+
+        InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+      }
+
+    }
+    // </WLebel>
+
+    //Mika Gauthier
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void timerTempsDeJeu_Tick(object sender, EventArgs e)
+    {
+      tempsDeLaPartie = DateTime.Now;
+      compteurTemporel++;
+      lblTimerDeLaPartie.Text = "Temps : " + compteurTemporel;
+
+    }
+    //Mika Gauthier
+
+    #endregion
+
+    #region Méthodes qui gèrent les différents affichages dans la fenêtre du jeu.
+    // <WLebel>
+    /// <summary>
+    /// Affiche la pièce suivante dans les images visueles de la pièce suivante.
+    /// </summary>
+    void AfficherPieceSuivante()
+    {
+      // Affiche une couleur de fond selon la pièce.
+      for (int i = 0; i < blocSuivantY.Length; i++)
+      {
+        if (pieceSuivante == PieceTeris.Rien)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Black;
+        }
+        else if (pieceSuivante == PieceTeris.Gelee)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Gray;
+        }
+        else if (pieceSuivante == PieceTeris.block)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Yellow;
+        }
+        else if (pieceSuivante == PieceTeris.barreVerticale || pieceSuivante == PieceTeris.barreHorizontale)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Cyan;
+        }
+        else if (pieceSuivante == PieceTeris.pieceEnT)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Purple;
+        }
+        else if (pieceSuivante == PieceTeris.pieceEnJ)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Orange;
+        }
+        else if (pieceSuivante == PieceTeris.pieceEnL)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.DarkBlue;
+        }
+        else if (pieceSuivante == PieceTeris.pieceEnS)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Red;
+        }
+        else if (pieceSuivante == PieceTeris.pieceEnZ)
+        {
+          tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.LawnGreen;
+        }
+      }
+    }
+    // </WLebel>
+
+    // <WLebel>
+    /// <summary>
+    /// Efface le coup suivant dans les images visuelles de la pièce suivante en affichant
+    /// leur état initial.
+    /// </summary>
+    void EffacerCoupSuivant()
+    {
+      // Réafiche tous les blocs sous leur état initial.
+      for (int i = 0; i < tousLesPicturesBoxCoupSuivant.GetLength(0); i++)
+      {
+        for (int j = 0; j < tousLesPicturesBoxCoupSuivant.GetLength(1); j++)
+        {
+          tousLesPicturesBoxCoupSuivant[i, j].BackColor = Color.Black;
+        }
+      }
+    }
+    // </WLebel>
+
+    // <WLebel>
+    /// <summary>
+    /// Affiche le tableau de jeu au joueur en utilisant différentes couleurs pour les différents types de pièce.
+    /// </summary>
+    void AfficherJeu()
+    {
+      // Affiche une couleur de fond selon la pièce.
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          if (tableauPieces[i, j] == PieceTeris.Rien)
+          {
+            toutesImagesVisuelles[i, j].BackColor = Color.Black;
+          }
+          else if (tableauPieces[i, j] == PieceTeris.Gelee)
+          {
+            toutesImagesVisuelles[i, j].BackColor = Color.Gray;
+          }
+          else if (tableauPieces[i, j] == PieceTeris.block)
+          {
+            toutesImagesVisuelles[i, j].BackColor = Color.Yellow;
+          }
+          else if (tableauPieces[i, j] == PieceTeris.barreVerticale || tableauPieces[i, j] == PieceTeris.barreHorizontale)
+          {
+            toutesImagesVisuelles[i, j].BackColor = Color.Cyan;
+          }
+          else if (tableauPieces[i, j] == PieceTeris.pieceEnT)
+          {
+            toutesImagesVisuelles[i, j].BackColor = Color.Purple;
+          }
+          else if (tableauPieces[i, j] == PieceTeris.pieceEnJ)
+          {
+            toutesImagesVisuelles[i, j].BackColor = Color.Orange;
+          }
+          else if (tableauPieces[i, j] == PieceTeris.pieceEnL)
+          {
+            toutesImagesVisuelles[i, j].BackColor = Color.DarkBlue;
+          }
+          else if (tableauPieces[i, j] == PieceTeris.pieceEnS)
+          {
+            toutesImagesVisuelles[i, j].BackColor = Color.Red;
+          }
+          else if (tableauPieces[i, j] == PieceTeris.pieceEnZ)
+          {
+            toutesImagesVisuelles[i, j].BackColor = Color.LawnGreen;
+          }
+        }
+      }
     }
     // </WLebel>
 
@@ -1276,30 +759,304 @@ namespace TP3
     }
     // </WLebel>
 
+    #endregion
+
+    #region Méthodes qui gèrent les valeurs du jeu.
     // <WLebel>
     /// <summary>
-    /// Méthode appelée lorsque le joueur clique sur le menu « Quitter ».
-    /// La métode quite le jeu.
+    /// Méthode qui initialise le nombre de lignes et de colonnes du jeu, la surface de jeu,
+    /// le tableau des pièces du jeu et la position de départ des blocs selon un nouveau
+    /// nombre de lignes et de colonnes données.
     /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void menuQuitter_Click(object sender, EventArgs e)
+    /// <param name="nouveauNbLignes">Nouveau nombre de lignes qui composeront le jeu.</param>
+    /// <param name="nouveauNbColonnes">Nouveau nombre de colonnes qui composeront le jeu.</param>
+    void InitialiserValeursJeu(int nouveauNbLignes, int nouveauNbColonnes)
     {
-      if (jeuEstEnCours)
+      nbColonnesJeu = nouveauNbColonnes;
+      nbLignesJeu = nouveauNbLignes;
+
+      InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
+
+      tableauPieces = new PieceTeris[nbLignesJeu, nbColonnesJeu];
+      // Initialise le tableau de pièces à vide.
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
       {
-        if (DemanderAbandonnerPartie() == true)
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
         {
-          ArreterExecutionJeu();
-          Application.Exit();
+          tableauPieces[i, j] = PieceTeris.Rien;
         }
       }
-      else
+
+      // Sélectionne la colonne du milieu
+      colonneDeDepart = nbColonnesJeu / 2;
+    }
+    // </WLebel>
+
+    // <WLebel>
+    /// <summary>
+    /// Méthode qui permet de remplacer les coordonées des pièces courantes avec un autre type de pièce
+    /// dans le but d'actualiser la nouvelle position des pièces.
+    /// </summary>
+    /// <param name="pieceQuiRemplace">Pièce qui sera attribuée aux coordonnées présentes de la pièce.</param>
+    void ActualiserTableauPieces(PieceTeris pieceQuiRemplace)
+    {
+      for (int i = 0; i < blocActifY.Length; i++)
       {
-        Application.Exit();
+        tableauPieces[blocActifY[i] + ligneCourante, blocActifX[i] + colonneCourante] = pieceQuiRemplace;
       }
     }
     // </WLebel>
- 
+
+    // <WLebel>
+    /// <summary>
+    /// Permet de vérifier le niveau de difficulté et de le changer quand c'est nécessaire.
+    /// </summary>
+    void ActualiserNieauDifficulte()
+    {
+      int niveauDifficulteEvalue = 1;
+
+      // Le niveau de difficulté est évalué selon les lignes complétées.
+      if (nbLignesCompleteesAuTotal > 40)
+      {
+        niveauDifficulteEvalue = 9;
+      }
+      else if (nbLignesCompleteesAuTotal > 35)
+      {
+        niveauDifficulteEvalue = 8;
+      }
+      else if (nbLignesCompleteesAuTotal > 30)
+      {
+        niveauDifficulteEvalue = 7;
+      }
+      else if (nbLignesCompleteesAuTotal > 25)
+      {
+        niveauDifficulteEvalue = 6;
+      }
+      else if (nbLignesCompleteesAuTotal > 20)
+      {
+        niveauDifficulteEvalue = 5;
+      }
+      else if (nbLignesCompleteesAuTotal > 15)
+      {
+        niveauDifficulteEvalue = 4;
+      }
+      else if (nbLignesCompleteesAuTotal > 10)
+      {
+        niveauDifficulteEvalue = 3;
+      }
+      else if (nbLignesCompleteesAuTotal > 5)
+      {
+        niveauDifficulteEvalue = 2;
+      }
+
+      // Si le niveau de difficulté a changé, on traite le nouveau niveau de difficulté
+      // et on l'affiche au joueur.
+      if (niveauDifficulteEvalue != niveauDifficluteDe1A9)
+      {
+        TraiterNouveauNiveauDifficulté(niveauDifficulteEvalue);
+        AfficherNiveauDansFenetreJeu();
+      }
+    }
+    // </WLebel>
+
+    // <WLebel>
+    /// <summary>
+    /// Méthode qui permet d'initialiser un nouveau niveau de difficulté ainsi que de changer
+    /// la rapidité de descente de la pièce selon ce niveau de difficulté.
+    /// </summary>
+    /// <param name="nouveauNiveauDifficulte">Le nouveau niveau de difficulté.</param>
+    void TraiterNouveauNiveauDifficulté(int nouveauNiveauDifficulte)
+    {
+      // On détermine le nouveau niveau de difficulté.
+      niveauDifficluteDe1A9 = nouveauNiveauDifficulte;
+
+      // On change ensuite la rapidité de la pièce selon le niveau de difficulté.
+      switch (niveauDifficluteDe1A9)
+      {
+        case 9:
+          timerJeu.Interval = 100;
+          break;
+        case 8:
+          timerJeu.Interval = 150;
+          break;
+        case 7:
+          timerJeu.Interval = 200;
+          break;
+        case 6:
+          timerJeu.Interval = 250;
+          break;
+        case 5:
+          timerJeu.Interval = 300;
+          break;
+        case 4:
+          timerJeu.Interval = 350;
+          break;
+        case 3:
+          timerJeu.Interval = 400;
+          break;
+        case 2:
+          timerJeu.Interval = 450;
+          break;
+        default:
+          timerJeu.Interval = 500;
+          break;
+      }
+    }
+    // </WLebel>
+
+    //Mika Gauthier
+    /// <summary>
+    /// 
+    /// </summary>
+    void RemiseDesValeurInitiales()
+    {
+      // Remise à niveau des statistiques
+      pointage = 0;
+      TraiterNouveauNiveauDifficulté(1);
+      nbLignesCompleteesAuTotal = 0;
+      jeuEstEnCours = false;
+
+      nbPieceBloc = 0; //couleur jaune
+      nbPieceBarreVerticale = 0; //couleur cyan
+      nbPieceBarreHorizontale = 0; //couleur cyan
+      nbPieceEnT = 0; //couleur mauve
+      nbPieceEnJ = 0; //couleur orange
+      nbPieceEnL = 0; //couleur bleu foncé
+      nbPieceEnS = 0; //couleur rouge
+      nbPieceEnZ = 0; //couleur vert
+      sommeDesPieces = 0; //Somme de toutes les pièces
+
+      // Active les paramètres.
+      numLignes.Enabled = true;
+      numColonnes.Enabled = true;
+      checkBoxMusique.Enabled = true;
+      btnValider.Enabled = true;
+      timerTempsDeJeu.Enabled = false;
+
+      //Valeur temporelle
+      tempsDebutPartie = DateTime.Now;
+      tempsDeLaPartie = DateTime.Now;
+      lblTimerDeLaPartie.Text = "Temps : 0";
+      compteurTemporel = 0;
+
+      // <WLebel>
+      // Affichage du pointage et du niveau par défaut.
+      AfficherPointageDansFenetreJeu();
+      AfficherNiveauDansFenetreJeu();
+      // Effacer le coup suivant.
+      EffacerCoupSuivant();
+      // </WLebel>
+    }
+    //Mika Gauthier
+
+    #endregion
+
+    #region Méthodes qui gèrent les déplacements des pièces
+
+    // <WLebel>
+    /// <summary>
+    /// Méthode qui détermine si la pièce active peut bouger dans un certain sens.
+    /// La pièce peut bouger si son mouvement n'entraîne pas une sortie du jeu
+    /// ou une collision avec une pièce gelée.
+    /// </summary>
+    /// <param name="sens">Détermine le sens du déplacement à tester.</param>
+    /// <returns></returns>
+    bool DeterminerSiBlocPeutBouger(Mouvement sens)
+    {
+      bool peutBouger = true;
+
+      if (sens == Mouvement.DeplacerBas)
+      {
+        // Pour tous les blocs actifs.
+        for (int i = 0; i < blocActifY.Length; i++)
+        {
+          // Test si le nouvement causera un débordement de tableau (si le mouvement positionne les 
+          // blocs en dehors du jeu).
+          // Sinon, test si à la nouvelle position se trouve une pièce gelée.
+          if (blocActifY[i] + ligneCourante + 1 >= nbLignesJeu)
+          {
+            peutBouger = false;
+          }
+          else if (tableauPieces[blocActifY[i] + ligneCourante + 1, blocActifX[i] + colonneCourante] == PieceTeris.Gelee)
+          {
+            peutBouger = false;
+          }
+        }
+      }
+      else if (sens == Mouvement.DeplacerGauche)
+      {
+        for (int i = 0; i < blocActifY.Length; i++)
+        {
+          if (blocActifX[i] + colonneCourante - 1 < 0)
+          {
+            peutBouger = false;
+          }
+          else if (tableauPieces[blocActifY[i] + ligneCourante, blocActifX[i] + colonneCourante - 1] == PieceTeris.Gelee)
+          {
+            peutBouger = false;
+          }
+        }
+      }
+      else if (sens == Mouvement.DeplacerDroite)
+      {
+        for (int i = 0; i < blocActifY.Length; i++)
+        {
+          if (blocActifX[i] + colonneCourante + 1 >= nbColonnesJeu)
+          {
+            peutBouger = false;
+          }
+          else if (tableauPieces[blocActifY[i] + ligneCourante, blocActifX[i] + colonneCourante + 1] == PieceTeris.Gelee)
+          {
+            peutBouger = false;
+          }
+        }
+      }
+      else if (sens == Mouvement.RotationAntihoraire)
+      {
+        for (int i = 0; i < blocActifY.Length; i++)
+        {
+          if (-blocActifX[i] + ligneCourante < 0 || -blocActifX[i] + ligneCourante >= nbLignesJeu || blocActifY[i] + colonneCourante < 0 || blocActifY[i] + colonneCourante >= nbColonnesJeu)
+          {
+            peutBouger = false;
+          }
+          else if (tableauPieces[-blocActifX[i] + ligneCourante, blocActifY[i] + colonneCourante] == PieceTeris.Gelee)
+          {
+            peutBouger = false;
+          }
+        }
+      }
+      else if (sens == Mouvement.RotationHoraire)
+      {
+        for (int i = 0; i < blocActifY.Length; i++)
+        {
+          if (blocActifX[i] + ligneCourante < 0 || blocActifX[i] + ligneCourante >= nbLignesJeu || -blocActifY[i] + colonneCourante < 0 || -blocActifY[i] + colonneCourante >= nbColonnesJeu)
+          {
+            peutBouger = false;
+          }
+          else if (tableauPieces[blocActifX[i] + ligneCourante, -blocActifY[i] + colonneCourante] == PieceTeris.Gelee)
+          {
+            peutBouger = false;
+          }
+        }
+      }
+      else if (sens == Mouvement.DeplacerHaut) // Seulement à titre de test.
+      {
+        for (int i = 0; i < blocActifY.Length; i++)
+        {
+          if (blocActifY[i] + ligneCourante - 1 < 0)
+          {
+            peutBouger = false;
+          }
+          else if (tableauPieces[blocActifY[i] + ligneCourante - 1, blocActifX[i] + colonneCourante] == PieceTeris.Gelee)
+          {
+            peutBouger = false;
+          }
+        }
+      }
+
+      return peutBouger;
+    }
+    // </WLebel>
 
     //Mika Gauthier
     /// <summary>
@@ -1422,72 +1179,435 @@ namespace TP3
       }
       // </WLebel>
     }
+    //Mika Gauthier
+
+    #endregion
+
+    // <WLebel> et Mika Gauthier
+    #region Méthodes qui gèrent la génération des pièces.
+    /// <summary>
+    /// Génère la pièce « Carré » comme pièce suivante.
+    /// </summary>
+    void GenererCarre()
+    {
+      pieceSuivante = PieceTeris.block;
+
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 0;
+      blocSuivantY[2] = 1;
+      blocSuivantY[3] = 1;
+
+      blocSuivantX[0] = 0;
+      blocSuivantX[1] = 1;
+      blocSuivantX[2] = 0;
+      blocSuivantX[3] = 1;
+
+    }
+
 
     /// <summary>
-    /// Cette fonction détermine si le joueur appuie sur l'une des touches du jeu,
-    /// il permet aussi le déplacement de la pièce si l'une des touches (a,s,d,w,e,q)
-    /// est choisie
+    /// Génère la pièce « Barre horizontale » comme pièce suivante.
     /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void JeuTetris_KeyPress(object sender, KeyPressEventArgs e)
+    void GenererBarreH()
     {
-      //Déplacement du joueur selon la touche choisie(a,s,d,w,e,q)
-      //Déplacement vers la gauche(a)
-      if (e.KeyChar == toucheDeplacerGauche)
-      {
-        keyUsed = Mouvement.DeplacerGauche;
-        DeplacerBloc(tableauPieces);
-      }
+      pieceSuivante = PieceTeris.barreHorizontale;
 
-      //Déplacement vers la droite(d)
-      if (e.KeyChar == toucheDeplacerDroite)
-      {
-        keyUsed = Mouvement.DeplacerDroite;
-        DeplacerBloc(tableauPieces);
-      }
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 0;
+      blocSuivantY[2] = 0;
+      blocSuivantY[3] = 0;
 
-      //déplacement vers le bas(s)
-      if (e.KeyChar == toucheDeplacerBas)
-      {
-        keyUsed = Mouvement.DeplacerBas;
-        DeplacerBloc(tableauPieces);
-      }
+      blocSuivantX[0] = 0;
+      blocSuivantX[1] = 1;
+      blocSuivantX[2] = 2;
+      blocSuivantX[3] = 3;
 
-      /*
-      easter egg
-      //Déplacement vers le haut(w)
-      if (e.KeyChar == 'w')
-      {
-        keyUsed = Mouvement.DeplacerHaut;
-        DeplacerBloc(tableauPieces);
-      }
-      */
-
-      //Rotation dans le sens antihoraire(q)
-      if (e.KeyChar == toucheRotationAntihoraire)
-      {
-        keyUsed = Mouvement.RotationAntihoraire;
-        DeplacerBloc(tableauPieces);
-      }
-
-      //Rotation dans le sens horaire(e)
-      if (e.KeyChar == toucheRotationHoraire)
-      {
-        keyUsed = Mouvement.RotationHoraire;
-        DeplacerBloc(tableauPieces);
-      }
-      // <WLebel>
-      // Si le joueur appuie sur la barre espace, la pièce tombe.
-      if (e.KeyChar == toucheTomber)
-      {
-        keyUsed = Mouvement.Tomber;
-        DeplacerBloc(tableauPieces);
-      }
-      // </WLebel>
-      
     }
-    //Mika Gauhtier
+
+    // Mika Gauthier
+    /// <summary>
+    /// Génère la pièce « Barre Verticale» comme pièce suivante.
+    /// </summary>
+    void GenererBarreV()
+    {
+      pieceSuivante = PieceTeris.barreVerticale;
+
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 1;
+      blocSuivantY[2] = 2;
+      blocSuivantY[3] = 3;
+
+      blocSuivantX[0] = 0;
+      blocSuivantX[1] = 0;
+      blocSuivantX[2] = 0;
+      blocSuivantX[3] = 0;
+
+    }
+    // Mika Gauthier
+
+    /// <summary>
+    /// Génère la pièce en forme de T comme pièce suivante.
+    /// </summary>
+    void GenererT()
+    {
+      pieceSuivante = PieceTeris.pieceEnT;
+
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 1;
+      blocSuivantY[2] = 1;
+      blocSuivantY[3] = 1;
+
+      blocSuivantX[0] = 1;
+      blocSuivantX[1] = 0;
+      blocSuivantX[2] = 1;
+      blocSuivantX[3] = 2;
+
+    }
+
+    /// <summary>
+    /// Génère la pièce en forme de J comme pièce suivante.
+    /// </summary>
+    void GenererJ()
+    {
+      pieceSuivante = PieceTeris.pieceEnJ;
+
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 1;
+      blocSuivantY[2] = 2;
+      blocSuivantY[3] = 2;
+
+      blocSuivantX[0] = 1;
+      blocSuivantX[1] = 1;
+      blocSuivantX[2] = 0;
+      blocSuivantX[3] = 1;
+
+    }
+
+    /// <summary>
+    /// Génère la pièce en forme de L comme pièce suivante.
+    /// </summary>
+    void GenererL()
+    {
+      pieceSuivante = PieceTeris.pieceEnL;
+
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 1;
+      blocSuivantY[2] = 2;
+      blocSuivantY[3] = 2;
+
+      blocSuivantX[0] = 0;
+      blocSuivantX[1] = 0;
+      blocSuivantX[2] = 0;
+      blocSuivantX[3] = 1;
+
+    }
+
+    /// <summary>
+    /// Génère la pièce en forme de S comme pièce suivante.
+    /// </summary>
+    void GenererS()
+    {
+      pieceSuivante = PieceTeris.pieceEnS;
+
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 1;
+      blocSuivantY[2] = 1;
+      blocSuivantY[3] = 2;
+
+      blocSuivantX[0] = 0;
+      blocSuivantX[1] = 0;
+      blocSuivantX[2] = 1;
+      blocSuivantX[3] = 1;
+
+    }
+
+    /// <summary>
+    /// Génère la pièce en forme de Z comme pièce suivante.
+    /// </summary>
+    void GenererZ()
+    {
+      pieceSuivante = PieceTeris.pieceEnZ;
+
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 1;
+      blocSuivantY[2] = 1;
+      blocSuivantY[3] = 2;
+
+      blocSuivantX[0] = 1;
+      blocSuivantX[1] = 0;
+      blocSuivantX[2] = 1;
+      blocSuivantX[3] = 0;
+
+    }
+
+    /// <summary>
+    /// Supprime toute pièce générée en remplaçant leurs coordonnées par 0.
+    /// </summary>
+    void ResetPieces()
+    {
+      // Pièces en cours.
+      pieceEnCours = PieceTeris.Rien;
+
+      blocActifY[0] = 0;
+      blocActifY[1] = 0;
+      blocActifY[2] = 0;
+      blocActifY[3] = 0;
+
+      blocActifX[0] = 0;
+      blocActifX[1] = 0;
+      blocActifX[2] = 0;
+      blocActifX[3] = 0;
+
+      pieceSuivante = PieceTeris.Rien;
+
+      blocSuivantY[0] = 0;
+      blocSuivantY[1] = 0;
+      blocSuivantY[2] = 0;
+      blocSuivantY[3] = 0;
+
+      blocSuivantX[0] = 0;
+      blocSuivantX[1] = 0;
+      blocSuivantX[2] = 0;
+      blocSuivantX[3] = 0;
+
+    }
+
+    // <WLebel>
+    /// <summary>
+    /// Méthode qui génère la pièce en cours en copiant la pièce «suivante» actuellement générée.
+    /// </summary>
+    void GenererPieceEnCours()
+    {
+      // Change le bloc actif pour le bloc suivant.
+      // Pour toutes les coordonées des blocs, prendre la
+      // valeur des blocs suivants.
+      pieceEnCours = pieceSuivante;
+      for (int i = 0; i < blocActifY.Length; i++)
+      {
+        blocActifY[i] = blocSuivantY[i];
+        blocActifX[i] = blocSuivantX[i];
+      }
+
+      // Ajoute la pièce au compteur de pièces.
+      switch (pieceEnCours)
+      {
+        case PieceTeris.block:
+          nbPieceBloc++;
+          break;
+        case PieceTeris.barreVerticale:
+          nbPieceBarreVerticale++;
+          break;
+        case PieceTeris.barreHorizontale:
+          nbPieceBarreHorizontale++;
+          break;
+        case PieceTeris.pieceEnT:
+          nbPieceEnT++;
+          break;
+        case PieceTeris.pieceEnJ:
+          nbPieceEnJ++;
+          break;
+        case PieceTeris.pieceEnL:
+          nbPieceEnL++;
+          break;
+        case PieceTeris.pieceEnS:
+          nbPieceEnS++;
+          break;
+        case PieceTeris.pieceEnZ:
+          nbPieceEnZ++;
+          break;
+
+      }
+
+      // Mika Gauthier
+      //Mesure de sécurité (en cas de bogue)
+      for (int i = 0; i < blocActifY.Length; i++)
+      {
+        VerificationBlocActifY[i] = blocActifY[i];
+      }
+      for (int j = 0; j < blocActifX.Length; j++)
+      {
+        VerificationBlocActifX[j] = blocActifX[j];
+      }
+      // Mika Gauthier
+    }
+
+    // <WLebel> et Mika Gauthier
+    /// <summary>
+    /// Méthode qui choisit une pièce aléatoirement et la génère comme pièce suivante.
+    /// </summary>
+    void GenererPieceAleatoire()
+    {
+      int pieceAleatoire = rnd.Next(0, 8);
+
+      switch (pieceAleatoire)
+      {
+        case 0:
+          GenererCarre();
+          nbPieceBloc++;
+          break;
+        case 1:
+          GenererBarreH();
+          nbPieceBarreHorizontale++;
+          break;
+        case 2:
+          GenererBarreV();
+          nbPieceBarreVerticale++;
+          break;
+        case 3:
+          GenererT();
+          nbPieceEnT++;
+          break;
+        case 4:
+          GenererJ();
+          nbPieceEnJ++;
+          break;
+        case 5:
+          GenererL();
+          nbPieceEnL++;
+          break;
+        case 6:
+          GenererS();
+          nbPieceEnS++;
+          break;
+        case 7:
+          GenererZ();
+          nbPieceEnZ++;
+          break;
+        default:
+          ResetPieces();
+          break;
+      }
+    }
+    // </WLebel> et Mika Gauthier
+
+    #endregion
+    // </WLebel>
+
+    #region Méthodes qui gèrent le début et la fin du jeu.
+    // <WLebel>
+    /// <summary>
+    /// Méthode qui permet de commencer le jeu en initialisant les valeurs.
+    /// </summary>
+    void CommencerJeu()
+    {
+      //Début du timer
+      timerTempsDeJeu.Enabled = true;
+
+      //Prendre la valeur de début de partie(Temps)
+      tempsDebutPartie = DateTime.Now;
+
+      // Commence la musique si elle est activée.
+      if (doitJouerMusique)
+      {
+        musique.controls.play();
+      }
+
+      // Génère la première pièce en cours.
+      GenererPieceAleatoire();
+      GenererPieceEnCours();
+
+      // Génère la pièce suivante.
+      GenererPieceAleatoire();
+
+      // Active le timer.
+      timerJeu.Enabled = true;
+
+      // Détermine la position de départ des pièces.
+      colonneDeDepart = nbColonnesJeu / 2;
+      colonneCourante = colonneDeDepart;
+      ligneCourante = 0;
+
+      // Actualise le tableau des pièces et affiche le jeu.
+      ActualiserTableauPieces(pieceEnCours);
+      AfficherJeu();
+      AfficherPieceSuivante();
+
+      // Définit que le jeu est en cours.
+      jeuEstEnCours = true;
+
+      // Désactive les paramètres.
+      numLignes.Enabled = false;
+      numColonnes.Enabled = false;
+      checkBoxMusique.Enabled = false;
+      //btnValider.Enabled = false;
+    }
+    // </WLebel>
+
+    // <WLebel>
+    /// <summary>
+    /// Méthode qui permet d'arrêter l'exécution du jeu et d'afficher le jeu à son état vide.
+    /// </summary>
+    void ArreterExecutionJeu()
+    {
+      // Arrête le timer.
+      timerJeu.Enabled = false;
+
+      // Arrête le second timer
+      timerTempsDeJeu.Enabled = false;
+
+      // Désactive la pièce.
+      ResetPieces();
+
+      // Arrête la musique
+      musique.controls.stop();
+
+      // Remet le tableau jeu à son état initial et réaffiche au joueur son état vide.
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Rien;
+        }
+      }
+      AfficherJeu();
+
+      // Mika Gauthier
+      //Apporter les modification au formulaire des statistiques de fin de partie
+      sommeDesPieces = nbPieceBarreHorizontale + nbPieceBarreVerticale + nbPieceBloc + nbPieceEnJ + nbPieceEnL + nbPieceEnS + nbPieceEnT + nbPieceEnZ;
+
+      frmFinDePartie finDePartie = new frmFinDePartie();
+      finDePartie.AfficherNbPieceGenere(
+      nbPieceBloc, nbPieceBarreVerticale,
+      nbPieceBarreHorizontale, nbPieceEnT,
+      nbPieceEnJ, nbPieceEnL,
+      nbPieceEnS, nbPieceEnZ,
+      sommeDesPieces
+
+      );
+      finDePartie.AfficherPointage(pointage);
+
+      finDePartie.AfficherTimer(tempsDebutPartie, tempsDeLaPartie);
+
+      finDePartie.ShowDialog();
+
+      //Remise à 0
+      RemiseDesValeurInitiales();
+      // Mika Gauthier
+    }
+    // </WLebel>
+
+    // <WLebel>
+    /// <summary>
+    /// Pause le jeu et affiche une boîte de message au joueur demandant s'il veut abandonner la partie en cours.
+    /// </summary>
+    /// <returns>Un booléen qui indique si le joueur veut abandonner (vrai) ou non (faux).</returns>
+    bool DemanderAbandonnerPartie()
+    {
+      bool veutAbandonner = false;
+
+      timerJeu.Enabled = false;
+
+      if (MessageBox.Show("Êtes-vous certain de vouloir abandonner la partie en cours?", "Attention",
+                          MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+      {
+        veutAbandonner = true;
+      }
+
+      timerJeu.Enabled = true;
+
+      return veutAbandonner;
+    }
+    // </WLebel>
 
     //Mika Gauthier
     /// <summary>
@@ -1501,63 +1621,21 @@ namespace TP3
         if (tableauPieces[VerificationBlocActifY[i], VerificationBlocActifX[i] + colonneDeDepart] == PieceTeris.Gelee)
         {
           jeuEstEnCours = false;
-       
+
         }
       }
     }
+    //Mika Gauthier
 
+    #endregion
+
+    // <WLebel>
+    #region Métodes qui permettent de gérer les lignes complétées
     /// <summary>
-    /// 
+    /// Méthode qui vérifie si des lignes dans le jeu sont complétés et les retire si c'est le cas.
+    /// Actualise le pointage en conséquent.
     /// </summary>
-    void RemiseDesValeurInitiales()
-    {
-      // Remise à niveau des statistiques
-      pointage = 0;
-      TraiterNouveauNiveauDifficulté(1);
-      nbLignesCompleteesAuTotal = 0;
-      jeuEstEnCours = false;
-
-      nbPieceBloc = 0; //couleur jaune
-      nbPieceBarreVerticale = 0; //couleur cyan
-      nbPieceBarreHorizontale = 0; //couleur cyan
-      nbPieceEnT = 0; //couleur mauve
-      nbPieceEnJ = 0; //couleur orange
-      nbPieceEnL = 0; //couleur bleu foncé
-      nbPieceEnS = 0; //couleur rouge
-      nbPieceEnZ = 0; //couleur vert
-      sommeDesPieces = 0; //Somme de toutes les pièces
-
-      // Active les paramètres.
-      numLignes.Enabled = true;
-      numColonnes.Enabled = true;
-      checkBoxMusique.Enabled = true;
-      btnValider.Enabled = true;
-      timerTempsDeJeu.Enabled = false;
-
-      //Valeur temporelle
-      tempsDebutPartie = DateTime.Now;
-      tempsDeLaPartie = DateTime.Now;
-      lblTimerDeLaPartie.Text = "Temps : 0";
-      compteurTemporel = 0;
-
-      // <WLebel>
-      // Affichage du pointage et du niveau par défaut.
-      AfficherPointageDansFenetreJeu();
-      AfficherNiveauDansFenetreJeu();
-      // Effacer le coup suivant.
-      EffacerCoupSuivant();
-      // </WLebel>
-    }
-
-  //Mika Gauthier
-
-  // <WLebel>
-  #region Métodes qui permettent de gérer les lignes complétées
-  /// <summary>
-  /// Méthode qui vérifie si des lignes dans le jeu sont complétés et les retire si c'est le cas.
-  /// Actualise le pointage en conséquent.
-  /// </summary>
-  void ActualiserPointage()
+    void ActualiserPointage()
     {
 
       // Valeurs de base.
@@ -1694,39 +1772,6 @@ namespace TP3
     //Mika Gauhtier
 
     #endregion
-    // </WLebel>
-
-    // <WLebel>
-    /// <summary>
-    /// Méthode qui est appelée lorsque le joueur clique sur le bouton «Valider» et qui permet
-    /// d'appliquer les changements faits dans la section «Paramètres» du jeu au jeu.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void OnMouseClickBtnValider(object sender, MouseEventArgs e)
-    {
-
-      // Si le jeu n'est pas en cours.
-      if (!jeuEstEnCours)
-      {
-        // Appliquer le choix de nombres de lignes et de colonnes.
-        nbLignesJeu = Decimal.ToInt32(numLignes.Value);
-        nbColonnesJeu = Decimal.ToInt32(numColonnes.Value);
-
-        // Appliquer le choix de jouer la musique ou non.
-        if (checkBoxMusique.Checked == true)
-        {
-          doitJouerMusique = true;
-        }
-        else
-        {
-          doitJouerMusique = false;
-        }
-
-        InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
-      }
-    
-    }
     // </WLebel>
 
     #region Tests unitaires
@@ -2016,13 +2061,5 @@ namespace TP3
     #endregion
 
     #endregion
-
-    private void timerTempsDeJeu_Tick(object sender, EventArgs e)
-    {
-      tempsDeLaPartie = DateTime.Now;
-      compteurTemporel++;
-      lblTimerDeLaPartie.Text = "Temps : " + compteurTemporel;
-
-    }
   }
 }   
