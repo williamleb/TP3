@@ -98,7 +98,8 @@ namespace TP3
     float nbPieceEnS = 0; //couleur rouge
     float nbPieceEnZ = 0; //couleur rose
 
-    float sommeDesPieces = 0; //Somme de toutes les pièces
+    //Somme de toutes les pièces
+    float sommeDesPieces = 0;
 
     //Variable qui va acceuillir le temps de jeu du joueur
     DateTime tempsDebutPartie;
