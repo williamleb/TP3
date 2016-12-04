@@ -1883,6 +1883,12 @@ namespace TP3
     void ExecuterTestsUnitaires()
     {
       TesterRetirerLignesCompletees();
+      TesterRotationAuCentre();
+      TesterRotationAGauche();
+      TesterRotationADroite();
+      TesterRotationAvecBlocsGelees();
+      TesterFinDePartie();
+      TesterSiPartieFinie();
     }
 
     // <WLebel>
@@ -2143,6 +2149,364 @@ namespace TP3
     }
     #endregion
     // </WLebel>
+
+    //Mika Gauthier
+    #region Test de rotation + Détection de fin de partie
+
+    //Test rotation d'un bloc au centre de la surface de jeu
+    /// <summary>
+    /// AAAAAAAAAAAAAAAA FAIRE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// </summary>
+    void TesterRotationAuCentre()
+    {
+      //Mise en place des données du test
+      colonneCourante = nbColonnesJeu / 2;
+      ligneCourante = nbLignesJeu / 2;
+
+      //Test avec la Barre Verticale
+      blocActifY[0] = 0;
+      blocActifY[1] = 1;
+      blocActifY[2] = 2;
+      blocActifY[3] = 3;
+
+      blocActifX[0] = 0;
+      blocActifX[1] = 0;
+      blocActifX[2] = 0;
+      blocActifX[3] = 0;
+
+      //Déplacement voulu
+      keyUsed = Mouvement.RotationAntihoraire;
+
+      //Exécution de la méthode à tester
+      bool peutBougerAntihoraire = DeterminerSiPiecePeutBouger(keyUsed);
+
+      //Changement de valeur + exécution de la méthode à tester
+      //Test avec la Barre Verticale
+      blocActifY[0] = 0;
+      blocActifY[1] = 1;
+      blocActifY[2] = 2;
+      blocActifY[3] = 3;
+
+      blocActifX[0] = 0;
+      blocActifX[1] = 0;
+      blocActifX[2] = 0;
+      blocActifX[3] = 0;
+
+      //Déplacement voulu
+      keyUsed = Mouvement.RotationHoraire;
+
+      bool peutBougerHoraire = DeterminerSiPiecePeutBouger(keyUsed);
+
+      //Validation des résultats
+      Debug.WriteLine(peutBougerAntihoraire, "Erreur dans l'exécution de la rotation dans le sens antihoraire");
+      Debug.WriteLine(peutBougerHoraire, "Erreur dans l'exécution de la rotation dans le sens horaire");
+
+      //Clean up
+      ligneCourante = 0;
+      colonneCourante = 0;
+      ResetPieces();
+      keyUsed = Mouvement.Immobile;
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Rien;
+        }
+      }
+    }
+
+    //Test rotation d'un bloc à gauche de la surface de jeu
+    void TesterRotationAGauche()
+    {
+      //Mise en place des données du test
+      colonneCourante = 0;
+      ligneCourante = nbLignesJeu / 2;
+
+      //Test avec la Barre Verticale
+      blocActifY[0] = 0;
+      blocActifY[1] = 1;
+      blocActifY[2] = 2;
+      blocActifY[3] = 3;
+
+      blocActifX[0] = 0;
+      blocActifX[1] = 0;
+      blocActifX[2] = 0;
+      blocActifX[3] = 0;
+
+      //Déplacement voulu
+      keyUsed = Mouvement.RotationAntihoraire;
+
+      //Exécution de la méthode à tester
+      bool peutBougerAntihoraire = DeterminerSiPiecePeutBouger(keyUsed);
+
+      //Changement de valeur + exécution de la méthode à tester
+      //Test avec la Barre Verticale
+      blocActifY[0] = 0;
+      blocActifY[1] = 1;
+      blocActifY[2] = 2;
+      blocActifY[3] = 3;
+
+      blocActifX[0] = 0;
+      blocActifX[1] = 0;
+      blocActifX[2] = 0;
+      blocActifX[3] = 0;
+
+      //Déplacement voulu
+      keyUsed = Mouvement.RotationHoraire;
+
+
+
+      bool peutBougerHoraire = DeterminerSiPiecePeutBouger(keyUsed);
+
+      //Validation des résultats
+      Debug.WriteLine(peutBougerAntihoraire, "Erreur dans l'exécution de la rotation dans le sens antihoraire");
+      Debug.WriteLine(peutBougerHoraire, "Erreur dans l'exécution de la rotation dans le sens horaire");
+
+      //Clean up
+      ligneCourante = 0;
+      colonneCourante = 0;
+      ResetPieces();
+      keyUsed = Mouvement.Immobile;
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Rien;
+        }
+      }
+    }
+
+    //Test rotation d'un bloc à droite de la surface de jeu
+    void TesterRotationADroite()
+    {
+      //Mise en place des données du test
+      colonneCourante = nbColonnesJeu-1;
+      ligneCourante = nbLignesJeu / 2;
+
+      //Test avec la Barre Verticale
+      blocActifY[0] = 0;
+      blocActifY[1] = 1;
+      blocActifY[2] = 2;
+      blocActifY[3] = 3;
+
+      blocActifX[0] = 0;
+      blocActifX[1] = 0;
+      blocActifX[2] = 0;
+      blocActifX[3] = 0;
+
+      //Déplacement voulu
+      keyUsed = Mouvement.RotationAntihoraire;
+
+      //Exécution de la méthode à tester
+      bool peutBougerAntihoraire = DeterminerSiPiecePeutBouger(keyUsed);
+
+      //Changement de valeur + exécution de la méthode à tester
+      //Test avec la Barre Verticale
+      blocActifY[0] = 0;
+      blocActifY[1] = 1;
+      blocActifY[2] = 2;
+      blocActifY[3] = 3;
+
+      blocActifX[0] = 0;
+      blocActifX[1] = 0;
+      blocActifX[2] = 0;
+      blocActifX[3] = 0;
+
+      //Déplacement voulu
+      keyUsed = Mouvement.RotationHoraire;
+
+      bool peutBougerHoraire = DeterminerSiPiecePeutBouger(keyUsed);
+
+      //Validation des résultats
+      Debug.WriteLine(peutBougerAntihoraire, "Erreur dans l'exécution de la rotation dans le sens antihoraire");
+      Debug.WriteLine(peutBougerHoraire, "Erreur dans l'exécution de la rotation dans le sens horaire");
+
+      //Clean up
+      ligneCourante = 0;
+      colonneCourante = 0;
+      ResetPieces();
+      keyUsed = Mouvement.Immobile;
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Rien;
+        }
+      }
+    }
+
+    //Test rotation d'un bloc avec des blocs gelées dans la surface de jeu
+    void TesterRotationAvecBlocsGelees()
+    {
+      //Mise en place des données du test
+      colonneCourante = nbColonnesJeu/2;
+      ligneCourante = nbLignesJeu / 2;
+
+      //Mise en place de pièce gelées
+      for (int i = 0; i < nbLignesJeu / 2; i++)
+      {
+        for (int j = 0; j < nbColonnesJeu / 2; j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Gelee;
+        }
+      }
+
+      for (int i = nbLignesJeu / 2 + 1; i < nbLignesJeu; i++)
+      {
+        for (int j = nbColonnesJeu / 2 + 1; j < nbColonnesJeu; j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Gelee;
+        }
+      }
+
+      //Test avec la Barre Verticale
+      blocActifY[0] = 0;
+      blocActifY[1] = 1;
+      blocActifY[2] = 2;
+      blocActifY[3] = 3;
+
+      blocActifX[0] = 0;
+      blocActifX[1] = 0;
+      blocActifX[2] = 0;
+      blocActifX[3] = 0;
+
+      //Déplacement voulu
+      keyUsed = Mouvement.RotationAntihoraire;
+
+      //Exécution de la méthode à tester
+      bool peutBougerAntihoraire = DeterminerSiPiecePeutBouger(keyUsed);
+
+      //Changement de valeur + exécution de la méthode à tester
+      //Test avec la Barre Verticale
+      blocActifY[0] = 0;
+      blocActifY[1] = 1;
+      blocActifY[2] = 2;
+      blocActifY[3] = 3;
+
+      blocActifX[0] = 0;
+      blocActifX[1] = 0;
+      blocActifX[2] = 0;
+      blocActifX[3] = 0;
+
+      //Déplacement voulu
+      keyUsed = Mouvement.RotationHoraire;
+
+      bool peutBougerHoraire = DeterminerSiPiecePeutBouger(keyUsed);
+
+      //Validation des résultats
+      Debug.WriteLine(peutBougerAntihoraire, "Erreur dans l'exécution de la rotation dans le sens antihoraire");
+      Debug.WriteLine(peutBougerHoraire, "Erreur dans l'exécution de la rotation dans le sens horaire");
+
+      //Clean up
+      ligneCourante = 0;
+      colonneCourante = 0;
+      ResetPieces();
+      keyUsed = Mouvement.Immobile;
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Rien;
+        }
+      }
+    }
+
+    //Test pour la detection de fin de partie
+    void TesterFinDePartie()
+    {
+      //Mise en place des données du test
+      colonneCourante = colonneDeDepart;
+      ligneCourante = 0;
+      jeuEstEnCours = true;
+
+      //Mise en place de pièce gelées
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Gelee;
+        }
+      }
+
+      //Test avec la Barre Verticale
+      blocActifY[0] = 0;
+      blocActifY[1] = 1;
+      blocActifY[2] = 2;
+      blocActifY[3] = 3;
+
+      blocActifX[0] = 0;
+      blocActifX[1] = 0;
+      blocActifX[2] = 0;
+      blocActifX[3] = 0;
+
+      //Exécution de la méthode à tester
+      VérificationFinPartie();
+
+      //Validation des résultats
+      Debug.WriteLine(jeuEstEnCours, "Erreur dans la détection de fin de partie");
+
+      //Clean up
+      ligneCourante = 0;
+      colonneCourante = 0;
+      jeuEstEnCours = false;
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Rien;
+        }
+      }
+    }
+
+    //Test pour la detection si la partie n'est pas terminée
+    void TesterSiPartieFinie()
+    {
+      //Mise en place des données du test
+      colonneCourante = colonneDeDepart;
+      ligneCourante = 0;
+      jeuEstEnCours = true;
+
+      //Mise en place de pièce gelées
+      for (int i = 0; i < tableauPieces.GetLength(0)/2; i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1)/2; j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Gelee;
+        }
+      }
+
+      //Test avec la Barre Verticale
+      blocActifY[0] = 0;
+      blocActifY[1] = 1;
+      blocActifY[2] = 2;
+      blocActifY[3] = 3;
+
+      blocActifX[0] = 0;
+      blocActifX[1] = 0;
+      blocActifX[2] = 0;
+      blocActifX[3] = 0;
+
+      //Exécution de la méthode à tester
+      VérificationFinPartie();
+
+      //Validation des résultats
+      Debug.WriteLine(jeuEstEnCours, "Erreur dans la détection de fin de partie");
+
+      //Clean up
+      ligneCourante = 0;
+      colonneCourante = 0;
+      jeuEstEnCours = false;
+      for (int i = 0; i < tableauPieces.GetLength(0); i++)
+      {
+        for (int j = 0; j < tableauPieces.GetLength(1); j++)
+        {
+          tableauPieces[i, j] = PieceTeris.Rien;
+        }
+      }
+    }
+
+    #endregion
+    //Mika Gauthier
 
     #endregion
 
