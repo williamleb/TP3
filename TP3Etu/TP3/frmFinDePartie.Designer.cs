@@ -48,23 +48,23 @@
       this.txtBNbEnZ = new System.Windows.Forms.TextBox();
       this.lblPointage = new System.Windows.Forms.Label();
       this.lblTempsEcoule = new System.Windows.Forms.Label();
-      this.pictureBox1 = new System.Windows.Forms.PictureBox();
-      this.pictureBox2 = new System.Windows.Forms.PictureBox();
-      this.pictureBox3 = new System.Windows.Forms.PictureBox();
-      this.pictureBox4 = new System.Windows.Forms.PictureBox();
-      this.pictureBox5 = new System.Windows.Forms.PictureBox();
-      this.pictureBox6 = new System.Windows.Forms.PictureBox();
-      this.pictureBox7 = new System.Windows.Forms.PictureBox();
-      this.pictureBox8 = new System.Windows.Forms.PictureBox();
+      this.pBBloc = new System.Windows.Forms.PictureBox();
+      this.pBBarreV = new System.Windows.Forms.PictureBox();
+      this.pBBarreH = new System.Windows.Forms.PictureBox();
+      this.pBEnT = new System.Windows.Forms.PictureBox();
+      this.pBEnJ = new System.Windows.Forms.PictureBox();
+      this.pBEnL = new System.Windows.Forms.PictureBox();
+      this.pBEnS = new System.Windows.Forms.PictureBox();
+      this.pBEnZ = new System.Windows.Forms.PictureBox();
       this.tLPStatistiqueFinDePartie.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pBBloc)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pBBarreV)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pBBarreH)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pBEnT)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pBEnJ)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pBEnL)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pBEnS)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pBEnZ)).BeginInit();
       this.SuspendLayout();
       // 
       // lblPieceBloc
@@ -106,14 +106,14 @@
       this.tLPStatistiqueFinDePartie.Controls.Add(this.txtBNbEnZ, 1, 7);
       this.tLPStatistiqueFinDePartie.Controls.Add(this.lblPointage, 3, 0);
       this.tLPStatistiqueFinDePartie.Controls.Add(this.lblTempsEcoule, 3, 4);
-      this.tLPStatistiqueFinDePartie.Controls.Add(this.pictureBox1, 2, 0);
-      this.tLPStatistiqueFinDePartie.Controls.Add(this.pictureBox2, 2, 1);
-      this.tLPStatistiqueFinDePartie.Controls.Add(this.pictureBox3, 2, 2);
-      this.tLPStatistiqueFinDePartie.Controls.Add(this.pictureBox4, 2, 3);
-      this.tLPStatistiqueFinDePartie.Controls.Add(this.pictureBox5, 2, 4);
-      this.tLPStatistiqueFinDePartie.Controls.Add(this.pictureBox6, 2, 5);
-      this.tLPStatistiqueFinDePartie.Controls.Add(this.pictureBox7, 2, 6);
-      this.tLPStatistiqueFinDePartie.Controls.Add(this.pictureBox8, 2, 7);
+      this.tLPStatistiqueFinDePartie.Controls.Add(this.pBBloc, 2, 0);
+      this.tLPStatistiqueFinDePartie.Controls.Add(this.pBBarreV, 2, 1);
+      this.tLPStatistiqueFinDePartie.Controls.Add(this.pBBarreH, 2, 2);
+      this.tLPStatistiqueFinDePartie.Controls.Add(this.pBEnT, 2, 3);
+      this.tLPStatistiqueFinDePartie.Controls.Add(this.pBEnJ, 2, 4);
+      this.tLPStatistiqueFinDePartie.Controls.Add(this.pBEnL, 2, 5);
+      this.tLPStatistiqueFinDePartie.Controls.Add(this.pBEnS, 2, 6);
+      this.tLPStatistiqueFinDePartie.Controls.Add(this.pBEnZ, 2, 7);
       this.tLPStatistiqueFinDePartie.Location = new System.Drawing.Point(13, 13);
       this.tLPStatistiqueFinDePartie.Name = "tLPStatistiqueFinDePartie";
       this.tLPStatistiqueFinDePartie.RowCount = 8;
@@ -278,85 +278,85 @@
       this.lblTempsEcoule.TabIndex = 17;
       this.lblTempsEcoule.Text = "Temps";
       // 
-      // pictureBox1
+      // pBBloc
       // 
-      /*this.pictureBox1.Image = global::TP3.Properties.Resources.Tetris_Bolcpng;*/
-      this.pictureBox1.Location = new System.Drawing.Point(381, 3);
-      this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(183, 85);
-      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-      this.pictureBox1.TabIndex = 18;
-      this.pictureBox1.TabStop = false;
+      this.pBBloc.Image = global::TP3.Properties.Resources.Tetris_Bolcpng;
+      this.pBBloc.Location = new System.Drawing.Point(381, 3);
+      this.pBBloc.Name = "pBBloc";
+      this.pBBloc.Size = new System.Drawing.Size(183, 85);
+      this.pBBloc.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+      this.pBBloc.TabIndex = 18;
+      this.pBBloc.TabStop = false;
       // 
-      // pictureBox2
+      // pBBarreV
       // 
-      /*this.pictureBox2.Image = global::TP3.Properties.Resources.Tetris_I__2_;*/
-      this.pictureBox2.Location = new System.Drawing.Point(381, 94);
-      this.pictureBox2.Name = "pictureBox2";
-      this.pictureBox2.Size = new System.Drawing.Size(183, 85);
-      this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-      this.pictureBox2.TabIndex = 19;
-      this.pictureBox2.TabStop = false;
+      this.pBBarreV.Image = global::TP3.Properties.Resources.Tetris_I__2_;
+      this.pBBarreV.Location = new System.Drawing.Point(381, 94);
+      this.pBBarreV.Name = "pBBarreV";
+      this.pBBarreV.Size = new System.Drawing.Size(183, 85);
+      this.pBBarreV.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+      this.pBBarreV.TabIndex = 19;
+      this.pBBarreV.TabStop = false;
       // 
-      // pictureBox3
+      // pBBarreH
       // 
-      /*this.pictureBox3.Image = global::TP3.Properties.Resources.Tetris_I;*/
-      this.pictureBox3.Location = new System.Drawing.Point(381, 185);
-      this.pictureBox3.Name = "pictureBox3";
-      this.pictureBox3.Size = new System.Drawing.Size(183, 85);
-      this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-      this.pictureBox3.TabIndex = 20;
-      this.pictureBox3.TabStop = false;
+      this.pBBarreH.Image = global::TP3.Properties.Resources.Tetris_I;
+      this.pBBarreH.Location = new System.Drawing.Point(381, 185);
+      this.pBBarreH.Name = "pBBarreH";
+      this.pBBarreH.Size = new System.Drawing.Size(183, 85);
+      this.pBBarreH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+      this.pBBarreH.TabIndex = 20;
+      this.pBBarreH.TabStop = false;
       // 
-      // pictureBox4
+      // pBEnT
       // 
-      /*this.pictureBox4.Image = global::TP3.Properties.Resources.Tetris_T;*/
-      this.pictureBox4.Location = new System.Drawing.Point(381, 276);
-      this.pictureBox4.Name = "pictureBox4";
-      this.pictureBox4.Size = new System.Drawing.Size(183, 81);
-      this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-      this.pictureBox4.TabIndex = 21;
-      this.pictureBox4.TabStop = false;
+      this.pBEnT.Image = global::TP3.Properties.Resources.Tetris_T;
+      this.pBEnT.Location = new System.Drawing.Point(381, 276);
+      this.pBEnT.Name = "pBEnT";
+      this.pBEnT.Size = new System.Drawing.Size(183, 81);
+      this.pBEnT.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+      this.pBEnT.TabIndex = 21;
+      this.pBEnT.TabStop = false;
       // 
-      // pictureBox5
+      // pBEnJ
       // 
-      /*this.pictureBox5.Image = global::TP3.Properties.Resources.Tetris_J;*/
-      this.pictureBox5.Location = new System.Drawing.Point(381, 367);
-      this.pictureBox5.Name = "pictureBox5";
-      this.pictureBox5.Size = new System.Drawing.Size(183, 82);
-      this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-      this.pictureBox5.TabIndex = 22;
-      this.pictureBox5.TabStop = false;
+      this.pBEnJ.Image = global::TP3.Properties.Resources.Tetris_J;
+      this.pBEnJ.Location = new System.Drawing.Point(381, 367);
+      this.pBEnJ.Name = "pBEnJ";
+      this.pBEnJ.Size = new System.Drawing.Size(183, 82);
+      this.pBEnJ.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+      this.pBEnJ.TabIndex = 22;
+      this.pBEnJ.TabStop = false;
       // 
-      // pictureBox6
+      // pBEnL
       // 
-      /*this.pictureBox6.Image = global::TP3.Properties.Resources.Tetris_L;*/
-      this.pictureBox6.Location = new System.Drawing.Point(381, 459);
-      this.pictureBox6.Name = "pictureBox6";
-      this.pictureBox6.Size = new System.Drawing.Size(183, 84);
-      this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-      this.pictureBox6.TabIndex = 23;
-      this.pictureBox6.TabStop = false;
+      this.pBEnL.Image = global::TP3.Properties.Resources.Tetris_L;
+      this.pBEnL.Location = new System.Drawing.Point(381, 459);
+      this.pBEnL.Name = "pBEnL";
+      this.pBEnL.Size = new System.Drawing.Size(183, 84);
+      this.pBEnL.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+      this.pBEnL.TabIndex = 23;
+      this.pBEnL.TabStop = false;
       // 
-      // pictureBox7
+      // pBEnS
       // 
-      /*this.pictureBox7.Image = global::TP3.Properties.Resources.Tetris_S;*/
-      this.pictureBox7.Location = new System.Drawing.Point(381, 549);
-      this.pictureBox7.Name = "pictureBox7";
-      this.pictureBox7.Size = new System.Drawing.Size(183, 85);
-      this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-      this.pictureBox7.TabIndex = 24;
-      this.pictureBox7.TabStop = false;
+      this.pBEnS.Image = global::TP3.Properties.Resources.Tetris_S;
+      this.pBEnS.Location = new System.Drawing.Point(381, 549);
+      this.pBEnS.Name = "pBEnS";
+      this.pBEnS.Size = new System.Drawing.Size(183, 85);
+      this.pBEnS.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+      this.pBEnS.TabIndex = 24;
+      this.pBEnS.TabStop = false;
       // 
-      // pictureBox8
+      // pBEnZ
       // 
-      /*this.pictureBox8.Image = global::TP3.Properties.Resources.Tetris_Z;*/
-      this.pictureBox8.Location = new System.Drawing.Point(381, 640);
-      this.pictureBox8.Name = "pictureBox8";
-      this.pictureBox8.Size = new System.Drawing.Size(183, 91);
-      this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-      this.pictureBox8.TabIndex = 25;
-      this.pictureBox8.TabStop = false;
+      this.pBEnZ.Image = global::TP3.Properties.Resources.Tetris_Z;
+      this.pBEnZ.Location = new System.Drawing.Point(381, 640);
+      this.pBEnZ.Name = "pBEnZ";
+      this.pBEnZ.Size = new System.Drawing.Size(183, 91);
+      this.pBEnZ.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+      this.pBEnZ.TabIndex = 25;
+      this.pBEnZ.TabStop = false;
       // 
       // frmFinDePartie
       // 
@@ -370,14 +370,14 @@
       this.Load += new System.EventHandler(this.frmFinDePartie_Load);
       this.tLPStatistiqueFinDePartie.ResumeLayout(false);
       this.tLPStatistiqueFinDePartie.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pBBloc)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pBBarreV)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pBBarreH)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pBEnT)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pBEnJ)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pBEnL)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pBEnS)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pBEnZ)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -403,13 +403,13 @@
     private System.Windows.Forms.TextBox txtBNbEnZ;
     private System.Windows.Forms.Label lblPointage;
     private System.Windows.Forms.Label lblTempsEcoule;
-    private System.Windows.Forms.PictureBox pictureBox1;
-    private System.Windows.Forms.PictureBox pictureBox2;
-    private System.Windows.Forms.PictureBox pictureBox3;
-    private System.Windows.Forms.PictureBox pictureBox4;
-    private System.Windows.Forms.PictureBox pictureBox5;
-    private System.Windows.Forms.PictureBox pictureBox6;
-    private System.Windows.Forms.PictureBox pictureBox7;
-    private System.Windows.Forms.PictureBox pictureBox8;
+    private System.Windows.Forms.PictureBox pBBloc;
+    private System.Windows.Forms.PictureBox pBBarreV;
+    private System.Windows.Forms.PictureBox pBBarreH;
+    private System.Windows.Forms.PictureBox pBEnT;
+    private System.Windows.Forms.PictureBox pBEnJ;
+    private System.Windows.Forms.PictureBox pBEnL;
+    private System.Windows.Forms.PictureBox pBEnS;
+    private System.Windows.Forms.PictureBox pBEnZ;
   }
 }
