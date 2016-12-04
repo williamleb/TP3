@@ -193,12 +193,16 @@ namespace TP3
       ExecuterTestsUnitaires();
 
       // <WLebel>
+      // Initialise les valeurs de base pour pouvoir afficher le jeu.
       InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
 
+      // Configure la variable de musique pour être capable de jouer le
+      // thème de Tetris.
       musique.settings.autoStart = false;
       musique.URL = @"Resources/MusiqueTetris.mp3";
       musique.settings.setMode("loop", true);
 
+      // Initialise le tableau des picture box du coup suivant.
       tousLesPicturesBoxCoupSuivant = new PictureBox[4, 4] {
                                                             { pbCoupSuivant0, pbCoupSuivant1, pbCoupSuivant2, pbCoupSuivant3 },
                                                             { pbCoupSuivant4, pbCoupSuivant5, pbCoupSuivant6, pbCoupSuivant7 },
@@ -211,7 +215,8 @@ namespace TP3
 
     // <WLebel>
     /// <summary>
-    /// Méthode appelée lorsque le joueur appuie sur le menu « Jouer ».
+    /// Méthode appelée lorsque le joueur appuie sur le menu «Jouer».
+    /// La méthode permet au joueur de commencer une partie.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -221,26 +226,30 @@ namespace TP3
       // sa partie en cours.
       if (jeuEstEnCours)
       {
+        // S'il accepte, on arrête sa partie et on en commence une nouvelle.
         if (DemanderAbandonnerPartie() == true)
         {
           ArreterExecutionJeu();
           CommencerJeu();
         }
       }
+      // Sinon, on commence directement une nouvelle partie.
       else
       {
         CommencerJeu();
       }
     }
-    // </WLebel> et Mika Gauthier
+    // </WLebel>
 
+    // <WLebel>
     /// <summary>
-    /// Méthode qui est appelé à une certaine intervalle lorsque le jeu est commencé
+    /// Méthode qui est appelée à un certain intervalle lorsque le jeu est commencé
     /// et qui permet de vérifier si la partie est terminée et, si ce n'est pas le cas, de
     /// descendre ou de geler la pièce en cours selon son état.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
+    // </WLebel>
     private void OnTickTimerJeu(object sender, EventArgs e)
     {
       //Mika Gauthier
@@ -249,43 +258,65 @@ namespace TP3
       {
         ArreterExecutionJeu();
       }
+      //Mika Gauthier
       // <WLebel>
-      else if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerBas))
+      // Si la pièce peut descendre vers le bas, on la descend automatiquement.
+      else if (DeterminerSiPiecePeutBouger(Mouvement.DeplacerBas))
       {
+        // Efface les blocs de la pièce en cours dans le tableau de pièces.
         ActualiserTableauPieces(PieceTeris.Rien);
+        // Déplace le point de référence vers le bas.
         ligneCourante++;
+        // Ajoute les blocs de la pièce en cours à leur nouvelle position
+        // dans le tableau de pièces.
         ActualiserTableauPieces(pieceEnCours);
+        // Affiche le nouvel état du jeu.
         AfficherJeu();
       }
+      // Si la pièce ne peut plus descendre, on la gèle et on génère une nouvelle pièce
+      // en haut du jeu.
       else
       {
+        // Gèle la pièce en cours.
         ActualiserTableauPieces(PieceTeris.Gelee);
+        // Actualise le pointage si la pièce gelée a créé une ligne complète
+        // et supprime cette ligne complète.
         ActualiserPointage();
-        AfficherJeu();
+        // Actualise le niveau de difficulté selon le nombre de lignes enlevées.
         ActualiserNieauDifficulte();
+        //Mika Gauthier
         VérificationFinPartie();
         if (jeuEstEnCours == true)
         {
+          // <WLebel>
+          // Prend la pièce «suivante» pour la copier comme «pièce en cours».
           GenererPieceEnCours();
+          // Génère une nouvelle pièce «suivante».
           GenererPieceAleatoire();
+          // Remet le point de référence au bon endroit dans le jeu.
           colonneCourante = colonneDeDepart;
           ligneCourante = 0;
+          // Ajoute les blocs de la nouvelle pièce dans le tableau de pièce.
           ActualiserTableauPieces(pieceEnCours);
+          // Affiche le jeu au joueur.
           AfficherJeu();
+          // Actualise l'affichage du coup suivant.
           EffacerCoupSuivant();
           AfficherPieceSuivante();
+          // </WLebel
         }
         else
         {
           ArreterExecutionJeu();
         }
       }
-      // </WLebel> et Mika gauthier
+      //Mika Gauthier
+      // </WLebel>
     }
 
     // <WLebel>
     /// <summary>
-    /// Métode appelée lorsque le joueur clique sur le menu « Configuration ». 
+    /// Méthode appelée lorsque le joueur clique sur le menu « Configuration ». 
     /// La méthode affiche une fenêtre de configuration qui permet au joueur
     /// de configurer le jeu.
     /// </summary>
@@ -293,6 +324,9 @@ namespace TP3
     /// <param name="e"></param>
     private void OnClickMenuConfiguration(object sender, EventArgs e)
     {
+      // Variable qui détermine si le formulaire de configuration doit s'ouvrir (true)
+      // ou non (false).
+      bool formulaireDoitOuvrir = true;
       // Si le jeu est en cours, on demande au joueur s'il veut abandonner sa partie.
       if (jeuEstEnCours)
       {
@@ -300,50 +334,62 @@ namespace TP3
         {
           ArreterExecutionJeu();
         }
+        // S'il ne veut pas, on n'ouvre pas le formulaire de configuration.
+        else
+        {
+          formulaireDoitOuvrir = false;
+        }
       }
 
-      ConfigurationFenetre fenetreDeConfiguration = new ConfigurationFenetre();
-      // Affectation des valeurs en cours dans le nouveau formulaire.
-      fenetreDeConfiguration.nombreDeLignesDansLeJeu = nbLignesJeu;
-      fenetreDeConfiguration.nombreDeColonnesDansLeJeu = nbColonnesJeu;
-      fenetreDeConfiguration.doitJouerMusique = doitJouerMusique;
-      fenetreDeConfiguration.toucheDeplacerBas = toucheDeplacerBas;
-      fenetreDeConfiguration.toucheDeplacerDroite = toucheDeplacerDroite;
-      fenetreDeConfiguration.toucheDeplacerGauche = toucheDeplacerGauche;
-      fenetreDeConfiguration.toucheRotationAntihoraire = toucheRotationAntihoraire;
-      fenetreDeConfiguration.toucheRotationHoraire = toucheRotationHoraire;
-      fenetreDeConfiguration.toucheTomber = toucheTomber;
-
-      // Prise des choix du joueur si le joueur a cliqué sur « Ok ».
-      if (fenetreDeConfiguration.ShowDialog() == DialogResult.OK)
+      // Si le formulaire de configuration doit s'ouvrir, on l'ouvre.
+      if (formulaireDoitOuvrir)
       {
-        nbLignesJeu = fenetreDeConfiguration.nombreDeLignesDansLeJeu;
-        nbColonnesJeu = fenetreDeConfiguration.nombreDeColonnesDansLeJeu;
-        doitJouerMusique = fenetreDeConfiguration.doitJouerMusique;
-        toucheDeplacerBas = fenetreDeConfiguration.toucheDeplacerBas;
-        toucheDeplacerDroite = fenetreDeConfiguration.toucheDeplacerDroite;
-        toucheDeplacerGauche = fenetreDeConfiguration.toucheDeplacerGauche;
-        toucheRotationAntihoraire = fenetreDeConfiguration.toucheRotationAntihoraire;
-        toucheRotationHoraire = fenetreDeConfiguration.toucheRotationHoraire;
-        toucheTomber = fenetreDeConfiguration.toucheTomber;
+        ConfigurationFenetre fenetreDeConfiguration = new ConfigurationFenetre();
 
-        // Initialise et affiche les changements.
-        InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
-        AfficherTouchesDansFenetreJeu();
+        // Affectation des valeurs en cours dans le nouveau formulaire.
+        fenetreDeConfiguration.nombreDeLignesDansLeJeu = nbLignesJeu;
+        fenetreDeConfiguration.nombreDeColonnesDansLeJeu = nbColonnesJeu;
+        fenetreDeConfiguration.doitJouerMusique = doitJouerMusique;
+        fenetreDeConfiguration.toucheDeplacerBas = toucheDeplacerBas;
+        fenetreDeConfiguration.toucheDeplacerDroite = toucheDeplacerDroite;
+        fenetreDeConfiguration.toucheDeplacerGauche = toucheDeplacerGauche;
+        fenetreDeConfiguration.toucheRotationAntihoraire = toucheRotationAntihoraire;
+        fenetreDeConfiguration.toucheRotationHoraire = toucheRotationHoraire;
+        fenetreDeConfiguration.toucheTomber = toucheTomber;
+
+        // Sauvegarde des choix du joueur si le joueur a cliqué sur « Ok ».
+        if (fenetreDeConfiguration.ShowDialog() == DialogResult.OK)
+        {
+          nbLignesJeu = fenetreDeConfiguration.nombreDeLignesDansLeJeu;
+          nbColonnesJeu = fenetreDeConfiguration.nombreDeColonnesDansLeJeu;
+          doitJouerMusique = fenetreDeConfiguration.doitJouerMusique;
+          toucheDeplacerBas = fenetreDeConfiguration.toucheDeplacerBas;
+          toucheDeplacerDroite = fenetreDeConfiguration.toucheDeplacerDroite;
+          toucheDeplacerGauche = fenetreDeConfiguration.toucheDeplacerGauche;
+          toucheRotationAntihoraire = fenetreDeConfiguration.toucheRotationAntihoraire;
+          toucheRotationHoraire = fenetreDeConfiguration.toucheRotationHoraire;
+          toucheTomber = fenetreDeConfiguration.toucheTomber;
+
+          // Initialise et affiche les changements.
+          InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
+          AfficherTouchesDansFenetreJeu();
+        }
+
       }
-
     }
     // </WLebel>
 
     // <WLebel>
     /// <summary>
     /// Méthode appelée lorsque le joueur clique sur le menu « Quitter ».
-    /// La métode quite le jeu.
+    /// La méthode quitte le jeu.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void menuQuitter_Click(object sender, EventArgs e)
     {
+      // Si le jeu est en cours, on demande au joueur s'il veut
+      // vraiment abandonner sa partie.
       if (jeuEstEnCours)
       {
         if (DemanderAbandonnerPartie() == true)
@@ -352,6 +398,7 @@ namespace TP3
           Application.Exit();
         }
       }
+      // Sinon, on quitte le jeu sans rien demander.
       else
       {
         Application.Exit();
@@ -436,7 +483,7 @@ namespace TP3
     private void OnMouseClickBtnValider(object sender, MouseEventArgs e)
     {
 
-      // Si le jeu n'est pas en cours.
+      // Si le jeu n'est pas en cours, on effectue les changements.
       if (!jeuEstEnCours)
       {
         // Appliquer le choix de nombres de lignes et de colonnes.
@@ -453,6 +500,7 @@ namespace TP3
           doitJouerMusique = false;
         }
 
+        // Initialise les nouvelles valeurs.
         InitialiserValeursJeu(nbLignesJeu, nbColonnesJeu);
       }
 
@@ -479,13 +527,14 @@ namespace TP3
     #region Méthodes qui gèrent les différents affichages dans la fenêtre du jeu.
     // <WLebel>
     /// <summary>
-    /// Affiche la pièce suivante dans les images visueles de la pièce suivante.
+    /// Affiche la pièce suivante dans les images visuelles de la pièce suivante.
     /// </summary>
     void AfficherPieceSuivante()
     {
-      // Affiche une couleur de fond selon la pièce.
+      // Affiche toutes les blocs de la pièce selon leur position relative.
       for (int i = 0; i < blocSuivantY.Length; i++)
       {
+        // La couleur est choisie selon la pièce.
         if (pieceSuivante == PieceTeris.Rien)
         {
           tousLesPicturesBoxCoupSuivant[blocSuivantY[i], blocSuivantX[i]].BackColor = Color.Black;
@@ -546,15 +595,17 @@ namespace TP3
 
     // <WLebel>
     /// <summary>
-    /// Affiche le tableau de jeu au joueur en utilisant différentes couleurs pour les différents types de pièce.
+    /// Affiche le tableau de jeu au joueur en utilisant différentes couleurs pour 
+    /// les différents types de pièces.
     /// </summary>
     void AfficherJeu()
     {
-      // Affiche une couleur de fond selon la pièce.
+      // Parcourt l'ensemble du tableau de pièces.
       for (int i = 0; i < tableauPieces.GetLength(0); i++)
       {
         for (int j = 0; j < tableauPieces.GetLength(1); j++)
         {
+          // Affiche une couleur de fond selon le type de pièces trouvé.
           if (tableauPieces[i, j] == PieceTeris.Rien)
           {
             toutesImagesVisuelles[i, j].BackColor = Color.Black;
@@ -598,33 +649,35 @@ namespace TP3
 
     //<WLebel>
     /// <summary>
-    /// Affiche le pointage donnée par la variable partagée «pointage» au joueur pendant la partie.
+    /// Affiche le pointage donné par la variable partagée «pointage» au joueur pendant la partie.
     /// </summary>
     void AfficherPointageDansFenetreJeu()
     {
+      // Affiche le pointage sous la forme «Pointage : [pointage]»
       lblPointage.Text = "Pointage : " + pointage;
     }
     // </WLebel>
 
     // <WLebel>
     /// <summary>
-    /// Affiche le nibeau de difficulté donné par la variable «niveauDifficulteDe1A9» 
+    /// Affiche le niveau de difficulté donné par la variable «niveauDifficulteDe1A9» 
     /// au joueur pendant la partie.
     /// </summary>
     void AfficherNiveauDansFenetreJeu()
     {
+      // Affiche le niveau de difficulté sous la forme «Niveau : [niveauDifficulté]»
       lblNiveau.Text = "Niveau : " + niveauDifficluteDe1A9;
     }
     // </WLebel>
 
     // <WLebel>
     /// <summary>
-    /// Méthode qui affiche les touches au joueurs dans le «layoutControles» selon
+    /// Méthode qui affiche les touches au joueur dans le «layoutControles» selon
     /// les touches qui se trouvent dans la variable partagée.
     /// </summary>
     void AfficherTouchesDansFenetreJeu()
     {
-      // Gauche.
+      // Affiche la touche pour aller à gauche (sous la forme «Gauche : [touche]»).
       lblGauche.Text = "Gauche : ";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheDeplacerGauche))
@@ -646,7 +699,7 @@ namespace TP3
         }
       }
 
-      // Bas.
+      // Affiche la touche pour aller vers le bas (sous la forme «Bas : [touche]»).
       lblBas.Text = "Bas : ";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheDeplacerBas))
@@ -668,7 +721,7 @@ namespace TP3
         }
       }
 
-      // Droite.
+      // Affiche la touche pour aller à droite (sous la forme «Droite : [touche]»).
       lblDroite.Text = "Droite : ";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheDeplacerDroite))
@@ -690,7 +743,7 @@ namespace TP3
         }
       }
 
-      // Horaire.
+      // Affiche la touche pour faire une rotation horaire (sous la forme «Horaire : [touche]»).
       lblHoraire.Text = "Horaire : ";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheRotationHoraire))
@@ -712,7 +765,7 @@ namespace TP3
         }
       }
 
-      // Antihoraire.
+      // Affiche la touche pour faire une rotation antihoraire (sous la forme «Antihoraire : [touche]»).
       lblAntihoraire.Text = "Antihoraire : ";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheRotationAntihoraire))
@@ -734,7 +787,7 @@ namespace TP3
         }
       }
 
-      // Tomber.
+      // Affiche la touche pour tomber (sous la forme «Tomber : [touche]»).
       lblTomber.Text = "Tomber : ";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheTomber))
@@ -766,17 +819,20 @@ namespace TP3
     /// <summary>
     /// Méthode qui initialise le nombre de lignes et de colonnes du jeu, la surface de jeu,
     /// le tableau des pièces du jeu et la position de départ des blocs selon un nouveau
-    /// nombre de lignes et de colonnes données.
+    /// nombre de lignes et de colonnes donné.
     /// </summary>
     /// <param name="nouveauNbLignes">Nouveau nombre de lignes qui composeront le jeu.</param>
     /// <param name="nouveauNbColonnes">Nouveau nombre de colonnes qui composeront le jeu.</param>
     void InitialiserValeursJeu(int nouveauNbLignes, int nouveauNbColonnes)
     {
+      // Initialise le nombre de colonnes et de lignes
       nbColonnesJeu = nouveauNbColonnes;
       nbLignesJeu = nouveauNbLignes;
 
+      // Initialise la surface de jeu.
       InitialiserSurfaceDeJeu(nbLignesJeu, nbColonnesJeu);
 
+      // Initialise le tableau de pièces avec les grandeurs indiquées.
       tableauPieces = new PieceTeris[nbLignesJeu, nbColonnesJeu];
       // Initialise le tableau de pièces à vide.
       for (int i = 0; i < tableauPieces.GetLength(0); i++)
@@ -787,19 +843,22 @@ namespace TP3
         }
       }
 
-      // Sélectionne la colonne du milieu
+      // Sélectionne la colonne du milieu comme colonne de départ.
       colonneDeDepart = nbColonnesJeu / 2;
     }
     // </WLebel>
 
     // <WLebel>
     /// <summary>
-    /// Méthode qui permet de remplacer les coordonées des pièces courantes avec un autre type de pièce
+    /// Méthode qui permet de remplacer les coordonnées des pièces courantes dans
+    /// le tableau des pièces avec un autre type de pièce
     /// dans le but d'actualiser la nouvelle position des pièces.
     /// </summary>
-    /// <param name="pieceQuiRemplace">Pièce qui sera attribuée aux coordonnées présentes de la pièce.</param>
+    /// <param name="pieceQuiRemplace">Pièce qui sera attribuée aux coordonnées présentes de la 
+    /// pièce dans le tableau de pièces.</param>
     void ActualiserTableauPieces(PieceTeris pieceQuiRemplace)
     {
+      // Pour toutes les coordonnées des blocs actifs, on les remplace avec le type de pièce donné.
       for (int i = 0; i < blocActifY.Length; i++)
       {
         tableauPieces[blocActifY[i] + ligneCourante, blocActifX[i] + colonneCourante] = pieceQuiRemplace;
@@ -815,7 +874,7 @@ namespace TP3
     {
       int niveauDifficulteEvalue = 1;
 
-      // Le niveau de difficulté est évalué selon les lignes complétées.
+      // Le niveau de difficulté est évalué selon le nombre de lignes complétées.
       if (nbLignesCompleteesAuTotal > 40)
       {
         niveauDifficulteEvalue = 9;
@@ -864,7 +923,7 @@ namespace TP3
     /// Méthode qui permet d'initialiser un nouveau niveau de difficulté ainsi que de changer
     /// la rapidité de descente de la pièce selon ce niveau de difficulté.
     /// </summary>
-    /// <param name="nouveauNiveauDifficulte">Le nouveau niveau de difficulté.</param>
+    /// <param name="nouveauNiveauDifficulte">Le nouveau niveau de difficulté qui sera initialisé.</param>
     void TraiterNouveauNiveauDifficulté(int nouveauNiveauDifficulte)
     {
       // On détermine le nouveau niveau de difficulté.
@@ -960,8 +1019,8 @@ namespace TP3
     /// ou une collision avec une pièce gelée.
     /// </summary>
     /// <param name="sens">Détermine le sens du déplacement à tester.</param>
-    /// <returns></returns>
-    bool DeterminerSiBlocPeutBouger(Mouvement sens)
+    /// <returns>True si la pièce peut bouger dans la direction donnée, false sinon.</returns>
+    bool DeterminerSiPiecePeutBouger(Mouvement sens)
     {
       bool peutBouger = true;
 
@@ -985,8 +1044,12 @@ namespace TP3
       }
       else if (sens == Mouvement.DeplacerGauche)
       {
+        // Pour tous les blocs actifs.
         for (int i = 0; i < blocActifY.Length; i++)
         {
+          // Test si le nouvement causera un débordement de tableau (si le mouvement positionne les 
+          // blocs en dehors du jeu).
+          // Sinon, test si à la nouvelle position se trouve une pièce gelée.
           if (blocActifX[i] + colonneCourante - 1 < 0)
           {
             peutBouger = false;
@@ -999,8 +1062,12 @@ namespace TP3
       }
       else if (sens == Mouvement.DeplacerDroite)
       {
+        // Pour tous les blocs actifs.
         for (int i = 0; i < blocActifY.Length; i++)
         {
+          // Test si le nouvement causera un débordement de tableau (si le mouvement positionne les 
+          // blocs en dehors du jeu).
+          // Sinon, test si à la nouvelle position se trouve une pièce gelée.
           if (blocActifX[i] + colonneCourante + 1 >= nbColonnesJeu)
           {
             peutBouger = false;
@@ -1013,8 +1080,12 @@ namespace TP3
       }
       else if (sens == Mouvement.RotationAntihoraire)
       {
+        // Pour tous les blocs actifs
         for (int i = 0; i < blocActifY.Length; i++)
         {
+          // Test si le nouvement causera un débordement de tableau (si le mouvement positionne les 
+          // blocs en dehors du jeu).
+          // Sinon, test si à la nouvelle position se trouve une pièce gelée.
           if (-blocActifX[i] + ligneCourante < 0 || -blocActifX[i] + ligneCourante >= nbLignesJeu || blocActifY[i] + colonneCourante < 0 || blocActifY[i] + colonneCourante >= nbColonnesJeu)
           {
             peutBouger = false;
@@ -1027,8 +1098,12 @@ namespace TP3
       }
       else if (sens == Mouvement.RotationHoraire)
       {
+        // Pour tous les blocs actifs.
         for (int i = 0; i < blocActifY.Length; i++)
         {
+          // Test si le nouvement causera un débordement de tableau (si le mouvement positionne les 
+          // blocs en dehors du jeu).
+          // Sinon, test si à la nouvelle position se trouve une pièce gelée.
           if (blocActifX[i] + ligneCourante < 0 || blocActifX[i] + ligneCourante >= nbLignesJeu || -blocActifY[i] + colonneCourante < 0 || -blocActifY[i] + colonneCourante >= nbColonnesJeu)
           {
             peutBouger = false;
@@ -1041,8 +1116,12 @@ namespace TP3
       }
       else if (sens == Mouvement.DeplacerHaut) // Seulement à titre de test.
       {
+        // Pour tous les blocs actifs.
         for (int i = 0; i < blocActifY.Length; i++)
         {
+          // Test si le nouvement causera un débordement de tableau (si le mouvement positionne les 
+          // blocs en dehors du jeu).
+          // Sinon, test si à la nouvelle position se trouve une pièce gelée.
           if (blocActifY[i] + ligneCourante - 1 < 0)
           {
             peutBouger = false;
@@ -1069,7 +1148,7 @@ namespace TP3
       if (keyUsed == Mouvement.DeplacerGauche)
       {
         //Vérification si le déplacement est possible
-        if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerGauche))
+        if (DeterminerSiPiecePeutBouger(Mouvement.DeplacerGauche))
         {
           //Actualisation + affichage du tableau 
           ActualiserTableauPieces(PieceTeris.Rien);
@@ -1083,7 +1162,7 @@ namespace TP3
       if (keyUsed == Mouvement.DeplacerDroite)
       {
         //Vérification si le déplacement est possible
-        if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerDroite))
+        if (DeterminerSiPiecePeutBouger(Mouvement.DeplacerDroite))
         {
           //Actualisation + affichage du tableau 
           ActualiserTableauPieces(PieceTeris.Rien);
@@ -1096,7 +1175,7 @@ namespace TP3
       if (keyUsed == Mouvement.DeplacerBas)
       {
         //Vérification si le déplacement est possible
-        if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerBas))
+        if (DeterminerSiPiecePeutBouger(Mouvement.DeplacerBas))
         {
           //Actualisation + affichage du tableau 
           ActualiserTableauPieces(PieceTeris.Rien);
@@ -1110,7 +1189,7 @@ namespace TP3
       if (keyUsed == Mouvement.DeplacerHaut)
       {
         //Vérification si le déplacement est possible
-        if (DeterminerSiBlocPeutBouger(Mouvement.DeplacerHaut))
+        if (DeterminerSiPiecePeutBouger(Mouvement.DeplacerHaut))
         {
           //Actualisation + affichage du tableau 
           ActualiserTableauPieces(PieceTeris.Rien);
@@ -1123,7 +1202,7 @@ namespace TP3
       if (keyUsed == Mouvement.RotationHoraire)
       {
         //Vérification si le déplacement est possible
-        if (DeterminerSiBlocPeutBouger(Mouvement.RotationHoraire))
+        if (DeterminerSiPiecePeutBouger(Mouvement.RotationHoraire))
         {
           //Actualisation + affichage du tableau 
           ActualiserTableauPieces(PieceTeris.Rien);
@@ -1145,7 +1224,7 @@ namespace TP3
       if (keyUsed == Mouvement.RotationAntihoraire)
       {
         //Vérification si le déplacement est possible
-        if (DeterminerSiBlocPeutBouger(Mouvement.RotationAntihoraire))
+        if (DeterminerSiPiecePeutBouger(Mouvement.RotationAntihoraire))
         {
           //Actualisation + affichage du tableau 
           ActualiserTableauPieces(PieceTeris.Rien);
@@ -1167,7 +1246,7 @@ namespace TP3
       if (keyUsed == Mouvement.Tomber)
       {
         // Tant que le déplacement vers le bas est possible.
-        while (DeterminerSiBlocPeutBouger(Mouvement.DeplacerBas))
+        while (DeterminerSiPiecePeutBouger(Mouvement.DeplacerBas))
         {
           // Actualise et affiche le tableau.
           ActualiserTableauPieces(PieceTeris.Rien);
@@ -1183,10 +1262,10 @@ namespace TP3
 
     #endregion
 
-    // <WLebel> et Mika Gauthier
+    // <WLebel>
     #region Méthodes qui gèrent la génération des pièces.
     /// <summary>
-    /// Génère la pièce « Carré » comme pièce suivante.
+    /// Génère la pièce «Carré» comme pièce suivante.
     /// </summary>
     void GenererCarre()
     {
@@ -1206,7 +1285,7 @@ namespace TP3
 
 
     /// <summary>
-    /// Génère la pièce « Barre horizontale » comme pièce suivante.
+    /// Génère la pièce «Barre horizontale» comme pièce suivante.
     /// </summary>
     void GenererBarreH()
     {
@@ -1341,7 +1420,7 @@ namespace TP3
     }
 
     /// <summary>
-    /// Supprime toute pièce générée en remplaçant leurs coordonnées par 0.
+    /// Supprime toutes les pièces générées en remplaçant leurs coordonnées par 0.
     /// </summary>
     void ResetPieces()
     {
@@ -1358,6 +1437,7 @@ namespace TP3
       blocActifX[2] = 0;
       blocActifX[3] = 0;
 
+      // Pièce suivante.
       pieceSuivante = PieceTeris.Rien;
 
       blocSuivantY[0] = 0;
@@ -1378,10 +1458,10 @@ namespace TP3
     /// </summary>
     void GenererPieceEnCours()
     {
-      // Change le bloc actif pour le bloc suivant.
-      // Pour toutes les coordonées des blocs, prendre la
-      // valeur des blocs suivants.
+      // Change la pièce active pour la piève suivante.
       pieceEnCours = pieceSuivante;
+      // Pour toutes les coordonées des blocs actifs, prendre les
+      // coordonnées relatives des blocs suivants.
       for (int i = 0; i < blocActifY.Length; i++)
       {
         blocActifY[i] = blocSuivantY[i];
@@ -1389,6 +1469,7 @@ namespace TP3
       }
 
       // Ajoute la pièce au compteur de pièces.
+      // Mika Gauthier
       switch (pieceEnCours)
       {
         case PieceTeris.block:
@@ -1417,6 +1498,7 @@ namespace TP3
           break;
 
       }
+      // Mika Gauthier
 
       // Mika Gauthier
       //Mesure de sécurité (en cas de bogue)
@@ -1431,7 +1513,7 @@ namespace TP3
       // Mika Gauthier
     }
 
-    // <WLebel> et Mika Gauthier
+    // <WLebel>
     /// <summary>
     /// Méthode qui choisit une pièce aléatoirement et la génère comme pièce suivante.
     /// </summary>
@@ -1445,6 +1527,7 @@ namespace TP3
           GenererCarre();
           nbPieceBloc++;
           break;
+        //Mika Gauthier
         case 1:
           GenererBarreH();
           nbPieceBarreHorizontale++;
@@ -1453,6 +1536,7 @@ namespace TP3
           GenererBarreV();
           nbPieceBarreVerticale++;
           break;
+        //Mika Gauthier
         case 3:
           GenererT();
           nbPieceEnT++;
@@ -1478,7 +1562,7 @@ namespace TP3
           break;
       }
     }
-    // </WLebel> et Mika Gauthier
+    // </WLebel>
 
     #endregion
     // </WLebel>
@@ -1490,11 +1574,13 @@ namespace TP3
     /// </summary>
     void CommencerJeu()
     {
+      //Mika Gauthier
       //Début du timer
       timerTempsDeJeu.Enabled = true;
 
       //Prendre la valeur de début de partie(Temps)
       tempsDebutPartie = DateTime.Now;
+      //Mika Gauthier
 
       // Commence la musique si elle est activée.
       if (doitJouerMusique)
@@ -1529,7 +1615,6 @@ namespace TP3
       numLignes.Enabled = false;
       numColonnes.Enabled = false;
       checkBoxMusique.Enabled = false;
-      //btnValider.Enabled = false;
     }
     // </WLebel>
 
@@ -1542,10 +1627,12 @@ namespace TP3
       // Arrête le timer.
       timerJeu.Enabled = false;
 
+      //Mika Gauthier
       // Arrête le second timer
       timerTempsDeJeu.Enabled = false;
+      //Mika Gauthier
 
-      // Désactive la pièce.
+      // Désactive les pièces.
       ResetPieces();
 
       // Arrête la musique
@@ -1590,19 +1677,22 @@ namespace TP3
     /// <summary>
     /// Pause le jeu et affiche une boîte de message au joueur demandant s'il veut abandonner la partie en cours.
     /// </summary>
-    /// <returns>Un booléen qui indique si le joueur veut abandonner (vrai) ou non (faux).</returns>
+    /// <returns>Un booléen qui indique si le joueur veut abandonner (true) ou non (false).</returns>
     bool DemanderAbandonnerPartie()
     {
       bool veutAbandonner = false;
 
+      // Pause.
       timerJeu.Enabled = false;
 
+      // Demande au joueur s'il veut abandonner.
       if (MessageBox.Show("Êtes-vous certain de vouloir abandonner la partie en cours?", "Attention",
                           MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
       {
         veutAbandonner = true;
       }
 
+      // Arrête la pause.
       timerJeu.Enabled = true;
 
       return veutAbandonner;
@@ -1632,14 +1722,14 @@ namespace TP3
     // <WLebel>
     #region Métodes qui permettent de gérer les lignes complétées
     /// <summary>
-    /// Méthode qui vérifie si des lignes dans le jeu sont complétés et les retire si c'est le cas.
+    /// Méthode qui vérifie si des lignes dans le jeu sont complétées et les retire si c'est le cas.
     /// Actualise le pointage en conséquent.
     /// </summary>
     void ActualiserPointage()
     {
 
       // Valeurs de base.
-      // 1 ligne retirée = 250pts
+      // 1 ligne retirée = 200pts
       // 2 lignes retirées = 500pts
       // 3 lignes retirées = 1000pts
       // 4 lignes retirées = 2000pts
@@ -1692,19 +1782,25 @@ namespace TP3
         }
       }
 
+      // On ajoute le nombre de ligne complétées au total.
       nbLignesCompleteesAuTotal += nbLignesCompletees;
+
       return nbLignesCompletees;
     }
 
     /// <summary>
     /// Méthode qui vérifie si la ligne située à l'index passé en paramètre est une ligne complète.
     /// </summary>
-    /// <param name="ligne">L'index de la ligne dans le tableau «tableauPieces» à laquelle sera vérifier
+    /// <param name="ligne">L'index de la ligne dans le tableau «tableauPieces» à laquelle sera vérifié
     /// si la ligne est complète.</param>
-    /// <returns>Vrai si la ligne est complète, faux sinon.</returns>
+    /// <returns>True si la ligne est complète, false sinon.</returns>
     bool VerifierSiEstUneLigneComplete(int ligne)
     {
       bool estUneLigneComplete = true;
+
+      // S'assure que la ligne passée en paramètre est valide.
+      Debug.Assert(ligne >= 0 && ligne < nbLignesJeu,
+      "L'index de la ligne passé en paramètre pour la méthode «VerifierSiEstLigneComplete» n'est pas valide");
 
       // Si l'index de a ligne donné en paramètre est valide.
       if (ligne >= 0 && ligne < nbLignesJeu)
@@ -1712,7 +1808,7 @@ namespace TP3
         // Pour tous les pièces de la ligne.
         for (int j = 0; j < nbColonnesJeu; j++)
         {
-          // Si la case est vide, c'est que ce n'est pas une ligne complète.
+          // Si une case est vide, c'est que ce n'est pas une ligne complète.
           if (tableauPieces[ligne, j] == PieceTeris.Rien)
           {
             estUneLigneComplete = false;
@@ -1727,15 +1823,20 @@ namespace TP3
     /// Méthode qui retire une ligne de jeu et qui décale les lignes qui sont plus hautes 
     /// que la ligne retirée vers le bas, remplaçant la première ligne du jeu par une ligne vide.
     /// </summary>
-    /// <param name="ligneDeDepart">Représente l’index de la ligne dans le tableau «tableauPieces» à partir de
-    /// laquelle commencer le décalage, c’est-à-dire la ligne à supprimer.</param>
+    /// <param name="ligneDeDepart">Représente l’index de la ligne dans le tableau «tableauPieces»
+    /// à partir de laquelle commencer le décalage, c’est-à-dire la ligne à supprimer.</param>
     void DecalerLignes(int ligneDeDepart)
     {
+      // S'assure que la ligne passée en paramètre est valide.
+      Debug.Assert(ligneDeDepart >= 0 && ligneDeDepart < nbLignesJeu,
+      "L'index de la ligne passé en paramètre pour la méthode «DécalerLigne» n'est pas valide");
+
       // Si l'index de la ligne donné en paramètre est valide.
       if (ligneDeDepart >= 0 && ligneDeDepart < nbLignesJeu)
       {
 
-        // Pour toutes les lignes à partir de la ligne donnée en paramètre (exepté la première ligne du jeu).
+        // Pour toutes les lignes à partir de la ligne donnée en paramètre 
+        // (excepté la première ligne du jeu).
         for (int i = ligneDeDepart; i > 1; i--)
         {
           // Pour toutes les cases de la ligne choisie
@@ -1781,14 +1882,12 @@ namespace TP3
     void ExecuterTestsUnitaires()
     {
       TesterRetirerLignesCompletees();
-      ExecuterTestABC();
-      // A compléter...
     }
 
     // <WLebel>
     #region Test de la méthode RetirerLignesCompletees
     /// <summary>
-    /// Méthode qui teste plusieurs cas de la méthode RetirerLignesCompletees.
+    /// Méthode qui teste plusieurs cas de la méthode «RetirerLignesCompletees».
     /// </summary>
     void TesterRetirerLignesCompletees()
     {
@@ -2043,20 +2142,6 @@ namespace TP3
     }
     #endregion
     // </WLebel>
-
-    // A renommer et commenter!
-    void ExecuterTestABC()
-    {
-      // Mise en place des données du test
-
-      // Exécuter de la méthode à tester
-
-      // Validation des résultats
-
-      // Clean-up
-    }
-
-
 
     #endregion
 

@@ -1,4 +1,10 @@
 ﻿// <WLebel>
+/* Ce formulaire sert au joueur à configurer les touches pour sa partie.
+ * Il peut, pour toutes les différentes actions du jeu, assigner la touche de son choix.
+ * 
+ * Auteur: 
+ * William Lebel
+ * */
 using System.Windows.Forms;
 using System;
 
@@ -59,7 +65,7 @@ namespace TP3
     /// </summary>
     void AfficherToutesLesTouches()
     {
-      // Gauche.
+      // Affiche la touche «Gauche».
       btnGauche.Text = "";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheDeplacerGauche))
@@ -81,7 +87,7 @@ namespace TP3
         }
       }
 
-      // Bas.
+      // Affiche la touche «Bas».
       btnBas.Text = "";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheDeplacerBas))
@@ -103,7 +109,7 @@ namespace TP3
         }
       }
 
-      // Droite.
+      // Affiche la touche «Droite».
       btnDroite.Text = "";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheDeplacerDroite))
@@ -125,7 +131,7 @@ namespace TP3
         }
       }
 
-      // Horaire.
+      // Affiche la touche «Horaire».
       btnHoraire.Text = "";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheRotationHoraire))
@@ -147,7 +153,7 @@ namespace TP3
         }
       }
 
-      // Antihoraire.
+      // Affiche la touche «Antihoraire».
       btnAntihoraire.Text = "";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheRotationAntihoraire))
@@ -169,7 +175,7 @@ namespace TP3
         }
       }
 
-      // Tomber.
+      // Affiche la touche «Tomber».
       btnTomber.Text = "";
       // Si c'est une lettre, on la met en majuscule.
       if (Char.IsLetter(toucheTomber))
@@ -213,8 +219,8 @@ namespace TP3
     }
 
     /// <summary>
-    /// Méthode qui est appelée lorsque le le joueur appuie sur une touche
-    /// en sélectionnant le bouton «btnGauche». La métode sauvegarde la nouvelle
+    /// Méthode qui est appelée lorsque le joueur appuie sur une touche
+    /// en sélectionnant le bouton «btnGauche». La méthode sauvegarde la nouvelle
     /// touche du joueur pour un déplacement gauche.
     /// </summary>
     /// <param name="sender"></param>
@@ -233,8 +239,8 @@ namespace TP3
     }
 
     /// <summary>
-    /// Méthode qui est appelée lorsque le le joueur appuie sur une touche
-    /// en sélectionnant le bouton «btnBas». La métode sauvegarde la nouvelle
+    /// Méthode qui est appelée lorsque le joueur appuie sur une touche
+    /// en sélectionnant le bouton «btnBas». La méthode sauvegarde la nouvelle
     /// touche du joueur pour un déplacement bas.
     /// </summary>
     /// <param name="sender"></param>
@@ -253,8 +259,8 @@ namespace TP3
     }
 
     /// <summary>
-    /// Méthode qui est appelée lorsque le le joueur appuie sur une touche
-    /// en sélectionnant le bouton «btnDroite». La métode sauvegarde la nouvelle
+    /// Méthode qui est appelée lorsque le joueur appuie sur une touche
+    /// en sélectionnant le bouton «btnDroite». La méthode sauvegarde la nouvelle
     /// touche du joueur pour un déplacement droite.
     /// </summary>
     /// <param name="sender"></param>
@@ -273,8 +279,8 @@ namespace TP3
     }
 
     /// <summary>
-    /// Méthode qui est appelée lorsque le le joueur appuie sur une touche
-    /// en sélectionnant le bouton «btnHoraire». La métode sauvegarde la nouvelle
+    /// Méthode qui est appelée lorsque le joueur appuie sur une touche
+    /// en sélectionnant le bouton «btnHoraire». La méthode sauvegarde la nouvelle
     /// touche du joueur pour une rotation horaire.
     /// </summary>
     /// <param name="sender"></param>
@@ -293,8 +299,8 @@ namespace TP3
     }
 
     /// <summary>
-    /// Méthode qui est appelée lorsque le le joueur appuie sur une touche
-    /// en sélectionnant le bouton «btnAntihoraire». La métode sauvegarde la nouvelle
+    /// Méthode qui est appelée lorsque le joueur appuie sur une touche
+    /// en sélectionnant le bouton «btnAntihoraire». La méthode sauvegarde la nouvelle
     /// touche du joueur pour une rotation antihoraire.
     /// </summary>
     /// <param name="sender"></param>
@@ -313,8 +319,8 @@ namespace TP3
     }
 
     /// <summary>
-    /// Méthode qui est appelée lorsque le le joueur appuie sur une touche
-    /// en sélectionnant le bouton «btnTomber». La métode sauvegarde la nouvelle
+    /// Méthode qui est appelée lorsque le joueur appuie sur une touche
+    /// en sélectionnant le bouton «btnTomber». La méthode sauvegarde la nouvelle
     /// touche du joueur pour faire tomber la pièce.
     /// </summary>
     /// <param name="sender"></param>

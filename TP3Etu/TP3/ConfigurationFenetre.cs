@@ -1,4 +1,11 @@
 ﻿// <WLebel>
+/* Ce formulaire sert au joueur à configurer sa partie selon plusieurs paramètres,
+ * comme le nombre de ligne ou de colonnes, le choix d'activer la musique ou non ou
+ * le choix des touches.
+ * 
+ * Auteur: 
+ * William Lebel
+ * */
 using System;
 using System.Windows.Forms;
 
@@ -44,7 +51,7 @@ namespace TP3
     /// <param name="e"></param>
     private void OnLoadConfigurationFenetre(object sender, EventArgs e)
     {
-      // Ajuste lee maximum et le minimum des trackBars et des numericalupdowns
+      // Ajuste le maximum et le minimum des trackbars et des numericalupdowns
       // afin de ne pas créer de débordements.
       numNbLignes.Maximum = trackBarNbLignes.Maximum;
       numNbLignes.Minimum = trackBarNbLignes.Minimum;
@@ -83,7 +90,7 @@ namespace TP3
 
     /// <summary>
     /// Méthode qui est appelée lorsque l'utilisateur change le nombre de lignes du jeu à l'aide du numericalupdown correspondant.
-    /// Elle permet de changer le nombre de ligne du jeu et d'actualiser son trackbar.
+    /// Elle permet de changer le nombre de lignes du jeu et d'actualiser son trackbar.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
