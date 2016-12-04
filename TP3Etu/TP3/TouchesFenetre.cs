@@ -222,16 +222,10 @@ namespace TP3
     private void OnKeyPressBtnGauche(object sender, KeyPressEventArgs e)
     {
       // Si la touche est dans les caractères permis (c'est-à-dire toutes
-      // les lettres, la barre espace et les deux shift), on le sauvegarde.
-      if (Char.IsLetter(e.KeyChar))
-      // les lettres , on le sauvegarde.
+      // les lettres et la barre espace), on la sauvegarde.
       if (Char.IsLetter(e.KeyChar) || e.KeyChar == (char)32 )
       {
         toucheDeplacerGauche = Char.ToLower(e.KeyChar);
-      }
-      else if (e.KeyChar == (char)32 || e.KeyChar == (char)14 || e.KeyChar == (char)15)
-      {
-        toucheDeplacerGauche = e.KeyChar;
       }
 
       // Affiche la nouvelle touche.
@@ -248,14 +242,10 @@ namespace TP3
     private void OnKeyPressBtnBas(object sender, KeyPressEventArgs e)
     {
       // Si la touche est dans les caractères permis (c'est-à-dire toutes
-      // les lettres, la barre espace et les deux shift), on le sauvegarde.
-      if (Char.IsLetter(e.KeyChar))
+      // les lettres et la barre espace), on la sauvegarde.
+      if (Char.IsLetter(e.KeyChar) || e.KeyChar == (char)32)
       {
         toucheDeplacerBas = Char.ToLower(e.KeyChar);
-      }
-      else if (e.KeyChar == (char)32 || e.KeyChar == (char)14 || e.KeyChar == (char)15)
-      {
-        toucheDeplacerBas = e.KeyChar;
       }
 
       // Affiche la nouvelle touche.
@@ -272,14 +262,10 @@ namespace TP3
     private void OnKeyPressBtnDroite(object sender, KeyPressEventArgs e)
     {
       // Si la touche est dans les caractères permis (c'est-à-dire toutes
-      // les lettres, la barre espace et les deux shift), on le sauvegarde.
-      if (Char.IsLetter(e.KeyChar))
+      // les lettres et la barre espace), on la sauvegarde.
+      if (Char.IsLetter(e.KeyChar) || e.KeyChar == (char)32)
       {
         toucheDeplacerDroite = Char.ToLower(e.KeyChar);
-      }
-      else if (e.KeyChar == (char)32 || e.KeyChar == (char)14 || e.KeyChar == (char)15)
-      {
-        toucheDeplacerDroite = e.KeyChar;
       }
 
       // Affiche la nouvelle touche.
@@ -296,14 +282,10 @@ namespace TP3
     private void OnKeyPressBtnHoraire(object sender, KeyPressEventArgs e)
     {
       // Si la touche est dans les caractères permis (c'est-à-dire toutes
-      // les lettres, la barre espace et les deux shift), on le sauvegarde.
-      if (Char.IsLetter(e.KeyChar))
+      // les lettres et la barre espace), on la sauvegarde.
+      if (Char.IsLetter(e.KeyChar) || e.KeyChar == (char)32)
       {
         toucheRotationHoraire = Char.ToLower(e.KeyChar);
-      }
-      else if (e.KeyChar == (char)32 || e.KeyChar == (char)14 || e.KeyChar == (char)15)
-      {
-        toucheRotationHoraire = e.KeyChar;
       }
 
       // Affiche la nouvelle touche.
@@ -320,14 +302,10 @@ namespace TP3
     private void OnKeyPressBtnAntihoraire(object sender, KeyPressEventArgs e)
     {
       // Si la touche est dans les caractères permis (c'est-à-dire toutes
-      // les lettres, la barre espace et les deux shift), on le sauvegarde.
-      if (Char.IsLetter(e.KeyChar))
+      // les lettres et la barre espace), on la sauvegarde.
+      if (Char.IsLetter(e.KeyChar) || e.KeyChar == (char)32)
       {
         toucheRotationAntihoraire = Char.ToLower(e.KeyChar);
-      }
-      else if (e.KeyChar == (char)32 || e.KeyChar == (char)14 || e.KeyChar == (char)15)
-      {
-        toucheRotationAntihoraire = e.KeyChar;
       }
 
       // Affiche la nouvelle touche.
@@ -344,14 +322,10 @@ namespace TP3
     private void OnKeyPressBtnTomber(object sender, KeyPressEventArgs e)
     {
       // Si la touche est dans les caractères permis (c'est-à-dire toutes
-      // les lettres, la barre espace et les deux shift), on le sauvegarde.
-      if (Char.IsLetter(e.KeyChar))
+      // les lettres et la barre espace), on la sauvegarde.
+      if (Char.IsLetter(e.KeyChar) || e.KeyChar == (char)32)
       {
         toucheTomber = Char.ToLower(e.KeyChar);
-      }
-      else if (e.KeyChar == (char)32 || e.KeyChar == (char)14 || e.KeyChar == (char)15)
-      {
-        toucheTomber = e.KeyChar;
       }
 
       // Affiche la nouvelle touche.
