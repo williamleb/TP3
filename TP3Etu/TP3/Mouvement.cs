@@ -1,6 +1,7 @@
 ﻿// <WLebel>
 namespace TP3
 {
+  // Énumération qui sert à identifier le mouvement de la pièce active.
   enum Mouvement
   {
     Immobile,
