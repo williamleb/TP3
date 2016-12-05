@@ -204,12 +204,13 @@ namespace TP3
       musique.settings.setMode("loop", true);
 
       // Initialise le tableau des picture box du coup suivant.
-      tousLesPicturesBoxCoupSuivant = new PictureBox[4, 4] {
-                                                            { pbCoupSuivant0, pbCoupSuivant1, pbCoupSuivant2, pbCoupSuivant3 },
-                                                            { pbCoupSuivant4, pbCoupSuivant5, pbCoupSuivant6, pbCoupSuivant7 },
-                                                            { pbCoupSuivant8, pbCoupSuivant9, pbCoupSuivant10, pbCoupSuivant11 },
-                                                            { pbCoupSuivant12, pbCoupSuivant13, pbCoupSuivant14, pbCoupSuivant15 }
-                                                           };
+      tousLesPicturesBoxCoupSuivant = new PictureBox[4, 4] 
+                             {
+                              { pbCoupSuivant0, pbCoupSuivant1, pbCoupSuivant2, pbCoupSuivant3 },
+                              { pbCoupSuivant4, pbCoupSuivant5, pbCoupSuivant6, pbCoupSuivant7 },
+                              { pbCoupSuivant8, pbCoupSuivant9, pbCoupSuivant10, pbCoupSuivant11 },
+                              { pbCoupSuivant12, pbCoupSuivant13, pbCoupSuivant14, pbCoupSuivant15 }
+                             };
       // </WLebel>
 
     }
@@ -363,6 +364,8 @@ namespace TP3
         {
           nbLignesJeu = fenetreDeConfiguration.nombreDeLignesDansLeJeu;
           nbColonnesJeu = fenetreDeConfiguration.nombreDeColonnesDansLeJeu;
+          numLignes.Value = fenetreDeConfiguration.nombreDeLignesDansLeJeu;
+          numColonnes.Value = fenetreDeConfiguration.nombreDeColonnesDansLeJeu;
           doitJouerMusique = fenetreDeConfiguration.doitJouerMusique;
           toucheDeplacerBas = fenetreDeConfiguration.toucheDeplacerBas;
           toucheDeplacerDroite = fenetreDeConfiguration.toucheDeplacerDroite;
@@ -619,7 +622,8 @@ namespace TP3
           {
             toutesImagesVisuelles[i, j].BackColor = Color.Yellow;
           }
-          else if (tableauPieces[i, j] == PieceTeris.barreVerticale || tableauPieces[i, j] == PieceTeris.barreHorizontale)
+          else if (tableauPieces[i, j] == PieceTeris.barreVerticale 
+                    || tableauPieces[i, j] == PieceTeris.barreHorizontale)
           {
             toutesImagesVisuelles[i, j].BackColor = Color.Cyan;
           }
@@ -2513,4 +2517,3 @@ namespace TP3
     #endregion
   }
 }   
-

@@ -1,10 +1,8 @@
 ﻿//mika gauthier
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+// <WLebel>
+// Énumération qui sert à identifier le type de pièce dans le tableau de pièces.
+// </WLebel>
 namespace TP3
 {
 
