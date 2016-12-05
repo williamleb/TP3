@@ -1,4 +1,16 @@
-﻿using System;
+﻿//Mika Gauthier
+/*
+ * Ce formulaire affiche au joueur toutes les statistiques de la partie en cours
+ * Il contient le nombre de chaque pièce utilisée ainsi que son pourcentage d'utilisation
+ * Affiche le pointage, le nombre de lignes enlevées, le temps de jeu 
+ * ainsi que le niveau du jeu
+ * 
+ * Auteur: 
+ * Mika Gauthier
+ */
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,11 +29,11 @@ namespace TP3
       InitializeComponent();
     }
 
-    private void frmFinDePartie_Load(object sender, EventArgs e)
-    {
-
-    }
-
+    /// <summary>
+    /// Cette fonction affiche le temps de jeu d'une partie à l'écran
+    /// </summary>
+    /// <param name="tempsDebutPartie"></param>
+    /// <param name="tempsDeLaPartie"></param>
     public void AfficherTimer(DateTime tempsDebutPartie, DateTime tempsDeLaPartie)
     {
       TimeSpan tempsEcoule = (tempsDeLaPartie - tempsDebutPartie);
@@ -29,7 +41,19 @@ namespace TP3
     }
 
 
-
+    /// <summary>
+    /// Cette fonction affiche et converti en pourcentage le nombre de chaque pièce utilisée au cours
+    /// de la partie
+    /// </summary>
+    /// <param name="nbPieceBloc">entier qui représente le nombre de pièce de type bloc</param>
+    /// <param name="nbPieceBarreVerticale">entier qui représente le nombre de pièce de type barre verticale/param>
+    /// <param name="nbPieceBarreHorizontale">entier qui représente le nombre de pièce de type horizontale</param>
+    /// <param name="nbPieceEnT">entier qui représente le nombre de pièce de type T</param>
+    /// <param name="nbPieceEnJ">entier qui représente le nombre de pièce de type J</param>
+    /// <param name="nbPieceEnL">entier qui représente le nombre de pièce de type L</param>
+    /// <param name="nbPieceEnS">entier qui représente le nombre de pièce de type S</param>
+    /// <param name="nbPieceEnZ">entier qui représente le nombre de pièce de type Z</param>
+    /// <param name="sommeDesPieces">entier qui représente la somme de toutes les pièces</param>
     public void AfficherNbPieceGenere(
       float nbPieceBloc, float nbPieceBarreVerticale,
       float nbPieceBarreHorizontale, float nbPieceEnT,
@@ -38,6 +62,8 @@ namespace TP3
       float sommeDesPieces
       )
     {
+
+      //Modification des textBox pour le nombre de pièces utilisées
       txtBNbBloc.Text = nbPieceBloc.ToString() + "\t Pourcentage : " + (nbPieceBloc / sommeDesPieces).ToString("p");
       txtBNbBarreVerticale.Text = nbPieceBarreVerticale.ToString() + "\t Pourcentage : " + (nbPieceBarreVerticale / sommeDesPieces).ToString("p");
       txtBNbBarreHorizontale.Text = nbPieceBarreHorizontale.ToString() + "\t Pourcentage : " + (nbPieceBarreHorizontale / sommeDesPieces).ToString("p");
@@ -48,44 +74,16 @@ namespace TP3
       txtBNbEnZ.Text = nbPieceEnZ.ToString() + "\t Pourcentage : " + (nbPieceEnZ / sommeDesPieces).ToString("p");
     }
 
-    public void AfficherPointage(int pointage)
+    /// <summary>
+    /// Cette fonction affiche le pointage du joueur à l'écran (score, niveau atteint, nombre de lignes enlevées)
+    /// </summary>
+    /// <param name="pointage"></param>
+    public void AfficherPointage(int pointage, int nbLignesCompleteesAuTotal, int niveauDifficluteDe1A9)
     {
       lblPointage.Text += pointage.ToString();
+      lblNiveau.Text += niveauDifficluteDe1A9.ToString();
+      lblLigneEnlever.Text += nbLignesCompleteesAuTotal.ToString();
     }
-
-
-    #region Fonction a ignorer(elle ne fond rien)
-    private void tLPStatistiqueFinDePartie_Paint(object sender, PaintEventArgs e)
-    {
-
-    }
-
-    private void label1lblFinDePartie_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    private void textBox1_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    private void textBox1_TextChanged_1(object sender, EventArgs e)
-    {
-
-    } 
-
-    private void txtBNbBloc_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    private void lblPointage_Click(object sender, EventArgs e)
-    {
-
-    }
-    #endregion
-
-
   }
 }
+// Mika Gauthier

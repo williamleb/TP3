@@ -56,6 +56,8 @@
       this.pBEnL = new System.Windows.Forms.PictureBox();
       this.pBEnS = new System.Windows.Forms.PictureBox();
       this.pBEnZ = new System.Windows.Forms.PictureBox();
+      this.lblLigneEnlever = new System.Windows.Forms.Label();
+      this.lblNiveau = new System.Windows.Forms.Label();
       this.tLPStatistiqueFinDePartie.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pBBloc)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pBBarreV)).BeginInit();
@@ -75,7 +77,7 @@
       this.lblPieceBloc.Size = new System.Drawing.Size(75, 13);
       this.lblPieceBloc.TabIndex = 0;
       this.lblPieceBloc.Text = "Bloc générés :";
-      this.lblPieceBloc.Click += new System.EventHandler(this.label1lblFinDePartie_Click);
+
       // 
       // tLPStatistiqueFinDePartie
       // 
@@ -105,7 +107,6 @@
       this.tLPStatistiqueFinDePartie.Controls.Add(this.txtBNbEnS, 1, 6);
       this.tLPStatistiqueFinDePartie.Controls.Add(this.txtBNbEnZ, 1, 7);
       this.tLPStatistiqueFinDePartie.Controls.Add(this.lblPointage, 3, 0);
-      this.tLPStatistiqueFinDePartie.Controls.Add(this.lblTempsEcoule, 3, 4);
       this.tLPStatistiqueFinDePartie.Controls.Add(this.pBBloc, 2, 0);
       this.tLPStatistiqueFinDePartie.Controls.Add(this.pBBarreV, 2, 1);
       this.tLPStatistiqueFinDePartie.Controls.Add(this.pBBarreH, 2, 2);
@@ -114,6 +115,9 @@
       this.tLPStatistiqueFinDePartie.Controls.Add(this.pBEnL, 2, 5);
       this.tLPStatistiqueFinDePartie.Controls.Add(this.pBEnS, 2, 6);
       this.tLPStatistiqueFinDePartie.Controls.Add(this.pBEnZ, 2, 7);
+      this.tLPStatistiqueFinDePartie.Controls.Add(this.lblTempsEcoule, 3, 6);
+      this.tLPStatistiqueFinDePartie.Controls.Add(this.lblLigneEnlever, 3, 2);
+      this.tLPStatistiqueFinDePartie.Controls.Add(this.lblNiveau, 3, 4);
       this.tLPStatistiqueFinDePartie.Location = new System.Drawing.Point(13, 13);
       this.tLPStatistiqueFinDePartie.Name = "tLPStatistiqueFinDePartie";
       this.tLPStatistiqueFinDePartie.RowCount = 8;
@@ -127,7 +131,7 @@
       this.tLPStatistiqueFinDePartie.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
       this.tLPStatistiqueFinDePartie.Size = new System.Drawing.Size(759, 734);
       this.tLPStatistiqueFinDePartie.TabIndex = 1;
-      this.tLPStatistiqueFinDePartie.Paint += new System.Windows.Forms.PaintEventHandler(this.tLPStatistiqueFinDePartie_Paint);
+
       // 
       // lblBarreVerticale
       // 
@@ -199,7 +203,6 @@
       this.txtBNbBloc.Name = "txtBNbBloc";
       this.txtBNbBloc.Size = new System.Drawing.Size(175, 20);
       this.txtBNbBloc.TabIndex = 8;
-      this.txtBNbBloc.TextChanged += new System.EventHandler(this.txtBNbBloc_TextChanged);
       // 
       // txtBNbBarreVerticale
       // 
@@ -208,7 +211,6 @@
       this.txtBNbBarreVerticale.Name = "txtBNbBarreVerticale";
       this.txtBNbBarreVerticale.Size = new System.Drawing.Size(175, 20);
       this.txtBNbBarreVerticale.TabIndex = 9;
-      this.txtBNbBarreVerticale.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
       // 
       // txtBNbBarreHorizontale
       // 
@@ -225,7 +227,6 @@
       this.txtBNbEnT.Name = "txtBNbEnT";
       this.txtBNbEnT.Size = new System.Drawing.Size(175, 20);
       this.txtBNbEnT.TabIndex = 11;
-      this.txtBNbEnT.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
       // 
       // txtBNbEnJ
       // 
@@ -267,12 +268,12 @@
       this.lblPointage.Size = new System.Drawing.Size(55, 13);
       this.lblPointage.TabIndex = 16;
       this.lblPointage.Text = "Pointage :";
-      this.lblPointage.Click += new System.EventHandler(this.lblPointage_Click);
+
       // 
       // lblTempsEcoule
       // 
       this.lblTempsEcoule.AutoSize = true;
-      this.lblTempsEcoule.Location = new System.Drawing.Point(570, 364);
+      this.lblTempsEcoule.Location = new System.Drawing.Point(570, 546);
       this.lblTempsEcoule.Name = "lblTempsEcoule";
       this.lblTempsEcoule.Size = new System.Drawing.Size(39, 13);
       this.lblTempsEcoule.TabIndex = 17;
@@ -358,6 +359,24 @@
       this.pBEnZ.TabIndex = 25;
       this.pBEnZ.TabStop = false;
       // 
+      // lblLigneEnlever
+      // 
+      this.lblLigneEnlever.AutoSize = true;
+      this.lblLigneEnlever.Location = new System.Drawing.Point(570, 182);
+      this.lblLigneEnlever.Name = "lblLigneEnlever";
+      this.lblLigneEnlever.Size = new System.Drawing.Size(90, 13);
+      this.lblLigneEnlever.TabIndex = 26;
+      this.lblLigneEnlever.Text = "Lignes enlevées :";
+      // 
+      // lblNiveau
+      // 
+      this.lblNiveau.AutoSize = true;
+      this.lblNiveau.Location = new System.Drawing.Point(570, 364);
+      this.lblNiveau.Name = "lblNiveau";
+      this.lblNiveau.Size = new System.Drawing.Size(47, 13);
+      this.lblNiveau.TabIndex = 27;
+      this.lblNiveau.Text = "Niveau :";
+      // 
       // frmFinDePartie
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -367,7 +386,7 @@
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "frmFinDePartie";
       this.Text = "Statistiques fin de partie";
-      this.Load += new System.EventHandler(this.frmFinDePartie_Load);
+
       this.tLPStatistiqueFinDePartie.ResumeLayout(false);
       this.tLPStatistiqueFinDePartie.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pBBloc)).EndInit();
@@ -411,5 +430,7 @@
     private System.Windows.Forms.PictureBox pBEnL;
     private System.Windows.Forms.PictureBox pBEnS;
     private System.Windows.Forms.PictureBox pBEnZ;
+    private System.Windows.Forms.Label lblLigneEnlever;
+    private System.Windows.Forms.Label lblNiveau;
   }
 }

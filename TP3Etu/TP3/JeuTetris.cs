@@ -440,7 +440,7 @@ namespace TP3
       }
 
       /*
-      easter egg
+      easter egg Vous pouvez le rajouter au besoin pour des test
       //Déplacement vers le haut(w)
       if (e.KeyChar == 'w')
       {
@@ -966,7 +966,8 @@ namespace TP3
 
     //Mika Gauthier
     /// <summary>
-    /// 
+    /// Cette fonction remets tous les éléments qui ont servit dans une partie
+    /// et qui vont servir pour d'autres parties
     /// </summary>
     void RemiseDesValeurInitiales()
     {
@@ -976,6 +977,7 @@ namespace TP3
       nbLignesCompleteesAuTotal = 0;
       jeuEstEnCours = false;
 
+      // Remise à 0 des blocs utilisés
       nbPieceBloc = 0; //couleur jaune
       nbPieceBarreVerticale = 0; //couleur cyan
       nbPieceBarreHorizontale = 0; //couleur cyan
@@ -986,14 +988,14 @@ namespace TP3
       nbPieceEnZ = 0; //couleur vert
       sommeDesPieces = 0; //Somme de toutes les pièces
 
-      // Active les paramètres.
+      // Active et désactive certains paramètres accessible par le joueur.
       numLignes.Enabled = true;
       numColonnes.Enabled = true;
       checkBoxMusique.Enabled = true;
       btnValider.Enabled = true;
       timerTempsDeJeu.Enabled = false;
 
-      //Valeur temporelle
+      // Remise à 0 des valeurs temporelles
       tempsDebutPartie = DateTime.Now;
       tempsDeLaPartie = DateTime.Now;
       lblTimerDeLaPartie.Text = "Temps : 0";
@@ -1087,7 +1089,8 @@ namespace TP3
           // Test si le nouvement causera un débordement de tableau (si le mouvement positionne les 
           // blocs en dehors du jeu).
           // Sinon, test si à la nouvelle position se trouve une pièce gelée.
-          if (-blocActifX[i] + ligneCourante < 0 || -blocActifX[i] + ligneCourante >= nbLignesJeu || blocActifY[i] + colonneCourante < 0 || blocActifY[i] + colonneCourante >= nbColonnesJeu)
+          if (-blocActifX[i] + ligneCourante < 0 || -blocActifX[i] + ligneCourante >= nbLignesJeu 
+              || blocActifY[i] + colonneCourante < 0 || blocActifY[i] + colonneCourante >= nbColonnesJeu)
           {
             peutBouger = false;
           }
@@ -1105,7 +1108,8 @@ namespace TP3
           // Test si le nouvement causera un débordement de tableau (si le mouvement positionne les 
           // blocs en dehors du jeu).
           // Sinon, test si à la nouvelle position se trouve une pièce gelée.
-          if (blocActifX[i] + ligneCourante < 0 || blocActifX[i] + ligneCourante >= nbLignesJeu || -blocActifY[i] + colonneCourante < 0 || -blocActifY[i] + colonneCourante >= nbColonnesJeu)
+          if (blocActifX[i] + ligneCourante < 0 || blocActifX[i] + ligneCourante >= nbLignesJeu 
+              || -blocActifY[i] + colonneCourante < 0 || -blocActifY[i] + colonneCourante >= nbColonnesJeu)
           {
             peutBouger = false;
           }
@@ -1185,7 +1189,7 @@ namespace TP3
           AfficherJeu();
         }
       }
-      //easter egg
+      //easter egg (utilisé à des fin de déboguage)
       //Déplace le bloc vers le haut si le joueur appuie sur la lettre w
       if (keyUsed == Mouvement.DeplacerHaut)
       {
@@ -1469,8 +1473,8 @@ namespace TP3
         blocActifX[i] = blocSuivantX[i];
       }
 
-      // Ajoute la pièce au compteur de pièces.
       // Mika Gauthier
+      // Ajoute la pièce au compteur de pièces.
       switch (pieceEnCours)
       {
         case PieceTeris.block:
@@ -1651,8 +1655,10 @@ namespace TP3
 
       // Mika Gauthier
       //Apporter les modification au formulaire des statistiques de fin de partie
-      sommeDesPieces = nbPieceBarreHorizontale + nbPieceBarreVerticale + nbPieceBloc + nbPieceEnJ + nbPieceEnL + nbPieceEnS + nbPieceEnT + nbPieceEnZ;
+      sommeDesPieces = nbPieceBarreHorizontale + nbPieceBarreVerticale + nbPieceBloc 
+                     + nbPieceEnJ + nbPieceEnL + nbPieceEnS + nbPieceEnT + nbPieceEnZ;
 
+      //Communication des statistiques au formulaire de fin de partie
       frmFinDePartie finDePartie = new frmFinDePartie();
       finDePartie.AfficherNbPieceGenere(
       nbPieceBloc, nbPieceBarreVerticale,
@@ -1660,12 +1666,13 @@ namespace TP3
       nbPieceEnJ, nbPieceEnL,
       nbPieceEnS, nbPieceEnZ,
       sommeDesPieces
-
       );
-      finDePartie.AfficherPointage(pointage);
 
+      // Ajouts supplémentaire (pointage + nombre de lignes complètes + niveau atteint + temps)
+      finDePartie.AfficherPointage(pointage, nbLignesCompleteesAuTotal, niveauDifficluteDe1A9);
       finDePartie.AfficherTimer(tempsDebutPartie, tempsDeLaPartie);
 
+      // Afficher le formulaire
       finDePartie.ShowDialog();
 
       //Remise à 0
@@ -1712,7 +1719,6 @@ namespace TP3
         if (tableauPieces[VerificationBlocActifY[i], VerificationBlocActifX[i] + colonneDeDepart] == PieceTeris.Gelee)
         {
           jeuEstEnCours = false;
-
         }
       }
     }
@@ -1882,7 +1888,10 @@ namespace TP3
     /// </summary>
     void ExecuterTestsUnitaires()
     {
+      //Mandat 1
       TesterRetirerLignesCompletees();
+
+      //Mandat 2
       TesterRotationAuCentre();
       TesterRotationAGauche();
       TesterRotationADroite();
@@ -2153,9 +2162,8 @@ namespace TP3
     //Mika Gauthier
     #region Test de rotation + Détection de fin de partie
 
-    //Test rotation d'un bloc au centre de la surface de jeu
     /// <summary>
-    /// AAAAAAAAAAAAAAAA FAIRE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// Cette fonction teste la rotation d'un bloc au centre de la surface de jeu
     /// </summary>
     void TesterRotationAuCentre()
     {
@@ -2195,11 +2203,12 @@ namespace TP3
       //Déplacement voulu
       keyUsed = Mouvement.RotationHoraire;
 
+      //Exécution de la méthode à tester
       bool peutBougerHoraire = DeterminerSiPiecePeutBouger(keyUsed);
 
       //Validation des résultats
-      Debug.WriteLine(peutBougerAntihoraire, "Erreur dans l'exécution de la rotation dans le sens antihoraire");
-      Debug.WriteLine(peutBougerHoraire, "Erreur dans l'exécution de la rotation dans le sens horaire");
+      Debug.Assert(peutBougerAntihoraire, "Erreur dans l'exécution de la rotation dans le sens antihoraire");
+      Debug.Assert(peutBougerHoraire, "Erreur dans l'exécution de la rotation dans le sens horaire");
 
       //Clean up
       ligneCourante = 0;
@@ -2215,7 +2224,9 @@ namespace TP3
       }
     }
 
-    //Test rotation d'un bloc à gauche de la surface de jeu
+    /// <summary>
+    /// Cette fonction teste la rotation d'un bloc à gauche de la surface de jeu
+    /// </summary>
     void TesterRotationAGauche()
     {
       //Mise en place des données du test
@@ -2254,13 +2265,12 @@ namespace TP3
       //Déplacement voulu
       keyUsed = Mouvement.RotationHoraire;
 
-
-
+      //Exécution de la méthode à tester
       bool peutBougerHoraire = DeterminerSiPiecePeutBouger(keyUsed);
 
       //Validation des résultats
-      Debug.WriteLine(peutBougerAntihoraire, "Erreur dans l'exécution de la rotation dans le sens antihoraire");
-      Debug.WriteLine(peutBougerHoraire, "Erreur dans l'exécution de la rotation dans le sens horaire");
+      Debug.Assert(peutBougerAntihoraire, "Erreur dans l'exécution de la rotation dans le sens antihoraire");
+      Debug.Assert(!peutBougerHoraire, "Erreur dans l'exécution de la rotation dans le sens horaire");
 
       //Clean up
       ligneCourante = 0;
@@ -2276,7 +2286,9 @@ namespace TP3
       }
     }
 
-    //Test rotation d'un bloc à droite de la surface de jeu
+    /// <summary>
+    /// Cette fonction teste la rotation d'un bloc à droite de la surface de jeu
+    /// </summary>
     void TesterRotationADroite()
     {
       //Mise en place des données du test
@@ -2315,11 +2327,12 @@ namespace TP3
       //Déplacement voulu
       keyUsed = Mouvement.RotationHoraire;
 
+      //Exécution de la méthode à tester
       bool peutBougerHoraire = DeterminerSiPiecePeutBouger(keyUsed);
 
       //Validation des résultats
-      Debug.WriteLine(peutBougerAntihoraire, "Erreur dans l'exécution de la rotation dans le sens antihoraire");
-      Debug.WriteLine(peutBougerHoraire, "Erreur dans l'exécution de la rotation dans le sens horaire");
+      Debug.Assert(!peutBougerAntihoraire, "Erreur dans l'exécution de la rotation dans le sens antihoraire");
+      Debug.Assert(peutBougerHoraire, "Erreur dans l'exécution de la rotation dans le sens horaire");
 
       //Clean up
       ligneCourante = 0;
@@ -2335,7 +2348,9 @@ namespace TP3
       }
     }
 
-    //Test rotation d'un bloc avec des blocs gelées dans la surface de jeu
+    /// <summary>
+    /// Cette fonction teste la rotation d'un bloc avec des blocs gelées dans la surface de jeu
+    /// </summary>
     void TesterRotationAvecBlocsGelees()
     {
       //Mise en place des données du test
@@ -2391,11 +2406,12 @@ namespace TP3
       //Déplacement voulu
       keyUsed = Mouvement.RotationHoraire;
 
+      //Exécution de la méthode à tester
       bool peutBougerHoraire = DeterminerSiPiecePeutBouger(keyUsed);
 
       //Validation des résultats
-      Debug.WriteLine(peutBougerAntihoraire, "Erreur dans l'exécution de la rotation dans le sens antihoraire");
-      Debug.WriteLine(peutBougerHoraire, "Erreur dans l'exécution de la rotation dans le sens horaire");
+      Debug.Assert(peutBougerAntihoraire, "Erreur dans l'exécution de la rotation dans le sens antihoraire");
+      Debug.Assert(peutBougerHoraire, "Erreur dans l'exécution de la rotation dans le sens horaire");
 
       //Clean up
       ligneCourante = 0;
@@ -2411,7 +2427,9 @@ namespace TP3
       }
     }
 
-    //Test pour la detection de fin de partie
+    /// <summary>
+    /// Cette fonction sert à tester la détectetion de fin de partie : si elle est terminée
+    /// </summary>
     void TesterFinDePartie()
     {
       //Mise en place des données du test
@@ -2443,7 +2461,7 @@ namespace TP3
       VérificationFinPartie();
 
       //Validation des résultats
-      Debug.WriteLine(jeuEstEnCours, "Erreur dans la détection de fin de partie");
+      Debug.Assert(!jeuEstEnCours, "Erreur dans la détection de fin de partie");
 
       //Clean up
       ligneCourante = 0;
@@ -2459,6 +2477,9 @@ namespace TP3
     }
 
     //Test pour la detection si la partie n'est pas terminée
+    /// <summary>
+    /// Cette fonction sert à tester la détectetion de fin de partie : si elle n'est pas terminée
+    /// </summary>
     void TesterSiPartieFinie()
     {
       //Mise en place des données du test
@@ -2490,7 +2511,7 @@ namespace TP3
       VérificationFinPartie();
 
       //Validation des résultats
-      Debug.WriteLine(jeuEstEnCours, "Erreur dans la détection de fin de partie");
+      Debug.Assert(jeuEstEnCours, "Erreur dans la détection de fin de partie");
 
       //Clean up
       ligneCourante = 0;
